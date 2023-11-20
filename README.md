@@ -12,6 +12,6 @@ README.md berisi:
  7. Daftar Peran Pengguna (hint: bisa meniru web app)
  8. Alur Pengintegrasian dengan Aplikasi Web (hint: bisa mencontoh penjelasan di Tutorial 8)
  9. Tautan Berita Acara Kerja Kelompok
-    https://docs.google.com/spreadsheets/d/1R0JjGq48dvPSgAtvUIby656d-7kMbnM90bNdROVILOk/edit?usp=sharing
+    https://compfest.link/beritaAcaraA02
  
  

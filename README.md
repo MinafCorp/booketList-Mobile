@@ -1,43 +1,57 @@
-# Booketlist Mobile V1
-- Masabil Arraya Muhammad - 2206082101  → membuat review, fiturnya bu
-at review, edit review, delete review, lihat review ✧˖°⋆ ˚｡⋆୨୧˚
+# Booketlist : an exciting way to read! 📖
+**Sebuah oasis literasi di mana setiap halaman membuka pintu imajinasi, mengundang kita untuk berpetualang, berbagi cerita, dan menemukan inspirasi di setiap kata**
 
-- I Made Surya Anahata Putra - 2206081370  → ｡⋆｡˚ ʚïɞ ˚｡⋆｡ membuat modul wishlist, fiturnya ada filter by id, filter by name, searching, dapat menambah dan menghapus daftar wishlist.  ｡⋆｡˚ ʚïɞ ˚｡⋆｡
+**Now Available on Mobile!**
 
-- Novita Mulia Sari - 2206032785  → ˚˖𓍢ִ໋✧˚.⋆ membuat modul writer, dapat merilis buku, menghapus buku yang telah dirilis writer (kyknya bakal nambahin buat draft) ˚˖𓍢ִ໋✧˚.⋆
+> Proyek ini dibuat untuk memenuhi tugas Proyek Akhir Semester (PAS)
+> pada mata kuliah Pemrograman Berbasis Platform (CSGE602023x) yang
+> diselenggarakan oleh Fakultas Ilmu Komputer, Universitas Indonesia
+> pada Semester Gasal, Tahun Ajaran 2023/2024.
 
-- Ayu Siti Nasya Ningrum - 2206025426 → membuat modul news and updates, fiturnya untuk pengguna dengan role author post pengumuman tentang update buku baru atau mempromosikan dirinya sendiri ⋆｡‧˚ʚɞ˚‧｡⋆
+## ⚜️ Pipeline Status ⚜️
+To be Announced!
 
-- Farrel Sheva Alkautsar - 2206030344 → Membuat modul user (login,registrasi, dan logout) untuk kedua role. ✧˖°⋆ ˚｡⋆୨ï୧˚
+## 📱 Tautan Aplikasi 📱
+Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh di bagian [to be announced!]
 
-## Deskripsi 
+## 👨‍💻 Meet the Dev Teams 👩‍💻
 
-Dalam dunia yang semakin digital, membaca buku telah menjadi kegiatan yang semakin mudah diakses dan dinikmati oleh banyak orang. “Booketlist” lahir dari kebutuhan untuk menghubungkan penulis dan pembaca dalam satu platform yang interaktif dan informatif.
+- Masabil Arraya Muhammad - 2206082101  
 
-BooketList adalah aplikasi database buku yang berfungsi sebagai jembatan antara penulis (writer) dan pembaca (reader). Aplikasi ini menyediakan ruang bagi penulis untuk mempromosikan karya mereka, sementara pembaca dapat menemukan, mereview, dan membuat daftar buku yang ingin mereka baca.
+- I Made Surya Anahata Putra - 2206081370  
 
+- Novita Mulia Sari - 2206032785  
 
-## Daftar Modul dan Pengembang 
+- Ayu Siti Nasya Ningrum - 2206025426 
 
-- Modul registrasi dan autentikasi (pengguna dapat mendaftar sebagai reader atau author) kemudian di autentikasi dengan email dan password
+- Farrel Sheva Alkautsar - 2206030344 
 
-- Modul manajemen buku (fitur khusus writer untuk menambahkan, mengedit, menghapus buku yang telah dipublikasi)
+## 🏛️ Latar Belakang Booketlist 🏛️
 
-- Modul ulasan dan rating (reader dapat memberi ulasan dan rating, sedangkan writer dapat merespons ulasan dari reader)
+Booketlist muncul di tengah tren meningkatnya minat baca dan akses digital terhadap literatur. Dengan data terkini menunjukkan peningkatan jumlah pembaca dan variasi bacaan yang tersedia secara online, aplikasi ini dirancang untuk menjembatani kebutuhan penulis dan pembaca di era digital.
 
-- Modul wishlist (reader dapat menambahkan buku ke daftar wishlist)
+Sebagai sebuah platform, Booketlist tidak hanya mencerminkan pergeseran kebiasaan membaca dari fisik ke digital, tetapi juga menanggapi kebutuhan interaksi yang lebih dinamis antara penulis dan pembaca. Aplikasi ini menyediakan wadah bagi penulis untuk memperluas jangkauan karya mereka, sementara pembaca mendapatkan akses mudah ke beragam buku, termasuk pilihan untuk meninjau dan menandai buku yang ingin dibaca. Booketlist berperan sebagai titik temu antara kemajuan teknologi dan kecintaan pada literasi, menciptakan ekosistem literatur yang lebih terhubung dan interaktif.
 
-- Modul update and news (fitur untuk auhor untuk posting perkembangan tentang buku yang baru di update)
+## 📝 Pembagian Tugas Modul 📝
+- [Registrasi dan Autentikasi] - [Ayu Siti Nasya Ningrum]
+- [Ulasan dan Rating] - [Masabil Arraya Muhammad]
+- [Wishlist] - [I Made Surya Anahata Putra]
+- [Update dan News] - [Farrel Sheva Alkautsar]
+- [Writer] - [Novita Mulia Sari]
 
-## Daftar Peran Pengguna
+## 🧑‍💼🧑‍💼Daftar Peran Pengguna
 - Author (dapat membaca buku, memasukkan buku ke dalam wishlist, mereview buku dan membaca pemberitahuan dari author)
 
 - Reader (dapat mem-publish buku dan membuat pemberitahuan yang dapat dibaca oleh reader) <br>
 
-## Alur Pengintegrasian dengan Aplikasi Web
+## 💌 Alur Integrasi dengan Situs Web 💌
+Berikut adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplikasi dengan server web
+1. Mengimplementasikan sebuah _wrapper class_ dengan menggunakan library _http_ dan _map_ untuk mendukung penggunaan _cookie-based authentication_ pada aplikasi.
+2. Mengimplementasikan REST API pada Django (views.<area>py) dengan menggunakan JsonResponse atau Django JSON Serializer.
+3. Mengimplementasikan desain _front-end_ untuk aplikasi berdasarkan desain website yang sudah ada sebelumnya.
+4. Melakukan integrasi antara _front-end_ dengan _back-end_ dengan menggunakan konsep _asynchronous_ HTTP.
 
-Alur integrasi dimulai dari translasi model data dari aplikasi Django web app (Python) kedalam Flutter app (Dart) dengan menggunakan Json (jika bisa menggunakan QuickType), dari sini bisa menggunakan fetch untuk mengambil data model dari database dalam deployment django (dengan package pbp_auth_django). Sehabis model di convert, kita bisa mengintegrasi form-form yang ada di dalam web app. <br>
 
-
-[Tautan Berita Acara Kerja Kelompok](compfest.link/beritaAcaraA02)
+## Tautan Berita Acara Kerja Kelompok ⚜️
+   [Berita Acara A02](compfest.link/beritaAcaraA02)
 

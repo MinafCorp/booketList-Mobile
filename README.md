@@ -37,7 +37,7 @@ Sebagai sebuah platform, Booketlist tidak hanya mencerminkan pergeseran kebiasaa
 - [Ulasan dan Rating] - [Masabil Arraya Muhammad]
 - [Wishlist] - [I Made Surya Anahata Putra]
 - [Update dan News] - [Farrel Sheva Alkautsar]
-- [Writer] - [Novita Mulia Sari]
+- [Authentication] - [Novita Mulia Sari]
 
 ## 🧑‍💼🧑‍💼Daftar Peran Pengguna
 - Author (dapat membaca buku, memasukkan buku ke dalam wishlist, mereview buku dan membaca pemberitahuan dari author)

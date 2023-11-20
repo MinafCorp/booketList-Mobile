@@ -4,7 +4,7 @@
 **Now Available on Mobile!**
 
 > Proyek ini dibuat untuk memenuhi tugas Proyek Akhir Semester (PAS)
-> pada mata kuliah Pemrograman Berbasis Platform (CSGE602023x) yang
+> pada mata kuliah Pemrograman Berbasis Platform (CSGE602023) yang
 > diselenggarakan oleh Fakultas Ilmu Komputer, Universitas Indonesia
 > pada Semester Gasal, Tahun Ajaran 2023/2024.
 

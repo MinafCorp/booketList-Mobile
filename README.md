@@ -1,4 +1,4 @@
-# Booketlist : an exciting way to read! 📖
+# Booketlist 💐: an exciting way to read! 📖
 **Sebuah oasis literasi di mana setiap halaman membuka pintu imajinasi, mengundang kita untuk berpetualang, berbagi cerita, dan menemukan inspirasi di setiap kata**
 
 **Now Available on Mobile!**

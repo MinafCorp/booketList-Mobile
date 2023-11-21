@@ -27,10 +27,11 @@ Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diund
 - Farrel Sheva Alkautsar - 2206030344 
 
 ## 🏛️ Latar Belakang Booketlist 🏛️
-
-Booketlist muncul di tengah tren meningkatnya minat baca dan akses digital terhadap literatur. Dengan data terkini menunjukkan peningkatan jumlah pembaca dan variasi bacaan yang tersedia secara online, aplikasi ini dirancang untuk menjembatani kebutuhan penulis dan pembaca di era digital.
-
-Sebagai sebuah platform, Booketlist tidak hanya mencerminkan pergeseran kebiasaan membaca dari fisik ke digital, tetapi juga menanggapi kebutuhan interaksi yang lebih dinamis antara penulis dan pembaca. Aplikasi ini menyediakan wadah bagi penulis untuk memperluas jangkauan karya mereka, sementara pembaca mendapatkan akses mudah ke beragam buku, termasuk pilihan untuk meninjau dan menandai buku yang ingin dibaca. Booketlist berperan sebagai titik temu antara kemajuan teknologi dan kecintaan pada literasi, menciptakan ekosistem literatur yang lebih terhubung dan interaktif.
+<div align="justify">
+Booketlist, menangkap gelombang tren meningkatnya minat baca dan akses digital, kini menghadirkan solusi canggih dalam bentuk aplikasi mobile. Aplikasi ini dirancang khusus untuk menghubungkan penulis dengan pembaca secara dinamis dan interaktif. Di dalamnya, penulis dapat memperkenalkan karya mereka kepada audiens yang lebih luas, sementara pembaca mendapatkan akses tak terbatas ke berbagai genre dan judul buku. Dengan fokus pada kemudahan penggunaan dan integrasi fitur komunitas, Booketlist menjadi lebih dari sekadar platform membaca; ia menjadi ruang di mana komunitas literatur berkumpul, berbagi, dan terinspirasi. Di era digital ini, Booketlist tidak hanya menjawab kebutuhan saat ini tetapi juga menetapkan standar baru dalam pengalaman literatur digital.<br>
+<br> 
+Sebagai sebuah platform, Booketlist tidak hanya mencerminkan pergeseran kebiasaan membaca dari fisik ke digital, tetapi juga menanggapi kebutuhan interaksi yang lebih dinamis antara penulis dan pembaca. Aplikasi ini menyediakan wadah bagi penulis untuk memperluas jangkauan karya mereka, sementara pembaca mendapatkan akses mudah ke beragam buku, termasuk pilihan untuk meninjau dan menandai buku yang ingin dibaca. Booketlist berperan sebagai titik temu antara kemajuan teknologi dan kecintaan pada literasi, menciptakan ekosistem literatur yang lebih terhubung dan interaktif. 
+</div>
 
 ## 📝 Pembagian Tugas Modul 📝
 - [Registrasi dan Autentikasi] - [Ayu Siti Nasya Ningrum]
@@ -40,9 +41,12 @@ Sebagai sebuah platform, Booketlist tidak hanya mencerminkan pergeseran kebiasaa
 - [Authentication] - [Novita Mulia Sari]
 
 ## 🧑‍💼🧑‍💼Daftar Peran Pengguna
-- Author (dapat membaca buku, memasukkan buku ke dalam wishlist, mereview buku dan membaca pemberitahuan dari author)
+- Author 🧑‍🏫 <br>
+Dapat mem-publish buku dan membuat pemberitahuan yang dapat dibaca oleh reader 
 
-- Reader (dapat mem-publish buku dan membuat pemberitahuan yang dapat dibaca oleh reader) <br>
+
+- Reader 🧑‍💼<br>
+Dapat membaca buku, memasukkan buku ke dalam wishlist, mereview buku dan membaca pemberitahuan dari author
 
 ## 💌 Alur Integrasi dengan Situs Web 💌
 Berikut adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplikasi dengan server web

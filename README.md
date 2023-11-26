@@ -37,10 +37,10 @@ Sebagai sebuah platform, Booketlist tidak hanya mencerminkan pergeseran kebiasaa
 </div>
 
 ## 📝 Pembagian Tugas Modul 📝
-- [Registrasi dan Autentikasi] - [Ayu Siti Nasya Ningrum]
+- [Registrasi dan Autentikasi] - [Farrel Sheva Alkautsar]
 - [Ulasan dan Rating] - [Masabil Arraya Muhammad]
 - [Wishlist] - [I Made Surya Anahata Putra]
-- [Update dan News] - [Farrel Sheva Alkautsar]
+- [Update dan News] - [Ayu Siti Nasya Ningrum]
 - [Authentication] - [Novita Mulia Sari]
 
 ## 🧑‍💼🧑‍💼Daftar Peran Pengguna

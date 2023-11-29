@@ -9,13 +9,10 @@
 > pada Semester Gasal, Tahun Ajaran 2023/2024.
 
 ## ⚜️ Pipeline Status ⚜️
-
-To be Announced!
-[![Deploy](https://github.com/MinafCorp/booketList/blob/main/railway.json/badge.svg)](https://github.com/MinafCorp/booketList/blob/main/railway.json)
-
+[![Build status](https://build.appcenter.ms/v0.1/apps/c9e25760-cbc0-4ce2-b800-fd6fb265831c/branches/main/badge)](https://appcenter.ms)
 
 ## 📱 Tautan Aplikasi 📱
-Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh di bagian [to be announced!]
+Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh di bagian [https://appcenter.ms]
 
 ## 👨‍💻 Meet the Dev Teams 👩‍💻
 

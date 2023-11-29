@@ -1,1 +1,0 @@
-Images used in booketlist are stored here

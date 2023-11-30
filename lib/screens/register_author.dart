@@ -36,7 +36,7 @@ class _RegisterAuthorPageState extends State<RegisterAuthorPage> {
                   borderRadius: BorderRadius.circular(20)),
                   child : Column(children: [
                     const Text(
-                                "REGISTER",
+                                "REGISTER AUTHOR",
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 67, 64, 59),
                                   fontSize: 24,

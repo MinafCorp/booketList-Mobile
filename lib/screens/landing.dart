@@ -1,7 +1,11 @@
+import 'package:booketlist/screens/login.dart';
+import 'package:booketlist/screens/role.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -27,10 +31,16 @@ class MyHomePage extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(top: 10),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginPage(),
+                            ));
+                        },
                         style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 67, 64, 59)),
                         child: const Text(
-                          "Login",
+                          "Get Started",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),

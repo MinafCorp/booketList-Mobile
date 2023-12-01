@@ -1,3 +1,4 @@
+import 'package:booketlist/screens/home.dart';
 import 'package:booketlist/screens/role.dart';
 import 'package:flutter/material.dart';
 
@@ -87,8 +88,14 @@ class _LoginPageState extends State<LoginPage> {
                                     minimumSize: Size(100, 40),
                                   ),
                                   onPressed: () async {
-                                      String username = _usernameController.text;
-                                      String password = _passwordController.text;
+                                      // String username = _usernameController.text;
+                                      // String password = _passwordController.text;
+
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => HomeAuthorPage(),
+                                        ));
 
                                   },
                                   child: const Text(
@@ -100,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                               const SizedBox(height: 8.0),
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pushReplacement(
+                                  Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => Role(),

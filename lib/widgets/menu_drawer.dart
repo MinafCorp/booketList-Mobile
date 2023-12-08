@@ -1,3 +1,4 @@
+import 'package:booketlist/screens/updates/update.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,7 +10,9 @@ class MenuDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          DrawerHeader(
+          SizedBox(
+            height: 230,
+          child :DrawerHeader(
             decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 236, 227, 215),
               ),
@@ -32,8 +35,8 @@ class MenuDrawer extends StatelessWidget {
                     child: Container(
                       alignment: Alignment.center,
                       constraints: const BoxConstraints(
-                        maxWidth: 300,
-                        maxHeight: 100,
+                        maxWidth: 50,
+                        maxHeight: 30,
                       ),
                       color: const Color.fromARGB(255, 67, 64, 59),
                       child: const Text(
@@ -48,6 +51,7 @@ class MenuDrawer extends StatelessWidget {
                 ],
               ),
             ),
+          ),
           ListTile(
             leading: const Icon(Icons.favorite),
             title: const Text('Wishlist'),
@@ -77,11 +81,11 @@ class MenuDrawer extends StatelessWidget {
             title: const Text('Updates and News'),
             // Bagian redirection ke ShopFormPage
             onTap: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => const ProductPage(),
-              //     ));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const UpdatePage(),
+                  ));
             },
           ),
         ],

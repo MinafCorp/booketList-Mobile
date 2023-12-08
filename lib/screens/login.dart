@@ -1,3 +1,4 @@
+import 'package:booketlist/screens/home.dart';
 import 'package:booketlist/screens/role.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                         Container(
                           padding: const EdgeInsets.all(20.0),
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 236, 227, 215).withOpacity(0.9),
+                              color: const Color.fromARGB(255, 236, 227, 215).withOpacity(0.9),
                               borderRadius: BorderRadius.circular(20)),
                           child: Column(
                             children: [
@@ -86,8 +87,8 @@ class _LoginPageState extends State<LoginPage> {
                               const SizedBox(height: 15.0),
                               ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: Color.fromARGB(255, 67, 64, 59),
-                                    minimumSize: Size(100, 40),
+                                    backgroundColor: const Color.fromARGB(255, 67, 64, 59),
+                                    minimumSize: const Size(100, 40),
                                   ),
                                   onPressed: () async {
                                        String username = _usernameController.text;
@@ -105,8 +106,10 @@ class _LoginPageState extends State<LoginPage> {
                                          String uname = response['username'];
                                          String role = response['role'];
                                          if (role =='Author'){
-                                           //Navigator somewhere
-
+                                           Navigator.pushReplacement(context,
+                                               MaterialPageRoute(
+                                                   builder: (context) => HomeAuthorPage())
+                                           );
                                          }
                                          else if (role == 'Reader'){
                                           //Navigator somewhere
@@ -126,15 +129,15 @@ class _LoginPageState extends State<LoginPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Role(),
+                                      builder: (context) => const Role(),
                                     ));
 
                                 },
-                                child: Text("Don't have account yet? Register here"),
                                 style: TextButton.styleFrom(
                                   foregroundColor: Color.fromARGB(255, 67, 64, 59), // Background color
-                                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8), // Padding
+                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8), // Padding
                                 ),
+                                child: const Text("Don't have account yet? Register here"),
                               )
 
                             ]

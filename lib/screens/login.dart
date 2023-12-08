@@ -21,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(16.0),
@@ -105,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                             'role': role,
                           });
                       if (request.loggedIn) {
+                        if (!context.mounted) return;
                         String message = response['message'];
                         String uname = response['username'];
                         String role = response['role'];
@@ -112,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomeAuthorPage()));
+                                  builder: (context) => const HomeAuthorPage()));
                           ScaffoldMessenger.of(context)
                               ..hideCurrentSnackBar()
                               ..showSnackBar(SnackBar(
@@ -121,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => BookPage()));
+                                  builder: (context) => const BookPage()));
                           ScaffoldMessenger.of(context)
                             ..hideCurrentSnackBar()
                             ..showSnackBar(SnackBar(
@@ -145,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     style: TextButton.styleFrom(
                       foregroundColor:
-                          Color.fromARGB(255, 67, 64, 59), // Background color
+                          const Color.fromARGB(255, 67, 64, 59), // Background color
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8), // Padding
                     ),

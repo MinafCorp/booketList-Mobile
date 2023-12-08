@@ -1,4 +1,5 @@
 import 'package:booketlist/screens/home.dart';
+import 'package:booketlist/screens/list_buku.dart';
 import 'package:booketlist/screens/role.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -112,7 +113,10 @@ class _LoginPageState extends State<LoginPage> {
                                            );
                                          }
                                          else if (role == 'Reader'){
-                                          //Navigator somewhere
+                                            Navigator.pushReplacement(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) => BookPage())
+                                            );
                                          }
 
                                        }

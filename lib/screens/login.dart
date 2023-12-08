@@ -113,11 +113,19 @@ class _LoginPageState extends State<LoginPage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => HomeAuthorPage()));
+                          ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(SnackBar(
+                                  content: Text("$message Welcome, $uname! (logged in as Author)")));
                         } else if (role == 'Reader') {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => BookPage()));
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(SnackBar(
+                                content: Text("$message Welcome, $uname! (logged in as Reader)")));
                         }
                       }
                     },

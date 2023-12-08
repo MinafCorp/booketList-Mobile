@@ -103,13 +103,17 @@ class _LoginPageState extends State<LoginPage> {
                             'role': role,
                           });
                       if (request.loggedIn) {
-                        String message = response['message'];
-                        String uname = response['username'];
+                        // String message = response['message'];
+                        // String uname = response['username'];
                         String role = response['role'];
                         if (role == 'Author') {
                           //Navigator somewhere
                         } else if (role == 'Reader') {
-                          //Navigator somewhere
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BookPage(),
+                              ));
                         }
                       }
                     },

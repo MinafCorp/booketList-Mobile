@@ -1,7 +1,8 @@
-import 'package:booketlist/screens/home.dart';
 import 'package:booketlist/screens/list_buku.dart';
 import 'package:booketlist/screens/role.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,12 +13,13 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   var role = ['Author', 'Reader'];
-  String val = "Author";
+  String val = 'Author';
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(16.0),
@@ -88,14 +90,28 @@ class _LoginPageState extends State<LoginPage> {
                       minimumSize: Size(100, 40),
                     ),
                     onPressed: () async {
-                      // String username = _usernameController.text;
-                      // String password = _passwordController.text;
-                      //TODO BUAT WRITER/AUTHOR
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BookPage(),
-                          ));
+                      String username = _usernameController.text;
+                      String password = _passwordController.text;
+                      String role = val;
+                      // Perform login with the obtained data
+                      // authentication with json
+                      final response = await request.login(
+                          "http://booketlist-production.up.railway.app/auth/login/",
+                          {
+                            'username': username,
+                            'password': password,
+                            'role': role,
+                          });
+                      if (request.loggedIn) {
+                        String message = response['message'];
+                        String uname = response['username'];
+                        String role = response['role'];
+                        if (role == 'Author') {
+                          //Navigator somewhere
+                        } else if (role == 'Reader') {
+                          //Navigator somewhere
+                        }
+                      }
                     },
                     child: const Text(
                       'Login',

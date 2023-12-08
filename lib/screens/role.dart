@@ -30,7 +30,7 @@ class Role extends StatelessWidget {
                 ));
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 236, 227, 215),
+              backgroundColor: const Color.fromARGB(255, 236, 227, 215),
               minimumSize: const Size(150, 150),
             ),
             child: Container(
@@ -65,8 +65,8 @@ class Role extends StatelessWidget {
                 ));
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(255, 236, 227, 215),
-              minimumSize: Size(150, 150),
+              backgroundColor:const Color.fromARGB(255, 236, 227, 215),
+              minimumSize: const Size(150, 150),
             ),
             child: Container(
               // width: 150, // Adjust width as needed

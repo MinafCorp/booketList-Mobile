@@ -1,5 +1,4 @@
 import 'package:animation_search_bar/animation_search_bar.dart';
-import 'package:booketlist/screens/role.dart';
 import 'package:booketlist/widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -40,23 +39,23 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
           drawer: const MenuDrawer(),
           body: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.all(10.0), // Set padding dari halaman
+              padding: const EdgeInsets.all(10.0), // Set padding dari halaman
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Align(
+                  const Align(
                     alignment: Alignment.center,
                     // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
-                    child: Image(image: AssetImage('images/title.png')),
+                    child:  Image(image: AssetImage('images/title.png')),
                   ),
                   const SizedBox(height: 30),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 67, 64, 59),
-                      minimumSize: Size(100, 40),
+                      backgroundColor: const Color.fromARGB(255, 67, 64, 59),
+                      minimumSize: const Size(100, 40),
                     ),
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "Publish Book",
                       style: TextStyle(
                         color: Color.fromARGB(255, 236, 227, 215),

@@ -1,6 +1,6 @@
 import 'package:booketlist/screens/updates/update.dart';
 import 'package:flutter/material.dart';
-
+import 'package:booketlist/screens/list_buku.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});
@@ -67,13 +67,13 @@ class MenuDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.library_books),
             title: const Text('Collection'),
-            // Bagian redirection ke ShopFormPage
+            // Bagian redirection ke BookPage
             onTap: () {
-              // Navigator.pushReplacement(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => ShopFormPage(),
-              //     ));
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BookPage(),
+                  ));
             },
           ),
           ListTile(

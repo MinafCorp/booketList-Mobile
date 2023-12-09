@@ -1,6 +1,6 @@
 import 'package:booketlist/screens/home.dart';
 import 'package:booketlist/screens/list_buku.dart';
-import 'package:booketlist/screens/register_author.dart';
+import 'package:booketlist/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';

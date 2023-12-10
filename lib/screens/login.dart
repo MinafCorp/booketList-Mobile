@@ -114,12 +114,14 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomeAuthorPage()));
+                                  builder: (context) =>
+                                      const HomeAuthorPage()));
                           ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(SnackBar(
-                                  content: Text("$message Welcome, $uname! (logged in as Author)")));
-                        } else if (role == 'Reader') {
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(SnackBar(
+                                content: Text(
+                                    "$message Welcome, $uname! (logged in as Author)")));
+                        } else if (role == "Reader") {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -127,8 +129,25 @@ class _LoginPageState extends State<LoginPage> {
                           ScaffoldMessenger.of(context)
                             ..hideCurrentSnackBar()
                             ..showSnackBar(SnackBar(
-                                content: Text("$message Welcome, $uname! (logged in as Reader)")));
+                                content: Text(
+                                    "$message Welcome, $uname! (logged in as Reader)")));
                         }
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('Login Gagal'),
+                            content: Text(response['message']),
+                            actions: [
+                              TextButton(
+                                child: const Text('OK'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          ),
+                        );
                       }
                     },
                     child: const Text(
@@ -146,8 +165,8 @@ class _LoginPageState extends State<LoginPage> {
                           ));
                     },
                     style: TextButton.styleFrom(
-                      foregroundColor:
-                          const Color.fromARGB(255, 67, 64, 59), // Background color
+                      foregroundColor: const Color.fromARGB(
+                          255, 67, 64, 59), // Background color
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8), // Padding
                     ),

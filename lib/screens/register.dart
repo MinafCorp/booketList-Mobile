@@ -12,8 +12,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-    var role = ['AUTHOR', 'READER'];
-    String val = 'AUTHOR';
+    var role = ['Author', 'Reader'];
+    String val = 'Author';
 
     final _formKey = GlobalKey<FormState>();
 

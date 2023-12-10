@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-class RegisterReaderPage extends StatefulWidget {
-    const RegisterReaderPage({super.key});
+class RegisterPage extends StatefulWidget {
+    const RegisterPage({super.key});
 
     @override
-    State<RegisterReaderPage> createState() => _RegisterReaderPageState();
+    State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterReaderPageState extends State<RegisterReaderPage> {
+class _RegisterPageState extends State<RegisterPage> {
+    var role = ['Author', 'Reader'];
+    String val = 'Author';
+
     final TextEditingController _usernameController = TextEditingController();
     final TextEditingController _firstNameController = TextEditingController();
     final TextEditingController _lastNameController = TextEditingController();
@@ -36,7 +41,7 @@ class _RegisterReaderPageState extends State<RegisterReaderPage> {
                   borderRadius: BorderRadius.circular(20)),
                   child : Column(children: [
                     const Text(
-                                "REGISTER READER",
+                                "REGISTER",
                                 style: TextStyle(
                                   color: Color.fromARGB(255, 67, 64, 59),
                                   fontSize: 24,
@@ -69,6 +74,28 @@ class _RegisterReaderPageState extends State<RegisterReaderPage> {
                       decoration: const InputDecoration(labelText: 'Password'),
                       obscureText: true,
                     ),
+                    DropdownButton(
+                    // Initial Value
+                    value: val,
+
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: role.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        val = newValue!;
+                      });
+                    },
+                  ),
                     const SizedBox(height: 24),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(

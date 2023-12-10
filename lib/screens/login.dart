@@ -1,6 +1,6 @@
 import 'package:booketlist/screens/home.dart';
 import 'package:booketlist/screens/list_buku.dart';
-import 'package:booketlist/screens/role.dart';
+import 'package:booketlist/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -21,6 +21,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(16.0),
@@ -105,6 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                             'role': role,
                           });
                       if (request.loggedIn) {
+                        if (!context.mounted) return;
                         String message = response['message'];
                         String uname = response['username'];
                         String role = response['role'];
@@ -112,12 +114,20 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomeAuthorPage()));
+                                  builder: (context) => const HomeAuthorPage()));
+                          ScaffoldMessenger.of(context)
+                              ..hideCurrentSnackBar()
+                              ..showSnackBar(SnackBar(
+                                  content: Text("$message Welcome, $uname! (logged in as Author)")));
                         } else if (role == 'Reader') {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => BookPage()));
+                                  builder: (context) => const BookPage()));
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(SnackBar(
+                                content: Text("$message Welcome, $uname! (logged in as Reader)")));
                         }
                       }
                     },
@@ -132,12 +142,12 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Role(),
+                            builder: (context) => const RegisterPage(),
                           ));
                     },
                     style: TextButton.styleFrom(
                       foregroundColor:
-                          Color.fromARGB(255, 67, 64, 59), // Background color
+                          const Color.fromARGB(255, 67, 64, 59), // Background color
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8), // Padding
                     ),

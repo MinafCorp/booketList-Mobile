@@ -1,41 +1,34 @@
-import 'package:animation_search_bar/animation_search_bar.dart';
-import 'package:booketlist/screens/role.dart';
+import 'package:booketlist/screens/updates/search_update.dart';
 import 'package:booketlist/widgets/menu_drawer.dart';
 import 'package:flutter/material.dart';
 
-class HomeAuthorPage extends StatefulWidget {
-    const HomeAuthorPage({super.key});
+class UpdatePage extends StatefulWidget {
+    const UpdatePage({super.key});
 
     @override
-    State<HomeAuthorPage> createState() => _HomeAuthorPageState();
+    State<UpdatePage> createState() => _UpdatePageState();
 }
 
-class _HomeAuthorPageState extends State<HomeAuthorPage> {
+class _UpdatePageState extends State<UpdatePage> {
   final TextEditingController _searchController = TextEditingController();
 
     @override
     Widget build(BuildContext context) {
         return Scaffold(
-          appBar: PreferredSize(
-            preferredSize: const Size(double.infinity, 65),
-            child: SafeArea(
-              child: Container(
-              decoration: const BoxDecoration(color: Color.fromARGB(255, 192, 184, 174), boxShadow: [
-                BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 5,
-                    spreadRadius: 0,
-                    offset: Offset(0, 5))
-              ]),
-            child : AnimationSearchBar(
-              
-              backIconColor: Colors.black,
-              backIcon: Icons.menu,
-              onChanged: (text) => debugPrint(text),
-              searchTextEditingController: _searchController,
-              horizontalPadding: 5),
-          ),
-          ),
+          appBar: AppBar(
+            backgroundColor: Color.fromARGB(255, 151, 138, 116),
+            actions: [
+              IconButton(
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SearchUpdatePage(),
+                    ));
+                },
+                icon: const Icon(Icons.search)
+              )
+            ],
           ),
           drawer: const MenuDrawer(),
           body: SingleChildScrollView(

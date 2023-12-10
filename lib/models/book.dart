@@ -1,59 +1,57 @@
-// To parse this JSON data, do
-//
-//     final book = bookFromJson(jsonString);
-
 import 'dart:convert';
 
-List<Book> bookFromJson(String str) => List<Book>.from(json.decode(str).map((x) => Book.fromJson(x)));
+List<Book> bookFromJson(String str) =>
+    List<Book>.from(json.decode(str).map((x) => Book.fromJson(x)));
 
-String bookToJson(List<Book> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String bookToJson(List<Book> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Book {
-    int pk;
-    Model model;
-    Fields fields;
+  int pk;
+  Model model;
+  Fields fields;
 
-    Book({
-        required this.pk,
-        required this.model,
-        required this.fields,
-    });
+  Book({
+    required this.pk,
+    required this.model,
+    required this.fields,
+  });
 
-    factory Book.fromJson(Map<String, dynamic> json) => Book(
+  factory Book.fromJson(Map<String, dynamic> json) => Book(
         pk: json["pk"],
         model: modelValues.map[json["model"]]!,
         fields: Fields.fromJson(json["fields"]),
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "pk": pk,
         "model": modelValues.reverse[model],
         "fields": fields.toJson(),
-    };
+      };
 }
 
 class Fields {
-    int isbn;
-    String title;
-    String author;
-    int yearOfPublication;
-    String publisher;
-    String imageUrlS;
-    String imageUrlM;
-    String imageUrlL;
+  int isbn;
+  String title;
+  String author;
+  int yearOfPublication;
+  String publisher;
+  String imageUrlS;
+  String imageUrlM;
+  String imageUrlL;
 
-    Fields({
-        required this.isbn,
-        required this.title,
-        required this.author,
-        required this.yearOfPublication,
-        required this.publisher,
-        required this.imageUrlS,
-        required this.imageUrlM,
-        required this.imageUrlL,
-    });
+  Fields({
+    required this.isbn,
+    required this.title,
+    required this.author,
+    required this.yearOfPublication,
+    required this.publisher,
+    required this.imageUrlS,
+    required this.imageUrlM,
+    required this.imageUrlL,
+  });
 
-    factory Fields.fromJson(Map<String, dynamic> json) => Fields(
+  factory Fields.fromJson(Map<String, dynamic> json) => Fields(
         isbn: json["ISBN"],
         title: json["title"],
         author: json["author"],
@@ -62,9 +60,9 @@ class Fields {
         imageUrlS: json["image_url_s"],
         imageUrlM: json["image_url_m"],
         imageUrlL: json["image_url_l"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "ISBN": isbn,
         "title": title,
         "author": author,
@@ -73,25 +71,21 @@ class Fields {
         "image_url_s": imageUrlS,
         "image_url_m": imageUrlM,
         "image_url_l": imageUrlL,
-    };
+      };
 }
 
-enum Model {
-    BOOK_BOOK
-}
+enum Model { BOOK_BOOK }
 
-final modelValues = EnumValues({
-    "book.book": Model.BOOK_BOOK
-});
+final modelValues = EnumValues({"book.book": Model.BOOK_BOOK});
 
 class EnumValues<T> {
-    Map<String, T> map;
-    late Map<T, String> reverseMap;
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
 
-    EnumValues(this.map);
+  EnumValues(this.map);
 
-    Map<T, String> get reverse {
-        reverseMap = map.map((k, v) => MapEntry(v, k));
-        return reverseMap;
-    }
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
 }

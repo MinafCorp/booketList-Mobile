@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                         String message = response['message'];
                         String uname = response['username'];
                         String role = response['role'];
-                        if (role == 'Author') {
+                        if (role == 'AUTHOR') {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                             ..showSnackBar(SnackBar(
                                 content: Text(
                                     "$message Welcome, $uname! (logged in as Author)")));
-                        } else if (role == "Reader") {
+                        } else if (role == "READER") {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(

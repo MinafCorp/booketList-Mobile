@@ -1,19 +1,19 @@
+import 'package:booketlist/screens/author/main_author.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:booketlist/models/book.dart';
-import 'package:booketlist/widgets/nav_reader.dart';
 
-class HomeReaderPage extends StatefulWidget {
+class HomeAuthorPage extends StatefulWidget {
   final String username;
 
-  const HomeReaderPage({Key? key, required this.username}) : super(key: key);
+  const HomeAuthorPage({Key? key, required this.username}) : super(key: key);
 
   @override
-  _HomeReaderPageState createState() => _HomeReaderPageState();
+  _HomeAuthorPageState createState() => _HomeAuthorPageState();
 }
 
-class _HomeReaderPageState extends State<HomeReaderPage> {
+class _HomeAuthorPageState extends State<HomeAuthorPage> {
   Future<List<Book>> fetchBooks() async {
     var url = Uri.parse('http://127.0.0.1:8000/api/books/');
     var response =
@@ -31,7 +31,7 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5DC),
+      backgroundColor: const Color.fromARGB(255, 236, 227, 215),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverToBoxAdapter(
@@ -147,15 +147,17 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
                         Fields fields = book.fields;
                         return Container(
                           decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25.0),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black.withOpacity(0.2),
-                                blurRadius: 4,
+                                blurRadius: 6,
                                 offset: Offset(2, 2), // Posisi bayangan
                               ),
                             ],
                           ),
                           child: Card(
+                            color: Colors.white,
                             clipBehavior: Clip.antiAlias,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
@@ -166,11 +168,11 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Expanded(
-                                  child: Image.network(
-                                    fields.imageUrlL,
-                                    fit: BoxFit.cover,
+                                    child: Image.network(
+                                      fields.imageUrlL,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                ),
                                 Container(
                                   alignment:
                                       Alignment.center, // Teks judul di tengah
@@ -203,11 +205,11 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNav(
-        selectedIndex: 0, // Assuming 0 is the home index
-        onItemTapped: (int index) {
-          // Replace with your navigation logic
-        },
+      floatingActionButton: FloatingActionButton(
+            onPressed: (){},
+            child: Icon(Icons.add),
+            foregroundColor: Colors.white,
+            backgroundColor: Color.fromARGB(255, 67, 64, 59),
       ),
     );
   }

@@ -21,7 +21,7 @@
         debugShowCheckedModeBanner: false,
          title: 'BooketList',
          theme: ThemeData(
-           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+           colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 67, 64, 59)),
            useMaterial3: true,
          ),
          home: MyHomePage(),

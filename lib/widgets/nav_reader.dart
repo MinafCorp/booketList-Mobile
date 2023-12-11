@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:booketlist/screens/list_buku.dart';
 import 'package:booketlist/screens/homeReader.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 // Import halaman lainnya di sini
 
 class BottomNav extends StatelessWidget {
@@ -55,6 +56,10 @@ class BottomNav extends StatelessWidget {
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
           label: 'Wishlist',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.campaign),
+          label: 'Updates',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.rate_review),

@@ -36,6 +36,7 @@ class BottomNav extends StatelessWidget {
         break;
       case 4:
         // Tambahkan navigasi ke halaman Profile (sesuaikan jika ada)
+        //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage()));
         break;
     }
   }

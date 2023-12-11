@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:booketlist/models/book.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:booketlist/widgets/nav.dart';
 
 class BookPage extends StatefulWidget {
   const BookPage({Key? key}) : super(key: key);
@@ -12,17 +15,11 @@ class BookPage extends StatefulWidget {
 
 class _BookPageState extends State<BookPage> {
   Future<List<Book>> fetchProduct() async {
-    var url =
-        Uri.parse('https://booketlist-production.up.railway.app/api/books/');
-    var response = await http.get(
-      url,
-      headers: {"Content-Type": "application/json"},
-    );
+    var url = Uri.parse('http://127.0.0.1:8000/api/books/');
+    var response =
+        await http.get(url, headers: {"Content-Type": "application/json"});
 
-    // melakukan decode response menjadi bentuk json
     var data = jsonDecode(utf8.decode(response.bodyBytes));
-
-    // melakukan konversi data json menjadi object Product
     List<Book> list_product = [];
     for (var d in data) {
       if (d != null) {
@@ -34,84 +31,182 @@ class _BookPageState extends State<BookPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F5DC),
       appBar: AppBar(
-        title: const Center(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        titleSpacing: 0,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
           child: Text(
-            'List Book',
+            'BooketList',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color.fromARGB(255, 47, 31, 4),
+              fontSize: 45,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'serif',
+              fontStyle: FontStyle.italic,
+            ),
           ),
         ),
-        backgroundColor: Colors.indigo,
-        foregroundColor: Colors.white,
       ),
       body: FutureBuilder(
         future: fetchProduct(),
-        builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.data == null) {
+        builder: (context, AsyncSnapshot<List<Book>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
-          } else if (!snapshot.hasData) {
-            return const Text(
-              "Tidak ada data produk.",
-              style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
-            );
-          } else {
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.6,
-                crossAxisSpacing: 10, // Jarak antar card horizontal
-                mainAxisSpacing: 10, // Jarak antar card vertikal
+          }
+          if (snapshot.hasError) {
+            return Center(
+              child: Text(
+                "Error: ${snapshot.error}",
+                style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
               ),
-              itemCount: snapshot.data!.length,
-              itemBuilder: (_, index) {
-                Book book = snapshot.data![index];
-                Fields fields = book.fields;
-
-                return Card(
-                  elevation: 4.0,
-                  margin: EdgeInsets.all(10), // Margin di sekeliling card
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(
-                            4.0), // Radius gambar sesuai desain
-                        child:
-                            Image.network(fields.imageUrlL, fit: BoxFit.cover),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          fields.title,
-                          style: TextStyle(
-                              fontSize: 16.0, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      ButtonBar(
-                        alignment: MainAxisAlignment.spaceAround,
-                        buttonPadding:
-                            EdgeInsets.zero, // Menghilangkan padding default
-                        children: [
-                          IconButton(
-                            icon: Icon(Icons.favorite,
-                                color: Colors.red), // Warna icon sesuai desain
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.comment,
-                                color: Colors.grey), // Warna icon sesuai desain
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              },
             );
           }
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(
+              child: Text(
+                "Tidak ada data produk.",
+                style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+              ),
+            );
+          }
+          return CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Our Collections',
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.6),
+                        fontSize: 25,
+                        fontStyle: FontStyle.italic,
+                        fontFamily: 'Lobster',
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                sliver: SliverGrid(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.55,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      Book book = snapshot.data![index];
+                      Fields fields = book.fields;
+
+                      return Card(
+                        color: Color.fromARGB(255, 186, 244, 212),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        elevation: 4.0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(16),
+                                  topRight: Radius.circular(16),
+                                ),
+                                child: Image.network(fields.imageUrlL,
+                                    fit: BoxFit.cover),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                fields.title,
+                                style: const TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            ButtonBar(
+                              alignment: MainAxisAlignment.center,
+                              buttonPadding: EdgeInsets.symmetric(
+                                  vertical: 0.0, horizontal: 15.0),
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.favorite,
+                                      color: Colors.grey),
+                                  onPressed: () async {
+                                    var bookId = book.pk;
+
+                                    try {
+                                      final response = await request.postJson(
+                                        "http://127.0.0.1:8000/wishlist/add_to_wishlist_flutter/",
+                                        jsonEncode(<String, String>{
+                                          'book_id': bookId.toString()
+                                        }),
+                                      );
+
+                                      print(response['success']);
+                                      if (response['success']) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                              content:
+                                                  Text(response['message'])),
+                                        );
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                              content: Text(
+                                                  "Gagal memasukkan ke wishlist")),
+                                        );
+                                      }
+                                    } catch (e) {
+                                      print('Exception: $e');
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                "Terjadi kesalahan saat menambahkan ke wishlist")),
+                                      );
+                                    }
+                                  },
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.comment,
+                                      color: Colors.grey),
+                                  onPressed: () {},
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    childCount: snapshot.data!.length,
+                  ),
+                ),
+              ),
+            ],
+          );
         },
+      ),
+      bottomNavigationBar: BottomNav(
+        selectedIndex: 1,
+        onItemTapped: (index) {},
       ),
     );
   }

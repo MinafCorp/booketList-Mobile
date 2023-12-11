@@ -1,5 +1,5 @@
 import 'package:booketlist/screens/home.dart';
-import 'package:booketlist/screens/list_buku.dart';
+import 'package:booketlist/screens/HomeReader.dart';
 import 'package:booketlist/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -98,37 +98,58 @@ class _LoginPageState extends State<LoginPage> {
                       String role = val;
                       // Perform login with the obtained data
                       // authentication with json
-                      final response = await request.login(
-                          "http://booketlist-production.up.railway.app/auth/login/",
-                          {
-                            'username': username,
-                            'password': password,
-                            'role': role,
-                          });
+                      final response = await request
+                          .login("http://127.0.0.1:8000/auth/login/", {
+                        'username': username,
+                        'password': password,
+                        'role': role,
+                      });
                       if (request.loggedIn) {
                         if (!context.mounted) return;
                         String message = response['message'];
                         String uname = response['username'];
                         String role = response['role'];
-                        if (role == 'Author') {
+                        if (role == 'AUTHOR') {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomeAuthorPage()));
-                          ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(SnackBar(
-                                  content: Text("$message Welcome, $uname! (logged in as Author)")));
-                        } else if (role == 'Reader') {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const BookPage()));
+                                  builder: (context) =>
+                                      const HomeAuthorPage()));
                           ScaffoldMessenger.of(context)
                             ..hideCurrentSnackBar()
                             ..showSnackBar(SnackBar(
-                                content: Text("$message Welcome, $uname! (logged in as Reader)")));
+                                content: Text(
+                                    "$message Welcome, $uname! (logged in as Author)")));
+                        } else if (role == "READER") {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  HomeReaderPage(username: uname),
+                            ),
+                          );
+                          ScaffoldMessenger.of(context)
+                            ..hideCurrentSnackBar()
+                            ..showSnackBar(SnackBar(
+                                content: Text(
+                                    "$message Welcome, $uname! (logged in as Reader)")));
                         }
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('Login Gagal'),
+                            content: Text(response['message']),
+                            actions: [
+                              TextButton(
+                                child: const Text('OK'),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          ),
+                        );
                       }
                     },
                     child: const Text(
@@ -146,8 +167,8 @@ class _LoginPageState extends State<LoginPage> {
                           ));
                     },
                     style: TextButton.styleFrom(
-                      foregroundColor:
-                          const Color.fromARGB(255, 67, 64, 59), // Background color
+                      foregroundColor: const Color.fromARGB(
+                          255, 67, 64, 59), // Background color
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8), // Padding
                     ),

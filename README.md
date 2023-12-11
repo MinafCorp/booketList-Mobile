@@ -41,7 +41,7 @@ Sebagai sebuah platform, Booketlist tidak hanya mencerminkan pergeseran kebiasaa
 - [Ulasan dan Rating] - [Masabil Arraya Muhammad]
 - [Wishlist] - [I Made Surya Anahata Putra]
 - [Update dan News] - [Ayu Siti Nasya Ningrum]
-- [Authentication] - [Novita Mulia Sari]
+- [Author] - [Novita Mulia Sari]
 
 ## 🧑‍💼🧑‍💼Daftar Peran Pengguna
 - Author 🧑‍🏫 <br>

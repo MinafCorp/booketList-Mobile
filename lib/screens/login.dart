@@ -1,5 +1,5 @@
 import 'package:booketlist/screens/home.dart';
-import 'package:booketlist/screens/HomeReader.dart';
+import 'package:booketlist/screens/homeReader.dart';
 import 'package:booketlist/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

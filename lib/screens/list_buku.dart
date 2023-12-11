@@ -158,7 +158,6 @@ class _BookPageState extends State<BookPage> {
                                         }),
                                       );
 
-                                      print(response['success']);
                                       if (response['success']) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
@@ -175,7 +174,6 @@ class _BookPageState extends State<BookPage> {
                                         );
                                       }
                                     } catch (e) {
-                                      print('Exception: $e');
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(

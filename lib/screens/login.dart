@@ -1,5 +1,5 @@
 import 'package:booketlist/screens/home.dart';
-import 'package:booketlist/screens/list_buku.dart';
+import 'package:booketlist/screens/HomeReader.dart';
 import 'package:booketlist/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -98,13 +98,12 @@ class _LoginPageState extends State<LoginPage> {
                       String role = val;
                       // Perform login with the obtained data
                       // authentication with json
-                      final response = await request.login(
-                          "http://booketlist-production.up.railway.app/auth/login/",
-                          {
-                            'username': username,
-                            'password': password,
-                            'role': role,
-                          });
+                      final response = await request
+                          .login("http://127.0.0.1:8000/auth/login/", {
+                        'username': username,
+                        'password': password,
+                        'role': role,
+                      });
                       if (request.loggedIn) {
                         if (!context.mounted) return;
                         String message = response['message'];
@@ -123,9 +122,12 @@ class _LoginPageState extends State<LoginPage> {
                                     "$message Welcome, $uname! (logged in as Author)")));
                         } else if (role == "READER") {
                           Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const BookPage()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  HomeReaderPage(username: uname),
+                            ),
+                          );
                           ScaffoldMessenger.of(context)
                             ..hideCurrentSnackBar()
                             ..showSnackBar(SnackBar(

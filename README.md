@@ -10,6 +10,9 @@
 
 ## ⚜️ Pipeline Status ⚜️
 [![Build status](https://build.appcenter.ms/v0.1/apps/c9e25760-cbc0-4ce2-b800-fd6fb265831c/branches/main/badge)](https://appcenter.ms)
+[![Pre-Release](https://github.com/MinafCorp/booketList-Mobile/actions/workflows/pre-release.yml/badge.svg)](https://github.com/MinafCorp/booketList-Mobile/actions/workflows/pre-release.yml)
+[![Release](https://github.com/MinafCorp/booketList-Mobile/actions/workflows/release.yml/badge.svg)](https://github.com/MinafCorp/booketList-Mobile/actions/workflows/release.yml)
+[![Staging](https://github.com/MinafCorp/booketList-Mobile/actions/workflows/staging.yml/badge.svg)](https://github.com/MinafCorp/booketList-Mobile/actions/workflows/staging.yml)
 
 ## 📱 Tautan Aplikasi 📱
 Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh di bagian [https://install.appcenter.ms/orgs/minafcorp/apps/booketlist/releases/1]
@@ -38,7 +41,7 @@ Sebagai sebuah platform, Booketlist tidak hanya mencerminkan pergeseran kebiasaa
 - [Ulasan dan Rating] - [Masabil Arraya Muhammad]
 - [Wishlist] - [I Made Surya Anahata Putra]
 - [Update dan News] - [Ayu Siti Nasya Ningrum]
-- [Authentication] - [Novita Mulia Sari]
+- [Author] - [Novita Mulia Sari]
 
 ## 🧑‍💼🧑‍💼Daftar Peran Pengguna
 - Author 🧑‍🏫 <br>

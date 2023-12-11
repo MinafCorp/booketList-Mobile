@@ -5,9 +5,7 @@ import 'package:booketlist/models/book.dart';
 import 'package:booketlist/widgets/nav.dart';
 
 class HomeReaderPage extends StatefulWidget {
-  final String username;
-
-  const HomeReaderPage({Key? key, required this.username}) : super(key: key);
+  const HomeReaderPage({Key? key}) : super(key: key);
 
   @override
   _HomeReaderPageState createState() => _HomeReaderPageState();

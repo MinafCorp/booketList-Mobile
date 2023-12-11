@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:booketlist/screens/list_buku.dart';
 import 'package:booketlist/screens/homeReader.dart';
+import 'package:booketlist/screens/wishlist.dart';
 // Import halaman lainnya di sini
 
 class BottomNav extends StatelessWidget {
@@ -19,17 +20,15 @@ class BottomNav extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    HomeReaderPage(username: username ?? 'Guest')));
+            context, MaterialPageRoute(builder: (context) => HomeReaderPage()));
         break;
       case 1:
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => BookPage()));
         break;
       case 2:
-        // Tambahkan navigasi ke halaman Wishlist (sesuaikan jika ada)
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => WishlistPage()));
         break;
       case 3:
         // Tambahkan navigasi ke halaman Review (sesuaikan jika ada)

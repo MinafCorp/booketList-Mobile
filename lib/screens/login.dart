@@ -124,8 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  HomeReaderPage(username: uname),
+                              builder: (context) => HomeReaderPage(),
                             ),
                           );
                           ScaffoldMessenger.of(context)

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:booketlist/screens/list_buku.dart';
-import 'package:booketlist/screens/homeReader.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 // Import halaman lainnya di sini
 
 class BottomNav extends StatelessWidget {
@@ -16,30 +14,29 @@ class BottomNav extends StatelessWidget {
     this.username, // Tidak perlu menjadi required
   }) : super(key: key);
 
-  void navigateToScreens(int index, BuildContext context) {
-    switch (index) {
-      case 0:
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    HomeReaderPage(username: username ?? 'Guest')));
-        break;
-      case 1:
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => BookPage()));
-        break;
-      case 2:
-        // Tambahkan navigasi ke halaman Wishlist (sesuaikan jika ada)
-        break;
-      case 3:
-        // Tambahkan navigasi ke halaman Review (sesuaikan jika ada)
-        break;
-      case 4:
-        // Tambahkan navigasi ke halaman Profile (sesuaikan jika ada)
-        break;
-    }
-  }
+  // void navigateToScreens(int index, BuildContext context) {
+  //   switch (index) {
+  //     case 0:
+  //       Navigator.pushReplacement(
+  //           context, MaterialPageRoute(builder: (context) => HomeReaderPage()));
+  //       break;
+  //     case 1:
+  //       Navigator.pushReplacement(
+  //           context, MaterialPageRoute(builder: (context) => BookPage()));
+  //       break;
+  //     case 2:
+  //       Navigator.pushReplacement(
+  //           context, MaterialPageRoute(builder: (context) => WishlistPage()));
+  //       break;
+  //     case 3:
+  //       // Tambahkan navigasi ke halaman Review (sesuaikan jika ada)
+  //       break;
+  //     case 4:
+  //       // Tambahkan navigasi ke halaman Profile (sesuaikan jika ada)
+  //       //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+  //       break;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +72,7 @@ class BottomNav extends StatelessWidget {
       unselectedItemColor: Colors.grey,
       onTap: (index) {
         onItemTapped(index);
-        navigateToScreens(index, context);
+        //navigateToScreens(index, context);
       },
     );
   }

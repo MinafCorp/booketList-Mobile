@@ -1,6 +1,6 @@
 import 'package:booketlist/screens/author/home.dart';
-import 'package:booketlist/screens/HomeReader.dart';
 import 'package:booketlist/screens/author/main_author.dart';
+import 'package:booketlist/screens/reader/main_reader.dart';
 import 'package:booketlist/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -128,8 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  HomeReaderPage(username: uname),
+                              builder: (context) => MainReader(),
                             ),
                           );
                           ScaffoldMessenger.of(context)

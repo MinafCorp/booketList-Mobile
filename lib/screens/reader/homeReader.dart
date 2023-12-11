@@ -147,10 +147,11 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
                         Fields fields = book.fields;
                         return Container(
                           decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25.0),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black.withOpacity(0.2),
-                                blurRadius: 4,
+                                blurRadius: 6,
                                 offset: Offset(2, 2), // Posisi bayangan
                               ),
                             ],
@@ -203,12 +204,7 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNav(
-        selectedIndex: 0, // Assuming 0 is the home index
-        onItemTapped: (int index) {
-          // Replace with your navigation logic
-        },
-      ),
+      
     );
   }
 }

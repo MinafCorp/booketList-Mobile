@@ -1,5 +1,6 @@
 import 'package:booketlist/screens/login.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class MyHomePage extends StatelessWidget {
             children: <Widget>[
               Align(
                 alignment: Alignment.center,
-                child: Image(image: AssetImage('images/logooo.png')),
+                child: Image(image: AssetImage('images/tesss.gif')),
               ),
               Align(
                 alignment: Alignment.center,
@@ -25,9 +26,31 @@ class MyHomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
-                          ));
+                          PageRouteBuilder(
+                          pageBuilder: (context, animation, secondaryAnimation) => const LoginPage(),
+                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                            const begin = 0.0;
+                            const end = 1.0;
+                            const curve = Curves.easeInOut;
+
+                            var tween = Tween(begin: begin, end: end).chain(
+                              CurveTween(curve: curve),
+                            );
+
+                            var fadeAnimation = animation.drive(tween);
+
+                            var zoomAnimation = Tween(begin: 0.5, end: 1.0).animate(animation);
+
+                            return FadeTransition(
+                              opacity: fadeAnimation,
+                              child: ScaleTransition(
+                                scale: zoomAnimation,
+                                child: child,
+                              ),
+                            );
+                          },
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(255, 67, 64, 59)),

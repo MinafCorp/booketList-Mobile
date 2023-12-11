@@ -1,31 +1,31 @@
 import 'dart:convert';
 
-List<Book> bookFromJson(String str) =>
-    List<Book>.from(json.decode(str).map((x) => Book.fromJson(x)));
+List<Wishlist> wishlistFromJson(String str) =>
+    List<Wishlist>.from(json.decode(str).map((x) => Wishlist.fromJson(x)));
 
-String bookToJson(List<Book> data) =>
+String wishlistToJson(List<Wishlist> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Book {
-  int pk;
+class Wishlist {
   Model model;
+  int pk;
   Fields fields;
 
-  Book({
-    required this.pk,
+  Wishlist({
     required this.model,
+    required this.pk,
     required this.fields,
   });
 
-  factory Book.fromJson(Map<String, dynamic> json) => Book(
-        pk: json["pk"],
+  factory Wishlist.fromJson(Map<String, dynamic> json) => Wishlist(
         model: modelValues.map[json["model"]]!,
+        pk: json["pk"],
         fields: Fields.fromJson(json["fields"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "pk": pk,
         "model": modelValues.reverse[model],
+        "pk": pk,
         "fields": fields.toJson(),
       };
 }
@@ -39,6 +39,8 @@ class Fields {
   String imageUrlS;
   String imageUrlM;
   String imageUrlL;
+  dynamic authorUser;
+  String image;
 
   Fields({
     required this.isbn,
@@ -49,6 +51,8 @@ class Fields {
     required this.imageUrlS,
     required this.imageUrlM,
     required this.imageUrlL,
+    required this.authorUser,
+    required this.image,
   });
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
@@ -60,6 +64,8 @@ class Fields {
         imageUrlS: json["image_url_s"],
         imageUrlM: json["image_url_m"],
         imageUrlL: json["image_url_l"],
+        authorUser: json["authorUser"],
+        image: json["image"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -71,12 +77,14 @@ class Fields {
         "image_url_s": imageUrlS,
         "image_url_m": imageUrlM,
         "image_url_l": imageUrlL,
+        "authorUser": authorUser,
+        "image": image,
       };
 }
 
-enum Model { Booketlist }
+enum Model { BOOK_BOOK }
 
-final modelValues = EnumValues({"book.book": Model.Booketlist});
+final modelValues = EnumValues({"book.book": Model.BOOK_BOOK});
 
 class EnumValues<T> {
   Map<String, T> map;

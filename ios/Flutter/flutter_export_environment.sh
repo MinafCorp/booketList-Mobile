@@ -1,7 +1,12 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
+<<<<<<< HEAD
+export "FLUTTER_ROOT=/Users/noov/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/noov/Dev/pbporg/booketlist-mobile"
+=======
 export "FLUTTER_ROOT=/Users/suryaputra/Flutter/flutter"
 export "FLUTTER_APPLICATION_PATH=/Users/suryaputra/Downloads/Flutter pbp/flutter_kelompok"
+>>>>>>> 3dba9de32055750774f76ccbbf4d68adc72cf3ab
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"

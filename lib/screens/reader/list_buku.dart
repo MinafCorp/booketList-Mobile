@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:booketlist/models/book.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:booketlist/widgets/nav_reader.dart';
 
 class BookPage extends StatefulWidget {
   const BookPage({Key? key}) : super(key: key);
@@ -204,10 +203,6 @@ class _BookPageState extends State<BookPage> {
           );
         },
       ),
-      // bottomNavigationBar: BottomNav(
-      //   selectedIndex: 1,
-      //   onItemTapped: (index) {},
-      // ),
     );
   }
 }

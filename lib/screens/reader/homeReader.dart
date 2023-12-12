@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:booketlist/models/book.dart';
-import 'package:booketlist/widgets/nav_reader.dart';
 
 class HomeReaderPage extends StatefulWidget {
-  final String username;
-
-  const HomeReaderPage({Key? key, required this.username}) : super(key: key);
+  const HomeReaderPage({Key? key}) : super(key: key);
 
   @override
   _HomeReaderPageState createState() => _HomeReaderPageState();
@@ -204,7 +201,6 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
           ),
         ],
       ),
-      
     );
   }
 }

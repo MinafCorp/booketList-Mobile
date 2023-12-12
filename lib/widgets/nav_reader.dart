@@ -5,13 +5,11 @@ import 'package:booketlist/screens/list_buku.dart';
 class BottomNav extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onItemTapped;
-  final String? username; // Jadikan username opsional
 
   const BottomNav({
     Key? key,
     required this.selectedIndex,
     required this.onItemTapped,
-    this.username, // Tidak perlu menjadi required
   }) : super(key: key);
 
   // void navigateToScreens(int index, BuildContext context) {

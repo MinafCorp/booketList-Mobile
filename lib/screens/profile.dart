@@ -43,16 +43,34 @@ class _ProfilePageState extends State<ProfilePage> {
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
               var user = snapshot.data!;
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image(image: AssetImage('images/Profile.png')), // Dummy image
-                  const SizedBox(height: 20),
-                  Text('Hello ${user['username']}!'),
-                  Text('${user['first_name']} ${user['last_name']}'),
-                  Text('${user['role']}', style: const TextStyle(fontWeight: FontWeight.bold)),
-                ],
-              );
+              if (user['role'] == 'Author') {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Image(image: AssetImage('images/Profile.png')), // Dummy image
+                    const SizedBox(height: 20),
+                    Text('Hello ${user['username']}!'),
+                    Text('${user['first_name']} ${user['last_name']}'),
+                    Text('${user['role']}', style: const TextStyle(fontWeight: FontWeight.bold)),
+                    //Want to display amount of books published
+                  ],
+                );
+              } else if (user['role'] == 'Reader') {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Image(image: AssetImage('images/Profile.png')), // Dummy image
+                    const SizedBox(height: 20),
+                    Text('Hello ${user['username']}!'),
+                    Text('${user['first_name']} ${user['last_name']}'),
+                    Text('${user['role']}', style: const TextStyle(fontWeight: FontWeight.bold)),
+                    //Want to display amount of books wish listed
+                    //Want to display amount of books read
+                  ],
+                );
+              } else {
+                return const Text('No Role Found');
+              }
             } else {
               return const Text('No user data found');
             }

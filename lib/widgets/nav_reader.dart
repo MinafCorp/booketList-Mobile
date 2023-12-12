@@ -1,44 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:booketlist/screens/list_buku.dart';
-import 'package:booketlist/screens/homeReader.dart';
-import 'package:booketlist/screens/wishlist.dart';
 // Import halaman lainnya di sini
 
 class BottomNav extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onItemTapped;
-  final String? username; // Jadikan username opsional
 
   const BottomNav({
     Key? key,
     required this.selectedIndex,
     required this.onItemTapped,
-    this.username, // Tidak perlu menjadi required
   }) : super(key: key);
 
-  void navigateToScreens(int index, BuildContext context) {
-    switch (index) {
-      case 0:
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomeReaderPage()));
-        break;
-      case 1:
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => BookPage()));
-        break;
-      case 2:
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => WishlistPage()));
-        break;
-      case 3:
-        // Tambahkan navigasi ke halaman Review (sesuaikan jika ada)
-        break;
-      case 4:
-        // Tambahkan navigasi ke halaman Profile (sesuaikan jika ada)
-        //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage()));
-        break;
-    }
-  }
+  // void navigateToScreens(int index, BuildContext context) {
+  //   switch (index) {
+  //     case 0:
+  //       Navigator.pushReplacement(
+  //           context, MaterialPageRoute(builder: (context) => HomeReaderPage()));
+  //       break;
+  //     case 1:
+  //       Navigator.pushReplacement(
+  //           context, MaterialPageRoute(builder: (context) => BookPage()));
+  //       break;
+  //     case 2:
+  //       Navigator.pushReplacement(
+  //           context, MaterialPageRoute(builder: (context) => WishlistPage()));
+  //       break;
+  //     case 3:
+  //       // Tambahkan navigasi ke halaman Review (sesuaikan jika ada)
+  //       break;
+  //     case 4:
+  //       // Tambahkan navigasi ke halaman Profile (sesuaikan jika ada)
+  //       //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+  //       break;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +53,10 @@ class BottomNav extends StatelessWidget {
           label: 'Wishlist',
         ),
         BottomNavigationBarItem(
+          icon: Icon(Icons.campaign),
+          label: 'Updates',
+        ),
+        BottomNavigationBarItem(
           icon: Icon(Icons.rate_review),
           label: 'Review',
         ),
@@ -70,7 +70,7 @@ class BottomNav extends StatelessWidget {
       unselectedItemColor: Colors.grey,
       onTap: (index) {
         onItemTapped(index);
-        navigateToScreens(index, context);
+        //navigateToScreens(index, context);
       },
     );
   }

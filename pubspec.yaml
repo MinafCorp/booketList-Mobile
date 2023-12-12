@@ -40,6 +40,9 @@ dependencies:
   provider: ^6.1.1
   pbp_django_auth: ^0.4.0
   http: ^1.1.2
+  curved_navigation_bar: ^1.0.3
+  animated_search_bar: ^2.7.1
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:

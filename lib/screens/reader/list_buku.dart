@@ -39,8 +39,8 @@ class _BookPageState extends State<BookPage> {
         elevation: 0,
         centerTitle: true,
         titleSpacing: 0,
-        title: const Padding(
-          padding: EdgeInsets.only(top: 8.0),
+        title: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
           child: Text(
             'BooketList',
             textAlign: TextAlign.center,
@@ -64,7 +64,7 @@ class _BookPageState extends State<BookPage> {
             return Center(
               child: Text(
                 "Error: ${snapshot.error}",
-                style: const TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
               ),
             );
           }
@@ -98,7 +98,7 @@ class _BookPageState extends State<BookPage> {
               SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 sliver: SliverGrid(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 0.55,
                     crossAxisSpacing: 16,
@@ -110,7 +110,7 @@ class _BookPageState extends State<BookPage> {
                       Fields fields = book.fields;
 
                       return Card(
-                        color: const Color.fromARGB(255, 186, 244, 212),
+                        color: Color.fromARGB(255, 186, 244, 212),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
@@ -140,7 +140,7 @@ class _BookPageState extends State<BookPage> {
                             ),
                             ButtonBar(
                               alignment: MainAxisAlignment.center,
-                              buttonPadding: const EdgeInsets.symmetric(
+                              buttonPadding: EdgeInsets.symmetric(
                                   vertical: 0.0, horizontal: 15.0),
                               children: [
                                 IconButton(
@@ -157,6 +157,7 @@ class _BookPageState extends State<BookPage> {
                                         }),
                                       );
 
+                                      print(response['success']);
                                       if (response['success']) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
@@ -167,15 +168,16 @@ class _BookPageState extends State<BookPage> {
                                       } else {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
-                                          const SnackBar(
+                                          SnackBar(
                                               content: Text(
                                                   "Gagal memasukkan ke wishlist")),
                                         );
                                       }
                                     } catch (e) {
+                                      print('Exception: $e');
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
-                                        const SnackBar(
+                                        SnackBar(
                                             content: Text(
                                                 "Terjadi kesalahan saat menambahkan ke wishlist")),
                                       );

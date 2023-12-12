@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:booketlist/models/wishlistAPI.dart';
-import 'package:booketlist/widgets/nav.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -181,12 +180,6 @@ class _WishlistPageState extends State<WishlistPage> {
             },
           )
         ],
-      ),
-      bottomNavigationBar: BottomNav(
-        selectedIndex: 2, // Assuming 0 is the home index
-        onItemTapped: (int index) {
-          // Replace with your navigation logic
-        },
       ),
     );
   }

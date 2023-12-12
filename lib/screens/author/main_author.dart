@@ -23,9 +23,9 @@ class _MainAuthorState extends State<MainAuthor> {
   @override
   Widget build(BuildContext context) {
     final items = <Widget>[
-      Icon(Icons.home_filled, color: Colors.white),
-      Icon(Icons.campaign, color: Colors.white),
-      Icon(Icons.person, color: Colors.white),
+      const Icon(Icons.home_filled, color: Colors.white),
+      const Icon(Icons.campaign, color: Colors.white),
+      const Icon(Icons.person, color: Colors.white),
     ];
     return Scaffold(
       body : screens[index],
@@ -34,9 +34,9 @@ class _MainAuthorState extends State<MainAuthor> {
           items: items,
           index: index,
           height: 60,
-          backgroundColor: Color.fromARGB(255, 236, 227, 215),
+          backgroundColor: const Color.fromARGB(255, 236, 227, 215),
           buttonBackgroundColor: Color.fromARGB(255, 67, 64, 59),
-          color: Color.fromARGB(255, 67, 64, 59),
+          color: const Color.fromARGB(255, 67, 64, 59),
           onTap: (tappedIndex) {
             setState(() {
               index = tappedIndex;

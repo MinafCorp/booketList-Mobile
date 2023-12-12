@@ -14,9 +14,9 @@ class _UpdatePageState extends State<UpdatePage> {
     @override
     Widget build(BuildContext context) {
         return Scaffold(
-          backgroundColor: Color.fromARGB(255, 236, 227, 215),
+          backgroundColor: const Color.fromARGB(255, 236, 227, 215),
           appBar: AppBar(
-            backgroundColor: Color.fromARGB(255, 151, 138, 116),
+            backgroundColor: const Color.fromARGB(255, 151, 138, 116),
             title: AnimatedSearchBar(
               label: 'Search Updates',
               controller: _searchController,

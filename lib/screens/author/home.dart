@@ -49,14 +49,14 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                 Container(
                   height: 300,
                   alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Embark on a journey of imagination',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style:  TextStyle(
                           color: Colors.white,
                           fontSize: 45,
                           fontWeight: FontWeight.bold,
@@ -64,8 +64,8 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                           fontStyle: FontStyle.italic,
                         ),
                       ),
-                      SizedBox(height: 8),
-                      Text(
+                       SizedBox(height: 8),
+                       Text(
                         'Brought to you by MinafCorp',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -87,7 +87,7 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  Text(
+                  const Text(
                     "Editor's Choice",
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -106,7 +106,7 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
             future: fetchBooks(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return SliverFillRemaining(
+                return const SliverFillRemaining(
                   child: Center(child: CircularProgressIndicator()),
                 );
               } else if (snapshot.hasError) {
@@ -114,12 +114,12 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                   child: Center(
                     child: Text(
                       "Error: ${snapshot.error}",
-                      style: TextStyle(color: Colors.red, fontSize: 20),
+                      style: const TextStyle(color: Colors.red, fontSize: 20),
                     ),
                   ),
                 );
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return SliverFillRemaining(
+                return const SliverFillRemaining(
                   child: Center(
                     child: Text(
                       "No books found.",
@@ -129,11 +129,11 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                 );
               } else {
                 return SliverPadding(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                       horizontal:
                           30.0), // Menambahkan padding horizontal yang lebih besar
                   sliver: SliverGrid(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, // Dua buku per baris
                       childAspectRatio:
                           0.6, // Mengatur aspek rasio untuk kartu buku yang lebih ramping
@@ -152,7 +152,7 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                               BoxShadow(
                                 color: Colors.black.withOpacity(0.2),
                                 blurRadius: 6,
-                                offset: Offset(2, 2), // Posisi bayangan
+                                offset: const Offset(2, 2), // Posisi bayangan
                               ),
                             ],
                           ),
@@ -182,7 +182,7 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                                     fields.title,
                                     textAlign:
                                         TextAlign.center, // Teks ditengahkan
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize:
                                           14.0, // Ukuran font disesuaikan dengan keinginan
                                       fontWeight: FontWeight.bold,
@@ -207,9 +207,9 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
       ),
       floatingActionButton: FloatingActionButton(
             onPressed: (){},
-            child: Icon(Icons.add),
             foregroundColor: Colors.white,
-            backgroundColor: Color.fromARGB(255, 67, 64, 59),
+            backgroundColor: const Color.fromARGB(255, 67, 64, 59),
+            child: const Icon(Icons.add),
       ),
     );
   }

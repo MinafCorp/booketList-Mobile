@@ -1,5 +1,6 @@
 import 'package:booketlist/screens/author/home.dart';
 import 'package:booketlist/screens/author/update.dart';
+import 'package:booketlist/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:booketlist/screens/reader/list_buku.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -16,7 +17,7 @@ class _MainAuthorState extends State<MainAuthor> {
   final screens = [
     const HomeAuthorPage(username: ""),
     const UpdatePage(),
-    const BookPage(), // profile page blm ada, jd sementara pake ini
+    const ProfilePage(), // profile page blm ada, jd sementara pake ini
   ];
   
 

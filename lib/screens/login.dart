@@ -1,5 +1,6 @@
-import 'package:booketlist/screens/home.dart';
-import 'package:booketlist/screens/homeReader.dart';
+import 'package:booketlist/screens/author/home.dart';
+import 'package:booketlist/screens/author/main_author.dart';
+import 'package:booketlist/screens/reader/main_reader.dart';
 import 'package:booketlist/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -114,22 +115,28 @@ class _LoginPageState extends State<LoginPage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const HomeAuthorPage()));
+                                      MainAuthor()));
                           ScaffoldMessenger.of(context)
                             ..hideCurrentSnackBar()
                             ..showSnackBar(SnackBar(
+                                elevation: 6.0,
+                                behavior: SnackBarBehavior.floating,
+                                backgroundColor: Color.fromARGB(255, 67, 64, 59),
                                 content: Text(
                                     "$message Welcome, $uname! (logged in as Author)")));
                         } else if (role == "READER") {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomeReaderPage(),
+                              builder: (context) => MainReader(),
                             ),
                           );
                           ScaffoldMessenger.of(context)
                             ..hideCurrentSnackBar()
                             ..showSnackBar(SnackBar(
+                                elevation: 6.0,
+                                behavior: SnackBarBehavior.floating,
+                                backgroundColor: Color.fromARGB(255, 67, 64, 59),
                                 content: Text(
                                     "$message Welcome, $uname! (logged in as Reader)")));
                         }

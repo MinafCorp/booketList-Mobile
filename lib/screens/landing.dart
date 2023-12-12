@@ -8,20 +8,20 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 236, 227, 215),
+      backgroundColor: const Color.fromARGB(255, 236, 227, 215),
       body: Padding(
-          padding: EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(top: 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Align(
+              const Align(
                 alignment: Alignment.center,
                 child: Image(image: AssetImage('images/tesss.gif')),
               ),
               Align(
                 alignment: Alignment.center,
                 child: Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushReplacement(
@@ -53,7 +53,7 @@ class MyHomePage extends StatelessWidget {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 67, 64, 59)),
+                        backgroundColor: const Color.fromARGB(255, 67, 64, 59)),
                     child: const Text(
                       "Get Started",
                       style: TextStyle(color: Colors.white),

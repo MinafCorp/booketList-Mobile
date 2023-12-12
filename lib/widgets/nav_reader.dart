@@ -66,7 +66,7 @@ class BottomNav extends StatelessWidget {
         ),
       ],
       currentIndex: selectedIndex,
-      selectedItemColor: Color.fromARGB(255, 30, 69, 29),
+      selectedItemColor: const Color.fromARGB(255, 30, 69, 29),
       unselectedItemColor: Colors.grey,
       onTap: (index) {
         onItemTapped(index);

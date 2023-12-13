@@ -63,9 +63,10 @@ class _UpdatePageState extends State<UpdatePage> {
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: (){},
-            child: const Icon(Icons.create),
+
             foregroundColor: Colors.white,
             backgroundColor: const Color.fromARGB(255, 67, 64, 59),
+            child: const Icon(Icons.create),
         ),
         );
     }

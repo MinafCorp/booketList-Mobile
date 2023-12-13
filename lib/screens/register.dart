@@ -99,7 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             controller: _usernameController,
                             decoration: const InputDecoration(labelText: 'Username'),
                             validator: (val){
-                              if(val!.isEmpty || val == null){
+                              if(val!.isEmpty ){
                                 return 'Please enter your username';
                               }
                               return null;
@@ -110,7 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             controller: _firstNameController,
                             decoration: const InputDecoration(labelText: 'First Name'),
                             validator: (val){
-                              if(val!.isEmpty || val == null){
+                              if(val!.isEmpty ){
                                 return 'Please enter your first name';
                               }
                               return null;
@@ -127,7 +127,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             decoration: const InputDecoration(labelText: 'Email'),
                             keyboardType: TextInputType.emailAddress,
                             validator: (val){
-                              if(val!.isEmpty || val == null){
+                              if(val!.isEmpty ){
                                 return 'Please enter your email';
                               }
                               return null;
@@ -139,7 +139,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             decoration: const InputDecoration(labelText: 'Password'),
                             obscureText: true,
                             validator: (val){
-                              if(val!.isEmpty || val == null){
+                              if(val!.isEmpty){
                                 return 'Please enter your password';
                               }else if(val.length < 8){
                                 return 'Password must be at least 8 characters';
@@ -152,7 +152,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             decoration: const InputDecoration(labelText: 'Confirm Password'),
                             obscureText: true,
                             validator: (val){
-                              if(val!.isEmpty || val == null){
+                              if(val!.isEmpty ){
                                 return 'Please enter your password';
                               }else if(val != _password1Controller.text){
                                 return 'Password does not match';

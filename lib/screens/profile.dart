@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -18,8 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<Map<String, dynamic>> fetchUserData() async {
-    var url = Uri.parse(
-        'https://booketlist-production.up.railway.app/user-api');
+    var url = Uri.parse('https://booketlist-production.up.railway.app/user-api');
     var response =
     await http.get(url, headers: {"Content-Type": "application/json"});
 
@@ -33,6 +33,10 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('My Profile'),
+        backgroundColor: const Color.fromARGB(255, 67, 64, 59), // Match your reference style
+      ),
       body: Center(
         child: FutureBuilder<Map<String, dynamic>>(
           future: userData,
@@ -43,34 +47,26 @@ class _ProfilePageState extends State<ProfilePage> {
               return Text('Error: ${snapshot.error}');
             } else if (snapshot.hasData) {
               var user = snapshot.data!;
-              if (user['role'] == 'Author') {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Image(image: AssetImage('images/Profile.png')), // Dummy image
-                    const SizedBox(height: 20),
-                    Text('Hello ${user['username']}!'),
-                    Text('${user['first_name']} ${user['last_name']}'),
-                    Text('${user['role']}', style: const TextStyle(fontWeight: FontWeight.bold)),
-                    //Want to display amount of books published
-                  ],
-                );
-              } else if (user['role'] == 'Reader') {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Image(image: AssetImage('images/Profile.png')), // Dummy image
-                    const SizedBox(height: 20),
-                    Text('Hello ${user['username']}!'),
-                    Text('${user['first_name']} ${user['last_name']}'),
-                    Text('${user['role']}', style: const TextStyle(fontWeight: FontWeight.bold)),
-                    //Want to display amount of books wish listed
-                    //Want to display amount of books read
-                  ],
-                );
-              } else {
-                return const Text('No Role Found');
-              }
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const CircleAvatar(
+                    radius: 80.0,
+                    backgroundImage: AssetImage('images/Profile.png'), // Replace with your image
+                  ),
+                  const SizedBox(height: 20),
+                  Text('Hello ${user['username']}!'),
+                  Text('${user['first_name']} ${user['last_name']}'),
+                  Text(
+                    '${user['role']}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black, // Match your reference style
+                    ),
+                  ),
+
+                ],
+              );
             } else {
               return const Text('No user data found');
             }

@@ -30,12 +30,35 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+  Future<void> logout() async {
+    var url = Uri.parse('https://booketlist-production.up.railway.app/auth/logout/');
+    var response =
+    await http.post(url, headers: {"Content-Type": "application/json"});
+
+    if (response.statusCode == 200) {
+      Navigator.pushReplacementNamed(context, '/login');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content:  Text('Failed to logout'),
+        ),
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Profile'),
-        backgroundColor: const Color.fromARGB(255, 67, 64, 59), // Match your reference style
+        backgroundColor: const Color.fromARGB(255, 67, 64, 59),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () {
+              logout();
+            },
+          ),
+        ],
       ),
       body: Center(
         child: FutureBuilder<Map<String, dynamic>>(

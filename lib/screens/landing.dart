@@ -1,68 +1,100 @@
 import 'package:booketlist/screens/login.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 236, 227, 215),
-      body: Padding(
-          padding: EdgeInsets.only(top: 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Align(
-                alignment: Alignment.center,
-                child: Image(image: AssetImage('images/tesss.gif')),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          PageRouteBuilder(
-                          pageBuilder: (context, animation, secondaryAnimation) => const LoginPage(),
-                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                            const begin = 0.0;
-                            const end = 1.0;
-                            const curve = Curves.easeInOut;
-
-                            var tween = Tween(begin: begin, end: end).chain(
-                              CurveTween(curve: curve),
-                            );
-
-                            var fadeAnimation = animation.drive(tween);
-
-                            var zoomAnimation = Tween(begin: 0.5, end: 1.0).animate(animation);
-
-                            return FadeTransition(
-                              opacity: fadeAnimation,
-                              child: ScaleTransition(
-                                scale: zoomAnimation,
-                                child: child,
-                              ),
-                            );
-                          },
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // Background image
+          Image.asset(
+            'images/landing.png', // Ensure this is the correct path to your image asset
+            fit: BoxFit.cover,
+          ),
+          // Overlay content
+          Column(
+            mainAxisAlignment: MainAxisAlignment
+                .spaceBetween, // Spread out the column's children over the main axis
+            children: [
+              const Expanded(
+                flex: 2,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Booket',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'serif', // Default serif font
+                          color: Colors.white,
+                          fontSize: 65,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
                         ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 67, 64, 59)),
-                    child: const Text(
-                      "Get Started",
-                      style: TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        'List',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'serif', // Default serif font
+                          color: Colors.white,
+                          fontSize: 65,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).size.height *
+                      0.04, // Adjust the padding to position the button
+                ),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const LoginPage(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFFFAE8E0), // Beige color for the button
+                    onPrimary: Colors.black, // Text color
+                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                    shape:
+                        const StadiumBorder(), // Rounded edges for the button
+                  ),
+                  child: const Text(
+                    'Get Started',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold, // Bold text for the button
                     ),
                   ),
                 ),
               ),
             ],
-          )),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:booketlist/screens/author/update.dart';
+import 'package:booketlist/screens/reader/update.dart';
 import 'package:flutter/material.dart';
 import 'package:booketlist/screens/reader/list_buku.dart';
 
@@ -12,8 +12,8 @@ class MenuDrawer extends StatelessWidget {
         children: [
           SizedBox(
             height: 230,
-          child :DrawerHeader(
-            decoration: const BoxDecoration(
+            child: DrawerHeader(
+              decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 236, 227, 215),
               ),
               child: Column(
@@ -72,7 +72,7 @@ class MenuDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BookPage(),
+                    builder: (context) => const BookPage(),
                   ));
             },
           ),

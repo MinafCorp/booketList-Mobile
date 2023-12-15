@@ -4,22 +4,22 @@
 
 import 'dart:convert';
 
-List<Book> bookFromJson(String str) => List<Book>.from(json.decode(str).map((x) => Book.fromJson(x)));
+List<Updates> bookFromJson(String str) => List<Updates>.from(json.decode(str).map((x) => Updates.fromJson(x)));
 
-String bookToJson(List<Book> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String bookToJson(List<Updates> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Book {
+class Updates {
     String model;
     int pk;
     Fields fields;
 
-    Book({
+    Updates({
         required this.model,
         required this.pk,
         required this.fields,
     });
 
-    factory Book.fromJson(Map<String, dynamic> json) => Book(
+    factory Updates.fromJson(Map<String, dynamic> json) => Updates(
         model: json["model"],
         pk: json["pk"],
         fields: Fields.fromJson(json["fields"]),

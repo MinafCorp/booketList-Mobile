@@ -1,4 +1,3 @@
-import 'package:booketlist/screens/author/home.dart';
 import 'package:booketlist/screens/author/main_author.dart';
 import 'package:booketlist/screens/reader/main_reader.dart';
 import 'package:booketlist/screens/register.dart';
@@ -114,14 +113,14 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      MainAuthor()));
+                                  builder: (context) => MainAuthor()));
                           ScaffoldMessenger.of(context)
                             ..hideCurrentSnackBar()
                             ..showSnackBar(SnackBar(
                                 elevation: 6.0,
                                 behavior: SnackBarBehavior.floating,
-                                backgroundColor: Color.fromARGB(255, 67, 64, 59),
+                                backgroundColor:
+                                    const Color.fromARGB(255, 67, 64, 59),
                                 content: Text(
                                     "$message Welcome, $uname! (logged in as Author)")));
                         } else if (role == "READER") {
@@ -136,7 +135,8 @@ class _LoginPageState extends State<LoginPage> {
                             ..showSnackBar(SnackBar(
                                 elevation: 6.0,
                                 behavior: SnackBarBehavior.floating,
-                                backgroundColor: Color.fromARGB(255, 67, 64, 59),
+                                backgroundColor:
+                                    const Color.fromARGB(255, 67, 64, 59),
                                 content: Text(
                                     "$message Welcome, $uname! (logged in as Reader)")));
                         }

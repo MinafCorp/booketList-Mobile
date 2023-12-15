@@ -31,10 +31,10 @@ class _SearchPageState extends State<SearchPage> {
                 )
               ),
             ),
-            backgroundColor: Color.fromARGB(255, 151, 138, 116),
+            backgroundColor: const Color.fromARGB(255, 151, 138, 116),
           ),
           // drawer: const MenuDrawer(),
-          body: SingleChildScrollView(
+          body: const SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.all(10.0), // Set padding dari halaman
               child: Column(
@@ -45,7 +45,7 @@ class _SearchPageState extends State<SearchPage> {
                     // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                     child: Image(image: AssetImage('images/title.png')),
                   ),
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30),
                 ]
               )
           ),

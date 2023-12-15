@@ -45,8 +45,8 @@ class _WishlistPageState extends State<WishlistPage> {
                 Container(
                   height: 300,
                   alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -83,7 +83,7 @@ class _WishlistPageState extends State<WishlistPage> {
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  Text(
+                  const Text(
                     "Editor's Choice",
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -100,8 +100,8 @@ class _WishlistPageState extends State<WishlistPage> {
             future: fetchWishlists(),
             builder: (context, AsyncSnapshot<List<Wishlist>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return SliverFillRemaining(
-                  child: const Center(child: CircularProgressIndicator()),
+                return const SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator()),
                 );
               }
               if (snapshot.hasError) {
@@ -109,14 +109,14 @@ class _WishlistPageState extends State<WishlistPage> {
                   child: Center(
                     child: Text(
                       "Error: ${snapshot.error}",
-                      style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                      style: const TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                     ),
                   ),
                 );
               }
               if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return SliverFillRemaining(
-                  child: const Center(
+                return const SliverFillRemaining(
+                  child: Center(
                     child: Text(
                       "Tidak ada data produk.",
                       style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
@@ -129,7 +129,7 @@ class _WishlistPageState extends State<WishlistPage> {
               return SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 sliver: SliverGrid(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 0.55,
                     crossAxisSpacing: 16,
@@ -161,7 +161,7 @@ class _WishlistPageState extends State<WishlistPage> {
                               child: Text(
                                 fields.title,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),

@@ -46,8 +46,8 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
                 Container(
                   height: 300,
                   alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -84,7 +84,7 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  Text(
+                  const Text(
                     "Editor's Choice",
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -103,7 +103,7 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
             future: fetchBooks(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return SliverFillRemaining(
+                return const SliverFillRemaining(
                   child: Center(child: CircularProgressIndicator()),
                 );
               } else if (snapshot.hasError) {
@@ -111,12 +111,12 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
                   child: Center(
                     child: Text(
                       "Error: ${snapshot.error}",
-                      style: TextStyle(color: Colors.red, fontSize: 20),
+                      style: const TextStyle(color: Colors.red, fontSize: 20),
                     ),
                   ),
                 );
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return SliverFillRemaining(
+                return const SliverFillRemaining(
                   child: Center(
                     child: Text(
                       "No books found.",
@@ -126,11 +126,11 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
                 );
               } else {
                 return SliverPadding(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                       horizontal:
                           30.0), // Menambahkan padding horizontal yang lebih besar
                   sliver: SliverGrid(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, // Dua buku per baris
                       childAspectRatio:
                           0.6, // Mengatur aspek rasio untuk kartu buku yang lebih ramping
@@ -149,7 +149,7 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
                               BoxShadow(
                                 color: Colors.black.withOpacity(0.2),
                                 blurRadius: 6,
-                                offset: Offset(2, 2), // Posisi bayangan
+                                offset: const Offset(2, 2), // Posisi bayangan
                               ),
                             ],
                           ),
@@ -178,7 +178,7 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
                                     fields.title,
                                     textAlign:
                                         TextAlign.center, // Teks ditengahkan
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize:
                                           14.0, // Ukuran font disesuaikan dengan keinginan
                                       fontWeight: FontWeight.bold,

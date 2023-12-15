@@ -14,9 +14,9 @@ class _UpdatePageState extends State<UpdatePage> {
     @override
     Widget build(BuildContext context) {
         return Scaffold(
-          backgroundColor: Color.fromARGB(255, 236, 227, 215),
+          backgroundColor: const Color.fromARGB(255, 236, 227, 215),
           appBar: AppBar(
-            backgroundColor: Color.fromARGB(255, 151, 138, 116),
+            backgroundColor: const Color.fromARGB(255, 151, 138, 116),
             title: AnimatedSearchBar(
               label: 'Search Updates',
               controller: _searchController,
@@ -45,7 +45,7 @@ class _UpdatePageState extends State<UpdatePage> {
                 });
               }),
           ),
-          body: SingleChildScrollView(
+          body: const SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.all(10.0), // Set padding dari halaman
               child: Column(
@@ -56,16 +56,17 @@ class _UpdatePageState extends State<UpdatePage> {
                     // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                     child: Image(image: AssetImage('images/title.png')),
                   ),
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30),
                 ]
               )
           ),
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: (){},
-            child: Icon(Icons.create),
+
             foregroundColor: Colors.white,
-            backgroundColor: Color.fromARGB(255, 67, 64, 59),
+            backgroundColor: const Color.fromARGB(255, 67, 64, 59),
+            child: const Icon(Icons.create),
         ),
         );
     }

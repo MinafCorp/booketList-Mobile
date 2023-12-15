@@ -1,4 +1,5 @@
 import 'package:booketlist/screens/author/update.dart';
+import 'package:booketlist/screens/profile.dart';
 import 'package:booketlist/screens/reader/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:booketlist/screens/reader/list_buku.dart';
@@ -19,7 +20,7 @@ class _MainReaderState extends State<MainReader> {
     const UpdatePage(),
     const WishlistPage(),
     const WishlistPage(),
-    const WishlistPage(),
+    const ProfilePage(),
   ];
 
   @override

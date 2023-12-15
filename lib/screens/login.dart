@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                                 elevation: 6.0,
                                 behavior: SnackBarBehavior.floating,
                                 backgroundColor:
-                                    Color.fromARGB(255, 67, 64, 59),
+                                    const Color.fromARGB(255, 67, 64, 59),
                                 content: Text(
                                     "$message Welcome, $uname! (logged in as Author)")));
                         } else if (role == "READER") {
@@ -136,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                                 elevation: 6.0,
                                 behavior: SnackBarBehavior.floating,
                                 backgroundColor:
-                                    Color.fromARGB(255, 67, 64, 59),
+                                    const Color.fromARGB(255, 67, 64, 59),
                                 content: Text(
                                     "$message Welcome, $uname! (logged in as Reader)")));
                         }

@@ -72,7 +72,7 @@ class MenuDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BookPage(),
+                    builder: (context) => const BookPage(),
                   ));
             },
           ),

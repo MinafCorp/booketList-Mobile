@@ -1,4 +1,3 @@
-import 'package:booketlist/screens/updates/search_update.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
 

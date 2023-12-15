@@ -1,6 +1,6 @@
-import 'package:booketlist/screens/updates/update.dart';
+import 'package:booketlist/screens/author/update.dart';
 import 'package:flutter/material.dart';
-import 'package:booketlist/screens/list_buku.dart';
+import 'package:booketlist/screens/reader/list_buku.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});

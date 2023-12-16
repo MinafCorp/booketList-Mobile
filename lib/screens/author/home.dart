@@ -1,35 +1,57 @@
 
+import 'package:booketlist/screens/author/booklist_form.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:booketlist/models/book.dart';
 
 class HomeAuthorPage extends StatefulWidget {
-  final String username;
-
-  const HomeAuthorPage({Key? key, required this.username}) : super(key: key);
+  final int id;
+  const HomeAuthorPage({Key? key, required this.id}) : super(key: key);
 
   @override
   _HomeAuthorPageState createState() => _HomeAuthorPageState();
 }
 
 class _HomeAuthorPageState extends State<HomeAuthorPage> {
+  Future<void> deleteBook(int isbn) async {
+    var url = Uri.parse('http://127.0.0.1:8000/api/manajemen-buku/delete_book/isbn/$isbn');
+    print("URL yang dipanggil: $url");
+
+    var response = await http.delete(url);
+
+    if (response.statusCode == 200) {
+      print('Buku berhasil dihapus');
+      setState(() {
+        fetchBooks();
+      });
+    } else {
+      print('Gagal menghapus buku');
+    }
+  }
+
+
   Future<List<Book>> fetchBooks() async {
+    final int id = widget.id;
     var url = Uri.parse('http://127.0.0.1:8000/api/books/');
     var response =
         await http.get(url, headers: {"Content-Type": "application/json"});
     var data = jsonDecode(utf8.decode(response.bodyBytes));
     List<Book> books = [];
     for (var d in data) {
-      if (d != null) {
+      print( d['fields']['author']);
+      if (d != null && d['fields']['author'] == id.toString()) {
+        print("Buku ditemukan untuk user: $id");
         books.add(Book.fromJson(d));
       }
     }
-    return books.take(10).toList();
+    return books.length > 16 ? books.sublist(books.length - 16) : books;
   }
 
   @override
   Widget build(BuildContext context) {
+    final int id = widget.id;
+    print("ID: ${widget.id}");
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 236, 227, 215),
       body: CustomScrollView(
@@ -163,6 +185,7 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                               borderRadius: BorderRadius.circular(
                                   25), // Sudut yang lebih bulat
                             ),
+                            
                             elevation: 4.0,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -191,9 +214,21 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
+                                Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: IconButton(
+                                    icon: Icon(Icons.delete, color: Colors.red),
+                                    onPressed: () {
+                                      deleteBook(book.fields.isbn);
+                                      // Fungsi untuk menghapus buku
+                                    },
+                                  ),
+                                ),
                               ],
                             ),
                           ),
+                          
                         );
                       },
                       childCount: snapshot.data!.length,
@@ -206,7 +241,12 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => BookFormPage(id : id)), // Ganti dengan halaman tujuan Anda
+            );
+            },
             foregroundColor: Colors.white,
             backgroundColor: const Color.fromARGB(255, 67, 64, 59),
             child: const Icon(Icons.add),

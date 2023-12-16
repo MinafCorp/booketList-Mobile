@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:booketlist/models/wishlistAPI.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'dart:convert';
 
 class WishlistPage extends StatefulWidget {
-  const WishlistPage({Key? key}) : super(key: key);
+  const WishlistPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _WishlistPageState createState() => _WishlistPageState();
 }
 
@@ -26,6 +28,7 @@ class _WishlistPageState extends State<WishlistPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5DC),
       body: CustomScrollView(
@@ -84,7 +87,7 @@ class _WishlistPageState extends State<WishlistPage> {
               delegate: SliverChildListDelegate(
                 [
                   const Text(
-                    "Editor's Choice",
+                    "your book wishes",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color.fromARGB(255, 47, 31, 4),
@@ -109,7 +112,8 @@ class _WishlistPageState extends State<WishlistPage> {
                   child: Center(
                     child: Text(
                       "Error: ${snapshot.error}",
-                      style: const TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                      style: const TextStyle(
+                          color: Color(0xff59A5D8), fontSize: 20),
                     ),
                   ),
                 );
@@ -125,7 +129,6 @@ class _WishlistPageState extends State<WishlistPage> {
                 );
               }
 
-              // Use SliverGrid directly instead of returning another CustomScrollView
               return SliverPadding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 sliver: SliverGrid(
@@ -139,6 +142,8 @@ class _WishlistPageState extends State<WishlistPage> {
                     (context, index) {
                       Wishlist wishlist = snapshot.data![index];
                       Fields fields = wishlist.fields;
+                      var bookId = wishlist.pk;
+
                       return Card(
                         clipBehavior: Clip.antiAlias,
                         shape: RoundedRectangleBorder(
@@ -167,6 +172,63 @@ class _WishlistPageState extends State<WishlistPage> {
                                 ),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            // Box-shaped Delete button
+                            Container(
+                              alignment: Alignment.center,
+                              color: Colors.red,
+                              child: TextButton(
+                                onPressed: () async {
+                                  try {
+                                    final response = await request.postJson(
+                                      "http://127.0.0.1:8000/wishlist/delete-wishlist-book/$bookId/",
+                                      jsonEncode(<String, String>{
+                                        'book_id': bookId.toString()
+                                      }),
+                                    );
+
+                                    if (response['success']) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                            content: Text(response['message'])),
+                                      );
+
+                                      setState(() {
+                                        fetchWishlists();
+                                      });
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                            content: Text(
+                                                "Gagal menghapus dari wishlist")),
+                                      );
+                                    }
+                                  } catch (e) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                          content: Text(
+                                              "Terjadi kesalahan saat menghapus dari wishlist")),
+                                    );
+                                  }
+                                },
+                                style: TextButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  minimumSize: const Size(double.infinity, 36),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.zero,
+                                  ),
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                ),
+                                child: const Text(
+                                  'Delete',
+                                  style: TextStyle(fontSize: 14.0),
+                                ),
                               ),
                             ),
                           ],

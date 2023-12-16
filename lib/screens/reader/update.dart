@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
+import 'package:intl/intl.dart';
 
 class UpdatePage extends StatefulWidget {
   const UpdatePage({super.key});
@@ -121,8 +122,8 @@ class _UpdatePageState extends State<UpdatePage> {
                                     horizontal: 16, vertical: 12),
                                 padding: const EdgeInsets.all(20.0),
                                 child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                     Text(
                                     "${snapshot.data![index].fields.title}",
@@ -132,13 +133,14 @@ class _UpdatePageState extends State<UpdatePage> {
                                     ),
                                     textAlign: TextAlign.center,
                                     ),
-                                    const SizedBox(height: 10),
-                                    Text("@${snapshot.data![index].fields.authorUsername}"),
-                                    const SizedBox(height: 10),
+                                    const SizedBox(height: 7),
                                     Text(
-                                        "${snapshot.data![index].fields.content}"),
+                                        "${snapshot.data![index].fields.content}",
+                                        textAlign: TextAlign.left,
+                                        ),
+                                    const SizedBox(height: 7),
                                     Text(
-                                        "posted on ${snapshot.data![index].fields.dataAdded}",
+                                        "@${snapshot.data![index].fields.authorUsername} • posted on ${DateFormat('yyyy-MM-dd').format(snapshot.data![index].fields.dataAdded)}",
                                         style: TextStyle(
                                           color: Colors.grey,
                                           fontSize: 10.0,

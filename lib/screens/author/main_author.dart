@@ -6,18 +6,25 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 // Import halaman lainnya di sini
 
 class MainAuthor extends StatefulWidget {
+  const MainAuthor({super.key});
   @override
+  // ignore: library_private_types_in_public_api
   _MainAuthorState createState() => _MainAuthorState();
 }
 
 class _MainAuthorState extends State<MainAuthor> {
   final navigationKey = GlobalKey<CurvedNavigationBarState>();
+  late final List<Widget> screens;
   int index = 0;
-  final screens = [
-    const HomeAuthorPage(username: ""),
-    const UpdatePage(),
-    const ProfilePage(), // profile page blm ada, jd sementara pake ini
-  ];
+  @override
+  void initState() {
+    super.initState();
+    screens = [
+      const HomeAuthorPage(),
+      const UpdatePage(),
+      const ProfilePage(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {

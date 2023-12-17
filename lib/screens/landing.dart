@@ -65,6 +65,18 @@ class _MyHomePageState extends State<MyHomePage>
                                   const LoginPage(),
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) {
+                            const begin = 0.0;
+                            const end = 1.0;
+                            const curve = Curves.easeInOut;
+
+                            var tween = Tween(begin: begin, end: end).chain(
+                              CurveTween(curve: curve),
+                            );
+
+                            var fadeAnimation = animation.drive(tween);
+
+                            var zoomAnimation =
+                                Tween(begin: 0.5, end: 1.0).animate(animation);
                             return FadeTransition(
                               opacity: animation,
                               child: child,

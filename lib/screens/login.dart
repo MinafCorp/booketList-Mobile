@@ -96,6 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                       String username = _usernameController.text;
                       String password = _passwordController.text;
                       String role = val;
+                      // int id = response['id'];
                       // Perform login with the obtained data
                       // authentication with json
                       final response = await request
@@ -103,6 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                         'username': username,
                         'password': password,
                         'role': role,
+                        //int id = response['id'];
                       });
                       if (request.loggedIn) {
                         if (!context.mounted) return;

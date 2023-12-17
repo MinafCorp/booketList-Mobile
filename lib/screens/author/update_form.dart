@@ -28,6 +28,12 @@ class _UpdateFormPageState extends State<UpdateFormPage> {
                 'New Update',
               ),
             ),
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
             backgroundColor: const Color.fromARGB(255, 151, 138, 116),
             foregroundColor: Colors.white,
           ),
@@ -90,7 +96,7 @@ class _UpdateFormPageState extends State<UpdateFormPage> {
                       child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.indigo),
+                              MaterialStateProperty.all(const Color.fromARGB(255, 151, 138, 116)),
                         ),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {

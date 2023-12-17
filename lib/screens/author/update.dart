@@ -19,10 +19,12 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
 
   Future<List<Updates>> fetchUpdates() async {
       var url = Uri.parse(
-          'http://127.0.0.1:8000/updates/get-updates-all');
+          'http://127.0.0.1:8000/updates/get-updates');
       var response = await http.get(
           url,
-          headers: {"Content-Type": "application/json"},
+          headers: {
+            "Content-Type": "application/json",
+            },
       );
       var data = jsonDecode(utf8.decode(response.bodyBytes));
 
@@ -156,7 +158,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
             }),
             floatingActionButton: FloatingActionButton(
             onPressed: (){
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => UpdateFormPage(),

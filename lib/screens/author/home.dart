@@ -232,7 +232,7 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                                                 .showSnackBar(
                                               const SnackBar(
                                                   content: Text(
-                                                      "Gagal menghapus dari wishlist")),
+                                                      "Gagal menghapus dari your books")),
                                             );
                                           }
                                         } catch (e) {
@@ -240,7 +240,7 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                                               .showSnackBar(
                                             const SnackBar(
                                                 content: Text(
-                                                    "Terjadi kesalahan saat menghapus dari wishlist")),
+                                                    "Terjadi kesalahan saat menghapus dari yout books")),
                                           );
                                         }
                                       },

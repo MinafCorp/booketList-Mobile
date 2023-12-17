@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -6,7 +8,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
 class BookPage extends StatefulWidget {
-  const BookPage({Key? key}) : super(key: key);
+  const BookPage({super.key});
 
   @override
   _BookPageState createState() => _BookPageState();
@@ -20,8 +22,15 @@ class _BookPageState extends State<BookPage> {
 
     var data = jsonDecode(utf8.decode(response.bodyBytes));
     List<Book> list_product = [];
+
     for (var d in data) {
       if (d != null) {
+        if (d['fields']['image_url_s'] == null) {
+          d['fields']['image_url_s'] =
+              'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg';
+          d['fields']['image_url_l'] =
+              'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg';
+        }
         list_product.add(Book.fromJson(d));
       }
     }
@@ -157,7 +166,6 @@ class _BookPageState extends State<BookPage> {
                                         }),
                                       );
 
-                                      print(response['success']);
                                       if (response['success']) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
@@ -174,7 +182,6 @@ class _BookPageState extends State<BookPage> {
                                         );
                                       }
                                     } catch (e) {
-                                      print('Exception: $e');
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         const SnackBar(

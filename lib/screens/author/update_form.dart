@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:booketlist/screens/author/main_author.dart';
 import 'package:booketlist/screens/author/update.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -113,7 +114,7 @@ class _UpdateFormPageState extends State<UpdateFormPage> {
                                 ));
                                 Navigator.pushReplacement(
                                     context,
-                                    MaterialPageRoute(builder: (context) => UpdateAuthorPage()),
+                                    MaterialPageRoute(builder: (context) => MainAuthor()),
                                 );
                             } else {
                                 ScaffoldMessenger.of(context)

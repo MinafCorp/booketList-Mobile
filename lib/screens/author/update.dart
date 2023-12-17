@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:booketlist/models/updates.dart';
 import 'package:booketlist/screens/author/update_form.dart';
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
 import 'package:intl/intl.dart';
@@ -95,7 +96,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
                     return const Column(
                         children: [
                         Text(
-                            "Tidak ada data produk.",
+                            "Tidak ada updates",
                             style:
                                 TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                         ),
@@ -149,7 +150,43 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
                                           fontSize: 10.0,
                                           fontStyle: FontStyle.italic,
                                         ),
-                                        )
+                                        ),
+                                    const SizedBox(height: 7),
+                                    IconButton(
+                                      icon: const Icon(Icons.delete,
+                                          color: const Color.fromARGB(255, 67, 64, 59)),
+                                      onPressed: () async {
+                                        var url = Uri.parse(
+                                          "http://127.0.0.1:8000/updates/delete/${snapshot.data![index].pk}/");
+                                        var response = await http.delete(
+                                          url,
+                                          headers: {"Content-Type": "application/json"},
+                                        );
+
+                                        if (response.statusCode == 200) {
+                                          final responseData = json.decode(response.body);
+
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(
+                                              content: Text(responseData['message']),
+                                            ),
+                                          );
+
+                                          setState(() {
+                                            fetchUpdates();
+                                          });
+                                          
+                                        } else {
+                                          final responseData = json.decode(response.body);
+
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(
+                                              content: Text(responseData['error']),
+                                            ),
+                                          );
+                                        }
+                                      },
+                                    ),
                                 ],
                                 ),
                             ));
@@ -172,3 +209,4 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
     );
   }
 }
+

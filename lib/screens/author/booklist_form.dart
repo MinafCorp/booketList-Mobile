@@ -1,17 +1,11 @@
-import 'package:booketlist/screens/author/home.dart';
 import 'package:booketlist/screens/author/main_author.dart';
 import 'package:flutter/material.dart';
-// TODO: Impor drawer yang sudah dibuat sebelumnya
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 
 class BookFormPage extends StatefulWidget {
-  final int id;
-
-  const BookFormPage({Key? key, required this.id}) : super(key: key);
-  //const BookFormPage({super.key});
-
+  const BookFormPage({super.key});
   @override
   State<BookFormPage> createState() => _BookFormPageState();
 }
@@ -26,7 +20,6 @@ class _BookFormPageState extends State<BookFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    int id = widget.id;
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
@@ -35,10 +28,9 @@ class _BookFormPageState extends State<BookFormPage> {
             'Publish Books',
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 151, 138, 116),
+        backgroundColor: const Color.fromARGB(255, 151, 138, 116),
         foregroundColor: Colors.white,
       ),
-      // TODO: Tambahkan drawer yang sudah dibuat di sini
       //drawer: const LeftDrawer(),
       body: Form(
         key: _formKey,
@@ -56,7 +48,6 @@ class _BookFormPageState extends State<BookFormPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  // TODO: Tambahkan variabel yang sesuai
                   onChanged: (String? value) {
                     setState(() {
                       _ISBN = int.parse(value!);
@@ -176,39 +167,42 @@ class _BookFormPageState extends State<BookFormPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 151, 138, 116)),
+                      backgroundColor: MaterialStateProperty.all(
+                          Color.fromARGB(255, 151, 138, 116)),
                     ),
                     onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                            // Kirim ke Django dan tunggu respons
-                            // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
-                            final response = await request.postJson(
+                      if (_formKey.currentState!.validate()) {
+                        // Kirim ke Django dan tunggu respons
+                        // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+                        final response = await request.postJson(
                             'http://127.0.0.1:8000/manajemen-buku/create-flutter/',
                             jsonEncode(<String, String>{
-                                //'author' : _author,
-                                'ISBN' : _ISBN.toString(),
-                                'title': _title,
-                                'YearOfPublication': _yearOfPublication.toString(),
-                                'publisher': _publisher,
-                                // TODO: Sesuaikan field data sesuai dengan aplikasimu
+                              //'author' : _author,
+                              'ISBN': _ISBN.toString(),
+                              'title': _title,
+                              'YearOfPublication':
+                                  _yearOfPublication.toString(),
+                              'publisher': _publisher,
+                              // TODO: Sesuaikan field data sesuai dengan aplikasimu
                             }));
-                            if (response['status'] == 'success') {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                content: Text("Produk baru berhasil disimpan!"),
-                                ));
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => MainAuthor(id : id)),
-                                );
-                            } else {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                    content:
-                                        Text("Terdapat kesalahan, silakan coba lagi."),
-                                ));
-                            }
+                        if (response['status'] == 'success') {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Produk baru berhasil disimpan!"),
+                          ));
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MainAuthor()),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content:
+                                Text("Terdapat kesalahan, silakan coba lagi."),
+                          ));
                         }
+                      }
                     },
                     child: const Text(
                       "Publish",

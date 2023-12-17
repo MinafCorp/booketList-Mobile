@@ -111,12 +111,11 @@ class _LoginPageState extends State<LoginPage> {
                         String message = response['message'];
                         String uname = response['username'];
                         String role = response['role'];
-                        int id = response['id'];
                         if (role == 'AUTHOR') {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MainAuthor(id : id)));
+                                  builder: (context) => MainAuthor()));
                           ScaffoldMessenger.of(context)
                             ..hideCurrentSnackBar()
                             ..showSnackBar(SnackBar(

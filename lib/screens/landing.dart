@@ -1,6 +1,5 @@
 import 'package:booketlist/screens/login.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -25,10 +24,13 @@ class MyHomePage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushReplacement(
-                          context,
-                          PageRouteBuilder(
-                          pageBuilder: (context, animation, secondaryAnimation) => const LoginPage(),
-                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) =>
+                                  const LoginPage(),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
                             const begin = 0.0;
                             const end = 1.0;
                             const curve = Curves.easeInOut;
@@ -39,7 +41,8 @@ class MyHomePage extends StatelessWidget {
 
                             var fadeAnimation = animation.drive(tween);
 
-                            var zoomAnimation = Tween(begin: 0.5, end: 1.0).animate(animation);
+                            var zoomAnimation =
+                                Tween(begin: 0.5, end: 1.0).animate(animation);
 
                             return FadeTransition(
                               opacity: fadeAnimation,

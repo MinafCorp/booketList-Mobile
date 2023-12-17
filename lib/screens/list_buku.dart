@@ -46,7 +46,7 @@ class _BookPageState extends State<BookPage> {
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Color.fromARGB(255, 47, 31, 4),
-              fontSize: 45,
+              fontSize: 15,
               fontWeight: FontWeight.bold,
               fontFamily: 'serif',
               fontStyle: FontStyle.italic,

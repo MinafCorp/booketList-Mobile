@@ -1,6 +1,7 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names, unused_local_variable
 import 'package:booketlist/screens/reader/update.dart';
 import 'package:flutter/material.dart';
-import 'package:booketlist/screens/list_buku.dart';
+import 'package:booketlist/screens/reader/list_buku.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});
@@ -72,7 +73,7 @@ class MenuDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BookPage(),
+                    builder: (context) => const BookPage(),
                   ));
             },
           ),

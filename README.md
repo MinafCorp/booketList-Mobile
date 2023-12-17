@@ -60,5 +60,5 @@ Berikut adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplika
 
 
 ## Tautan Berita Acara Kerja Kelompok ⚜️
-   compfest.link/beritaAcaraA02
+   ristek.link/beritaAcaraA02
 

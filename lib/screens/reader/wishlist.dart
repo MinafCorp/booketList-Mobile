@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
 import 'package:flutter/material.dart';
-import 'package:booketlist/models/wishlistAPI.dart';
+import 'package:booketlist/models/wishlist_API.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';

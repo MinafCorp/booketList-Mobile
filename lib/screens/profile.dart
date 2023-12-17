@@ -1,9 +1,10 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names, unused_local_variable
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -19,9 +20,10 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<Map<String, dynamic>> fetchUserData() async {
-    var url = Uri.parse('https://booketlist-production.up.railway.app/user-api');
+    var url =
+        Uri.parse('https://booketlist-production.up.railway.app/user-api');
     var response =
-    await http.get(url, headers: {"Content-Type": "application/json"});
+        await http.get(url, headers: {"Content-Type": "application/json"});
 
     if (response.statusCode == 200) {
       return json.decode(response.body);
@@ -31,20 +33,22 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<void> logout() async {
-    var url = Uri.parse('https://booketlist-production.up.railway.app/auth/logout/');
+    var url =
+        Uri.parse('https://booketlist-production.up.railway.app/auth/logout/');
     var response =
-    await http.post(url, headers: {"Content-Type": "application/json"});
+        await http.post(url, headers: {"Content-Type": "application/json"});
 
     if (response.statusCode == 200) {
       Navigator.pushReplacementNamed(context, '/login');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content:  Text('Failed to logout'),
+          content: Text('Failed to logout'),
         ),
       );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +79,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: <Widget>[
                   const CircleAvatar(
                     radius: 80.0,
-                    backgroundImage: AssetImage('images/Profile.png'), // Replace with your image
+                    backgroundImage: AssetImage(
+                        'images/Profile.png'), // Replace with your image
                   ),
                   const SizedBox(height: 20),
                   Text('Hello ${user['username']}!'),
@@ -87,7 +92,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Colors.black, // Match your reference style
                     ),
                   ),
-
                 ],
               );
             } else {

@@ -1,7 +1,4 @@
-// To parse this JSON data, do
-//
-//     final user = userFromJson(jsonString);
-
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
 import 'dart:convert';
 
 User userFromJson(String str) => User.fromJson(json.decode(str));
@@ -24,18 +21,18 @@ class User {
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-    username: json["username"],
-    email: json["email"],
-    firstName: json["first_name"],
-    lastName: json["last_name"],
-    role: json["role"],
-  );
+        username: json["username"],
+        email: json["email"],
+        firstName: json["first_name"],
+        lastName: json["last_name"],
+        role: json["role"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "username": username,
-    "email": email,
-    "first_name": firstName,
-    "last_name": lastName,
-    "role": role,
-  };
+        "username": username,
+        "email": email,
+        "first_name": firstName,
+        "last_name": lastName,
+        "role": role,
+      };
 }

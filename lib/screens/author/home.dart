@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api
+
 import 'package:booketlist/screens/author/booklist_form.dart';
 import 'package:flutter/material.dart';
 import 'package:booketlist/models/book.dart';
@@ -21,20 +23,16 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
     for (var d in response) {
       if (d != null) {
         if (d['fields']['image_url_s'] == null) {
-          d['fields']['image_url_s'] = 'images/wp.jpg';
+          d['fields']['image_url_s'] =
+              'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg';
+          d['fields']['image_url_l'] =
+              'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg';
         }
         books.add(Book.fromJson(d));
       }
     }
     return books;
   }
-
-  // Future<void> deleteBook(int isbn) async {
-  //   var url = Uri.parse(
-  //       'http://127.0.0.1:8000/api/manajemen-buku/delete_book/isbn/$isbn');
-
-  //   // var response = await http.delete(url);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +55,9 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                   height: 300,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
                         'Embark on a journey of imagination',
                         textAlign: TextAlign.center,

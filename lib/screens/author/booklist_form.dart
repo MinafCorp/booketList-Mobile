@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
 import 'package:booketlist/screens/author/main_author.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -120,7 +121,6 @@ class _BookFormPageState extends State<BookFormPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  // TODO: Tambahkan variabel yang sesuai
                   onChanged: (String? value) {
                     setState(() {
                       _yearOfPublication = int.parse(value!);
@@ -149,7 +149,6 @@ class _BookFormPageState extends State<BookFormPage> {
                   ),
                   onChanged: (String? value) {
                     setState(() {
-                      // TODO: Tambahkan variabel yang sesuai
                       _publisher = value!;
                     });
                   },
@@ -168,12 +167,10 @@ class _BookFormPageState extends State<BookFormPage> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                          Color.fromARGB(255, 151, 138, 116)),
+                          const Color.fromARGB(255, 151, 138, 116)),
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        // Kirim ke Django dan tunggu respons
-                        // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                         final response = await request.postJson(
                             'http://127.0.0.1:8000/manajemen-buku/create-flutter/',
                             jsonEncode(<String, String>{
@@ -183,7 +180,6 @@ class _BookFormPageState extends State<BookFormPage> {
                               'YearOfPublication':
                                   _yearOfPublication.toString(),
                               'publisher': _publisher,
-                              // TODO: Sesuaikan field data sesuai dengan aplikasimu
                             }));
                         if (response['status'] == 'success') {
                           ScaffoldMessenger.of(context)
@@ -193,7 +189,7 @@ class _BookFormPageState extends State<BookFormPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MainAuthor()),
+                                builder: (context) => const MainAuthor()),
                           );
                         } else {
                           ScaffoldMessenger.of(context)

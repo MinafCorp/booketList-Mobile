@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
 import 'package:booketlist/screens/author/home.dart';
 import 'package:booketlist/screens/author/update.dart';
 import 'package:booketlist/screens/profile.dart';
@@ -8,7 +9,6 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 class MainAuthor extends StatefulWidget {
   const MainAuthor({super.key});
   @override
-  // ignore: library_private_types_in_public_api
   _MainAuthorState createState() => _MainAuthorState();
 }
 

@@ -1,10 +1,11 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:booketlist/models/book.dart';
 
 class HomeReaderPage extends StatefulWidget {
-  const HomeReaderPage({Key? key}) : super(key: key);
+  const HomeReaderPage({super.key});
 
   @override
   _HomeReaderPageState createState() => _HomeReaderPageState();
@@ -19,6 +20,12 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
     List<Book> books = [];
     for (var d in data) {
       if (d != null) {
+        if (d['fields']['image_url_s'] == null) {
+          d['fields']['image_url_s'] =
+              'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg';
+          d['fields']['image_url_l'] =
+              'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg';
+        }
         books.add(Book.fromJson(d));
       }
     }
@@ -130,7 +137,8 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
                       horizontal:
                           30.0), // Menambahkan padding horizontal yang lebih besar
                   sliver: SliverGrid(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, // Dua buku per baris
                       childAspectRatio:
                           0.6, // Mengatur aspek rasio untuk kartu buku yang lebih ramping

@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names, unused_local_variable
 import 'package:flutter/material.dart';
 import 'package:booketlist/screens/login.dart';
 
@@ -5,7 +6,6 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 

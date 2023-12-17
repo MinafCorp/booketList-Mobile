@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
 import 'package:booketlist/screens/author/update.dart';
 import 'package:booketlist/screens/profile.dart';
 import 'package:booketlist/screens/reader/wishlist.dart';
@@ -7,6 +8,8 @@ import 'package:booketlist/screens/reader/homeReader.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class MainReader extends StatefulWidget {
+  const MainReader({super.key});
+
   @override
   _MainReaderState createState() => _MainReaderState();
 }

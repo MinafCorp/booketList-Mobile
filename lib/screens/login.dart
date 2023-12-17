@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names, unused_local_variable
 import 'package:booketlist/screens/author/main_author.dart';
 import 'package:booketlist/screens/reader/main_reader.dart';
 import 'package:booketlist/screens/register.dart';
@@ -115,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MainAuthor()));
+                                  builder: (context) => const MainAuthor()));
                           ScaffoldMessenger.of(context)
                             ..hideCurrentSnackBar()
                             ..showSnackBar(SnackBar(
@@ -129,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => MainReader(),
+                              builder: (context) => const MainReader(),
                             ),
                           );
                           ScaffoldMessenger.of(context)

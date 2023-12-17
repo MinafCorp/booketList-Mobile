@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:booketlist/models/wishlistAPI.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -8,7 +9,6 @@ class WishlistPage extends StatefulWidget {
   const WishlistPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _WishlistPageState createState() => _WishlistPageState();
 }
 
@@ -20,6 +20,12 @@ class _WishlistPageState extends State<WishlistPage> {
     List<Wishlist> wishlists = [];
     for (var d in response) {
       if (d != null) {
+        if (d['fields']['image_url_s'] == null) {
+          d['fields']['image_url_s'] =
+              'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg';
+          d['fields']['image_url_l'] =
+              'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg';
+        }
         wishlists.add(Wishlist.fromJson(d));
       }
     }
@@ -86,13 +92,37 @@ class _WishlistPageState extends State<WishlistPage> {
             sliver: SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  const Text(
-                    "your book wishes",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 47, 31, 4),
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+                  ElevatedButton(
+                    onPressed: () {
+                      // Add your onPressed functionality here
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(
+                          0xFF6F4E37), // Brown color, adjust as necessary
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(30.0), // Rounded edges
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 50, vertical: 20), // Padding
+                    ),
+                    child: const Row(
+                      mainAxisSize:
+                          MainAxisSize.min, // To wrap the content of the row
+                      children: [
+                        Text(
+                          'Cari Wishlistmu!', // The text inside the button
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                        SizedBox(width: 10), // Space between text and icon
+                        Icon(
+                          Icons.search, // The search icon
+                          color: Colors.white,
+                        ),
+                      ],
                     ),
                   ),
                 ],

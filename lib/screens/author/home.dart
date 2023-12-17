@@ -180,11 +180,12 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                                                 Object exception,
                                                 StackTrace? stackTrace) {
                                               return Image.asset(
-                                                  'images/wp.jpg',
+                                                  'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg',
                                                   fit: BoxFit.cover);
                                             },
                                           )
-                                        : Image.asset('images/wp.jpg',
+                                        : Image.asset(
+                                            'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg',
                                             fit: BoxFit.cover),
                                   ),
                                   Container(

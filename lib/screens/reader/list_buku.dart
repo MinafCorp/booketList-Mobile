@@ -185,9 +185,45 @@ class _BookPageState extends State<BookPage> {
                                   },
                                 ),
                                 IconButton(
-                                  icon: const Icon(Icons.comment,
+                                  icon: const Icon(Icons.rate_review,
                                       color: Colors.grey),
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    var bookId = book.pk;
+
+                                    try {
+                                      final response = await request.postJson(
+                                        "http://127.0.0.1:8000/wishlist/add_to_review_flutter/",
+                                        jsonEncode(<String, String>{
+                                          'book_id': bookId.toString()
+                                        }),
+                                      );
+
+                                      print(response['success']);
+                                      if (response['success']) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                              content:
+                                                  Text(response['message'])),
+                                        );
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                              content: Text(
+                                                  "Gagal memasukkan ke Review")),
+                                        );
+                                      }
+                                    } catch (e) {
+                                      print('Exception: $e');
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                                "Terjadi kesalahan saat menambahkan ke Review")),
+                                      );
+                                    }
+                                  },
                                 ),
                               ],
                             ),

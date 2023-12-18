@@ -15,7 +15,6 @@ class _BookFormPageState extends State<BookFormPage> {
   final _formKey = GlobalKey<FormState>();
   int _ISBN = -1;
   String _title = "";
-  //String _author = "";
   int _yearOfPublication = 0;
   String _publisher = "";
 
@@ -174,7 +173,6 @@ class _BookFormPageState extends State<BookFormPage> {
                         final response = await request.postJson(
                             'http://127.0.0.1:8000/manajemen-buku/create-flutter/',
                             jsonEncode(<String, String>{
-                              //'author' : _author,
                               'ISBN': _ISBN.toString(),
                               'title': _title,
                               'YearOfPublication':

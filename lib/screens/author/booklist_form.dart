@@ -87,29 +87,6 @@ class _BookFormPageState extends State<BookFormPage> {
                   },
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: TextFormField(
-              //     decoration: InputDecoration(
-              //       hintText: "Author",
-              //       labelText: "Author",
-              //       border: OutlineInputBorder(
-              //         borderRadius: BorderRadius.circular(5.0),
-              //       ),
-              //     ),
-              //     onChanged: (String? value) {
-              //       setState(() {
-              //         _author = value!;
-              //       });
-              //     },
-              //     validator: (String? value) {
-              //       if (value == null || value.isEmpty) {
-              //         return "Author cant be empty!";
-              //       }
-              //       return null;
-              //     },
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(

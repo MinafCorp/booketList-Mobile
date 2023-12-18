@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage>
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 58, 25, 0),
+                    backgroundColor: const Color.fromARGB(255, 58, 25, 0),
                     textStyle: const TextStyle(
                       fontSize: 17,
                       fontFamily: 'Georgia',
@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage>
           ),
         ),
       ),
-      backgroundColor: Color.fromARGB(255, 239, 224, 209),
+      backgroundColor: const Color.fromARGB(255, 239, 224, 209),
     );
   }
 }

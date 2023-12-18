@@ -32,9 +32,13 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
   Future<void> _initUpdates() async {
     _allUpdates = await fetchUpdates();
     _filteredUpdates = _allUpdates;
+    setState(() {});
   }
 
   void _filterUpdates(String query) {
+    if (query == "") {
+      fetchUpdates();
+    }
     setState(() {
       _filteredUpdates = _allUpdates.where((updates) {
           return updates.fields.title
@@ -42,6 +46,10 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
               .contains(query.toLowerCase());
         }).toList();
     });
+  }
+
+  Future<List<Updates>> filterUpdates() async {
+    return _filteredUpdates;
   }
 
   Future<List<Updates>> fetchUpdates() async {
@@ -108,7 +116,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
       //           ])),
       // ),
       body: FutureBuilder(
-            future: fetchUpdates(),
+            future: filterUpdates(),//what to fill here
             builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
                     return const Center(child: CircularProgressIndicator());

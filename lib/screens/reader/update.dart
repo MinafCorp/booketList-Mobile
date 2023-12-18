@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
 import 'package:intl/intl.dart';
+import 'package:badges/badges.dart' as badges;
+import 'main_reader.dart';
 
 class UpdatePage extends StatefulWidget {
   const UpdatePage({super.key});
@@ -14,8 +16,38 @@ class UpdatePage extends StatefulWidget {
 
 
 class _UpdatePageState extends State<UpdatePage> {
-  int _notification = 0;
   final TextEditingController _searchController = TextEditingController();
+  List<Updates> _allUpdates = [];
+  List<Updates> _filteredUpdates = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _initUpdates();
+  }
+
+  Future<void> _initUpdates() async {
+    _allUpdates = await fetchUpdates();
+    _filteredUpdates = _allUpdates;
+    setState(() {});
+  }
+
+  void _filterUpdates(String query) {
+    if (query == "") {
+      fetchUpdates();
+    }
+    setState(() {
+      _filteredUpdates = _allUpdates.where((updates) {
+          return updates.fields.title
+              .toLowerCase()
+              .contains(query.toLowerCase());
+        }).toList();
+    });
+  }
+
+  Future<List<Updates>> filterUpdates() async {
+    return _filteredUpdates;
+  }
 
   Future<List<Updates>> fetchUpdates() async {
       var url = Uri.parse(
@@ -56,18 +88,8 @@ class _UpdatePageState extends State<UpdatePage> {
               hintStyle: TextStyle(color: Colors.white70),
               border: InputBorder.none,
             ),
-            onChanged: (value) {
-              debugPrint('value on Change');
-              setState(() {
-                //belum
-              });
-            },
-            onFieldSubmitted: (value) {
-              debugPrint('value on Field Submitted');
-              setState(() {
-                //belum
-              });
-            }),
+            onChanged: _filterUpdates
+            ),
       ),
       // body: const SingleChildScrollView(
       //   child: Padding(
@@ -84,7 +106,7 @@ class _UpdatePageState extends State<UpdatePage> {
       //           ])),
       // ),
       body: FutureBuilder(
-            future: fetchUpdates(),
+            future: filterUpdates(),
             builder: (context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
                     return const Center(child: CircularProgressIndicator());

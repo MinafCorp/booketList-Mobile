@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
+// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
 import 'package:booketlist/screens/author/main_author.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -13,9 +13,9 @@ class BookFormPage extends StatefulWidget {
 
 class _BookFormPageState extends State<BookFormPage> {
   final _formKey = GlobalKey<FormState>();
+  // ignore: non_constant_identifier_names
   int _ISBN = -1;
   String _title = "";
-  //String _author = "";
   int _yearOfPublication = 0;
   String _publisher = "";
 
@@ -88,29 +88,6 @@ class _BookFormPageState extends State<BookFormPage> {
                   },
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: TextFormField(
-              //     decoration: InputDecoration(
-              //       hintText: "Author",
-              //       labelText: "Author",
-              //       border: OutlineInputBorder(
-              //         borderRadius: BorderRadius.circular(5.0),
-              //       ),
-              //     ),
-              //     onChanged: (String? value) {
-              //       setState(() {
-              //         _author = value!;
-              //       });
-              //     },
-              //     validator: (String? value) {
-              //       if (value == null || value.isEmpty) {
-              //         return "Author cant be empty!";
-              //       }
-              //       return null;
-              //     },
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -174,7 +151,6 @@ class _BookFormPageState extends State<BookFormPage> {
                         final response = await request.postJson(
                             'http://127.0.0.1:8000/manajemen-buku/create-flutter/',
                             jsonEncode(<String, String>{
-                              //'author' : _author,
                               'ISBN': _ISBN.toString(),
                               'title': _title,
                               'YearOfPublication':

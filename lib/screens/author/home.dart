@@ -179,12 +179,14 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                                             errorBuilder: (BuildContext context,
                                                 Object exception,
                                                 StackTrace? stackTrace) {
-                                              return Image.asset(
-                                                  'images/wp.jpg',
+                                              // Use a placeholder image in case of an error
+                                              return Image.network(
+                                                  'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg', // Replace with your placeholder image URL
                                                   fit: BoxFit.cover);
                                             },
                                           )
-                                        : Image.asset('images/wp.jpg',
+                                        : Image.network(
+                                            'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg', // Replace with your default image URL
                                             fit: BoxFit.cover),
                                   ),
                                   Container(

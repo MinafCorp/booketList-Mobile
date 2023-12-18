@@ -31,82 +31,63 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnimatedContainer(
-        duration: const Duration(seconds: 3),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/mintwal.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 10),
+      body: SingleChildScrollView(
+        child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              SizedBox(height: MediaQuery.of(context).size.height * 0.15),
               FadeTransition(
                 opacity: _controller,
-                child: const Align(
-                  alignment: Alignment.center,
-                  child: Image(image: AssetImage('images/tesss.gif')),
+                child: SizedBox(
+                  width: 400,
+                  height: 400,
+                  child: Image.asset('images/noice.png', fit: BoxFit.contain),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 70),
-                child: ScaleTransition(
-                  scale: _controller,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) =>
-                                  const LoginPage(),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            const begin = 0.0;
-                            const end = 1.0;
-                            const curve = Curves.easeInOut;
-
-                            var tween = Tween(begin: begin, end: end).chain(
-                              CurveTween(curve: curve),
-                            );
-
-                            var fadeAnimation = animation.drive(tween);
-
-                            var zoomAnimation =
-                                Tween(begin: 0.5, end: 1.0).animate(animation);
-                            return FadeTransition(
-                              opacity: animation,
-                              child: child,
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 38, 117, 114),
-                      textStyle: const TextStyle(
-                        fontSize: 17,
-                        fontFamily: 'Georgia',
-                        letterSpacing: 1.1,
+              const SizedBox(height: 30),
+              ScaleTransition(
+                scale: _controller,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const LoginPage(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
                       ),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 25, vertical: 13),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 58, 25, 0),
+                    textStyle: const TextStyle(
+                      fontSize: 17,
+                      fontFamily: 'Georgia',
+                      letterSpacing: 1.1,
                     ),
-                    child: const Text(
-                      "Begin your Journey",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                    ),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 25, vertical: 13),
+                  ),
+                  child: const Text(
+                    "Begin your Journey",
+                    style: TextStyle(color: Color.fromARGB(255, 255, 230, 198)),
                   ),
                 ),
               ),
+              SizedBox(
+                  height: MediaQuery.of(context).size.height *
+                      0.1), // Adjusts the space at the bottom
             ],
           ),
         ),
       ),
+      backgroundColor: const Color.fromARGB(255, 239, 224, 209),
     );
   }
 }

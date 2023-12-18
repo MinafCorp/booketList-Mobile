@@ -1,8 +1,10 @@
 // ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names, unused_local_variable
+import 'package:booketlist/screens/landing.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -32,7 +34,8 @@ class _ProfilePageState extends State<ProfilePage> {
         await http.post(url, headers: {"Content-Type": "application/json"});
 
     if (response.statusCode == 200) {
-      Navigator.pushReplacementNamed(context, '/login');
+      Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => const MyHomePage()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -49,14 +52,6 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: const Text('My Profile'),
         backgroundColor: const Color.fromARGB(255, 67, 64, 59),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              logout();
-            },
-          ),
-        ],
       ),
       body: Center(
         child: FutureBuilder<Map<String, dynamic>>(
@@ -85,6 +80,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       fontWeight: FontWeight.bold,
                       color: Colors.black, // Match your reference style
                     ),
+                  ),
+                  const SizedBox(height: 20),
+                  IconButton(icon: const Icon(Icons.logout),
+                      onPressed: () {
+                        logout();
+                      },
                   ),
                 ],
               );

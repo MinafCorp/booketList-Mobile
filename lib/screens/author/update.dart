@@ -137,7 +137,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
                         itemCount: snapshot.data!.length,
                         itemBuilder: (_, index) => Container(
                                 decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 236, 227, 215),
+                                  color: const Color.fromARGB(255, 236, 227, 215),
                                   border: Border.all(
                                     color: Colors.white,
                                   ),
@@ -147,7 +147,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
                                       color: Colors.black.withOpacity(0.2), // Shadow color
                                       spreadRadius: 2, // Spread radius
                                       blurRadius: 6, // Blur radius
-                                      offset: Offset(0, 1), // Offset from the top-left corner
+                                      offset: const Offset(0, 1), // Offset from the top-left corner
                                     ),
                                   ],
                                 ),
@@ -174,7 +174,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
                                     const SizedBox(height: 7),
                                     Text(
                                         "@${snapshot.data![index].fields.authorUsername} • posted on ${DateFormat('yyyy-MM-dd').format(snapshot.data![index].fields.dataAdded)}",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.grey,
                                           fontSize: 10.0,
                                           fontStyle: FontStyle.italic,
@@ -183,7 +183,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
                                     const SizedBox(height: 7),
                                     IconButton(
                                       icon: const Icon(Icons.delete,
-                                          color: const Color.fromARGB(255, 67, 64, 59)),
+                                          color:  Color.fromARGB(255, 67, 64, 59)),
                                       onPressed: () async {
                                         var url = Uri.parse(
                                           "http://127.0.0.1:8000/updates/delete/${snapshot.data![index].pk}/");
@@ -227,7 +227,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => UpdateFormPage(),
+                    builder: (context) => const UpdateFormPage(),
                 ));
             },
 

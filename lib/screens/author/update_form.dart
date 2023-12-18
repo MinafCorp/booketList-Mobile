@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:booketlist/screens/author/main_author.dart';
-import 'package:booketlist/screens/author/update.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +31,7 @@ class _UpdateFormPageState extends State<UpdateFormPage> {
               ),
             ),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -116,15 +115,18 @@ class _UpdateFormPageState extends State<UpdateFormPage> {
                             }));
                             if (response['status'] == 'success') {
                                 notification++;
+                                // ignore: use_build_context_synchronously
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
                                 content: Text("Updates berhasil di post!"),
                                 ));
+                                // ignore: use_build_context_synchronously
                                 Navigator.pushReplacement(
                                     context,
-                                    MaterialPageRoute(builder: (context) => MainAuthor()),
+                                    MaterialPageRoute(builder: (context) => const MainAuthor()),
                                 );
                             } else {
+                                // ignore: use_build_context_synchronously
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
                                     content:

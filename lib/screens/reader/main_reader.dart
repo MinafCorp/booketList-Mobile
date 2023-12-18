@@ -13,7 +13,7 @@ class MainReader extends StatefulWidget {
   const MainReader({super.key});
 
   @override
-  _MainReaderState createState() => _MainReaderState();
+  State<MainReader> createState() => _MainReaderState();
 }
 
 class _MainReaderState extends State<MainReader> {
@@ -37,11 +37,11 @@ class _MainReaderState extends State<MainReader> {
       badges.Badge(
         showBadge: notification==0? false : true,
         position: badges.BadgePosition.topEnd(top: -12, end: -12),
-        badgeContent: Text('$notification', style: TextStyle(color: Colors.white),),
+        badgeContent: Text('$notification', style: const TextStyle(color: Colors.white),),
         badgeStyle: badges.BadgeStyle(
           shape: badges.BadgeShape.square,
           badgeColor: Colors.red,
-          padding: EdgeInsets.all(3),
+          padding: const EdgeInsets.all(3),
           borderRadius: BorderRadius.circular(10),
           ),
         child: const Icon(Icons.campaign, color: Colors.white),

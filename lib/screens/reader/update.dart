@@ -4,8 +4,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
 import 'package:intl/intl.dart';
-import 'package:badges/badges.dart' as badges;
-import 'main_reader.dart';
 
 class UpdatePage extends StatefulWidget {
   const UpdatePage({super.key});
@@ -58,13 +56,13 @@ class _UpdatePageState extends State<UpdatePage> {
       );
       var data = jsonDecode(utf8.decode(response.bodyBytes));
 
-      List<Updates> list_updates = [];
+      List<Updates> listUpdates = [];
       for (var d in data) {
           if (d != null) {
-              list_updates.add(Updates.fromJson(d));
+              listUpdates.add(Updates.fromJson(d));
           }
       }
-      return list_updates;
+      return listUpdates;
   }
 
   @override
@@ -127,7 +125,7 @@ class _UpdatePageState extends State<UpdatePage> {
                         itemCount: snapshot.data!.length,
                         itemBuilder: (_, index) => Container(
                                 decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 236, 227, 215),
+                                  color: const Color.fromARGB(255, 236, 227, 215),
                                   border: Border.all(
                                     color: Colors.white,
                                   ),
@@ -137,7 +135,7 @@ class _UpdatePageState extends State<UpdatePage> {
                                       color: Colors.black.withOpacity(0.2), // Shadow color
                                       spreadRadius: 2, // Spread radius
                                       blurRadius: 6, // Blur radius
-                                      offset: Offset(0, 1), // Offset from the top-left corner
+                                      offset: const Offset(0, 1), // Offset from the top-left corner
                                     ),
                                   ],
                                 ),
@@ -164,7 +162,7 @@ class _UpdatePageState extends State<UpdatePage> {
                                     const SizedBox(height: 7),
                                     Text(
                                         "@${snapshot.data![index].fields.authorUsername} • posted on ${DateFormat('yyyy-MM-dd').format(snapshot.data![index].fields.dataAdded)}",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.grey,
                                           fontSize: 10.0,
                                           fontStyle: FontStyle.italic,

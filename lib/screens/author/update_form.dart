@@ -5,6 +5,7 @@ import 'package:booketlist/screens/author/update.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:booketlist/screens/reader/main_reader.dart';
 
 class UpdateFormPage extends StatefulWidget {
     const UpdateFormPage({super.key});
@@ -17,6 +18,7 @@ class _UpdateFormPageState extends State<UpdateFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _title = "";
   String _content = "";
+  
 
     @override
     Widget build(BuildContext context) {
@@ -42,8 +44,10 @@ class _UpdateFormPageState extends State<UpdateFormPage> {
             key: _formKey,
             child: SingleChildScrollView(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
@@ -67,9 +71,12 @@ class _UpdateFormPageState extends State<UpdateFormPage> {
                       },
                     ),
                   ),
+                  const SizedBox(height: 10),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      maxLines: 5,
+                      minLines: 3,
                       decoration: InputDecoration(
                         hintText: "Enter the content...",
                         labelText: "Content",
@@ -108,6 +115,7 @@ class _UpdateFormPageState extends State<UpdateFormPage> {
                                 'content': _content,
                             }));
                             if (response['status'] == 'success') {
+                                notification++;
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
                                 content: Text("Updates berhasil di post!"),

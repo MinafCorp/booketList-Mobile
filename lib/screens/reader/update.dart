@@ -14,6 +14,7 @@ class UpdatePage extends StatefulWidget {
 
 
 class _UpdatePageState extends State<UpdatePage> {
+  int _notification = 0;
   final TextEditingController _searchController = TextEditingController();
 
   Future<List<Updates>> fetchUpdates() async {

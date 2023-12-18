@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:booketlist/models/updates.dart';
@@ -6,6 +7,8 @@ import 'package:booketlist/screens/author/update_form.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
 import 'package:intl/intl.dart';
+import 'package:booketlist/screens/reader/main_reader.dart';
+
 
 class UpdateAuthorPage extends StatefulWidget {
   const UpdateAuthorPage({super.key});
@@ -17,6 +20,29 @@ class UpdateAuthorPage extends StatefulWidget {
 
 class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
   final TextEditingController _searchController = TextEditingController();
+  List<Updates> _allUpdates = [];
+  List<Updates> _filteredUpdates = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _initUpdates();
+  }
+
+  Future<void> _initUpdates() async {
+    _allUpdates = await fetchUpdates();
+    _filteredUpdates = _allUpdates;
+  }
+
+  void _filterUpdates(String query) {
+    setState(() {
+      _filteredUpdates = _allUpdates.where((updates) {
+          return updates.fields.title
+              .toLowerCase()
+              .contains(query.toLowerCase());
+        }).toList();
+    });
+  }
 
   Future<List<Updates>> fetchUpdates() async {
       var url = Uri.parse(
@@ -40,6 +66,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
 
   @override
   Widget build(BuildContext context) {
+    notification=0;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 236, 227, 215),
       appBar: AppBar(
@@ -50,7 +77,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
             labelStyle: const TextStyle(fontSize: 16),
             searchStyle: const TextStyle(color: Colors.white),
             cursorColor: Colors.white,
-            textInputAction: TextInputAction.done,
+            textInputAction: TextInputAction.search,
             searchDecoration: const InputDecoration(
               hintText: 'Search',
               alignLabelWithHint: true,
@@ -59,18 +86,12 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
               hintStyle: TextStyle(color: Colors.white70),
               border: InputBorder.none,
             ),
-            onChanged: (value) {
-              debugPrint('value on Change');
-              setState(() {
-                //belum
-              });
-            },
-            onFieldSubmitted: (value) {
-              debugPrint('value on Field Submitted');
-              setState(() {
-                //belum
-              });
-            }),
+            onChanged: _filterUpdates,
+            // onFieldSubmitted: (value) {
+            //   debugPrint('value on Field Submitted');
+            //   _handleSearch(value);
+            // }
+            ),
       ),
       // body: const SingleChildScrollView(
       //   child: Padding(

@@ -21,7 +21,7 @@ class _MainAuthorState extends State<MainAuthor> {
     super.initState();
     screens = [
       const HomeAuthorPage(),
-      const UpdatePage(),
+      const UpdateAuthorPage(),
       const ProfilePage(),
     ];
   }

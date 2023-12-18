@@ -7,7 +7,7 @@ import 'package:booketlist/screens/reader/list_buku.dart';
 import 'package:booketlist/screens/reader/home_reader.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-  int notification = 0;
+int notification = 0;
 
 class MainReader extends StatefulWidget {
   const MainReader({super.key});
@@ -28,22 +28,24 @@ class _MainReaderState extends State<MainReader> {
     const ProfilePage(),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     final items = <Widget>[
       const Icon(Icons.home_filled, color: Colors.white),
       const Icon(Icons.book, color: Colors.white),
       badges.Badge(
-        showBadge: notification==0? false : true,
+        showBadge: notification == 0 ? false : true,
         position: badges.BadgePosition.topEnd(top: -12, end: -12),
-        badgeContent: Text('$notification', style: const TextStyle(color: Colors.white),),
+        badgeContent: Text(
+          '$notification',
+          style: const TextStyle(color: Colors.white),
+        ),
         badgeStyle: badges.BadgeStyle(
           shape: badges.BadgeShape.square,
           badgeColor: Colors.red,
           padding: const EdgeInsets.all(3),
           borderRadius: BorderRadius.circular(10),
-          ),
+        ),
         child: const Icon(Icons.campaign, color: Colors.white),
       ),
       const Icon(Icons.favorite, color: Colors.white),

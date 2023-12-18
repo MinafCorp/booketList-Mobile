@@ -12,6 +12,37 @@ class WishlistPage extends StatefulWidget {
   _WishlistPageState createState() => _WishlistPageState();
 }
 
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate({
+    required this.minHeight,
+    required this.maxHeight,
+    required this.child,
+  });
+
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
+
+  @override
+  double get minExtent => minHeight;
+
+  @override
+  double get maxExtent => maxHeight;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(child: child);
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
+  }
+}
+
 class _WishlistPageState extends State<WishlistPage> {
   final TextEditingController _searchController = TextEditingController();
   List<Wishlist> _wishlists = [];
@@ -74,82 +105,93 @@ class _WishlistPageState extends State<WishlistPage> {
       backgroundColor: const Color(0xFFF5F5DC),
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: Stack(
-              alignment: Alignment.center,
-              children: <Widget>[
-                Image.asset(
-                  'images/boket.png',
-                  height: 300,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                ),
-                Container(
-                  height: 300,
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Your Book Wishlist',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 45,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'serif',
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        'Make your Wishes Meet Reality',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                          fontStyle: FontStyle.italic,
-                          fontFamily: 'serif',
-                        ),
-                      ),
-                    ],
+          SliverAppBar(
+            pinned: false,
+            expandedHeight: 250,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    'images/wishlists.jpg',
+                    height: 250,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
                   ),
-                ),
-              ],
-            ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.all(16.0),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate(
-                [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    child: TextField(
-                      controller: _searchController,
-                      onChanged: _filterWishlists,
-                      textInputAction: TextInputAction.search,
-                      decoration: InputDecoration(
-                        hintText: 'Cari Wishlistmu',
-                        border: InputBorder.none,
-                        prefixIcon: const Icon(Icons.search),
-                        suffixIcon: IconButton(
-                          icon: const Icon(Icons.clear),
-                          onPressed: () {
-                            _searchController.clear();
-                            _filterWishlists('');
-                          },
+                    height: 300,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Your Book Wishlist',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 45,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'serif',
+                            fontStyle: FontStyle.italic,
+                          ),
                         ),
-                      ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Make your Wishes Meet Reality',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FontStyle.italic,
+                            fontFamily: 'serif',
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
+              ),
+            ),
+          ),
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: _SliverAppBarDelegate(
+              minHeight: 70.0,
+              maxHeight: 70.0,
+              child: Container(
+                margin: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 4,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: TextField(
+                    controller: _searchController,
+                    onChanged: _filterWishlists,
+                    textInputAction: TextInputAction.search,
+                    decoration: InputDecoration(
+                      hintText: 'Cari Wishlistmu',
+                      border: InputBorder.none,
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.clear),
+                        onPressed: () {
+                          _searchController.clear();
+                          _filterWishlists('');
+                        },
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),

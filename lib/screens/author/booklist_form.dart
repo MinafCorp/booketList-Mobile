@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
+// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
 import 'package:booketlist/screens/author/main_author.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -13,6 +13,7 @@ class BookFormPage extends StatefulWidget {
 
 class _BookFormPageState extends State<BookFormPage> {
   final _formKey = GlobalKey<FormState>();
+  // ignore: non_constant_identifier_names
   int _ISBN = -1;
   String _title = "";
   int _yearOfPublication = 0;

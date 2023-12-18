@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:booketlist/models/updates.dart';
 import 'package:booketlist/screens/author/update_form.dart';
-// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
+// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
 import 'package:intl/intl.dart';
@@ -63,13 +63,13 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
       );
       var data = jsonDecode(utf8.decode(response.bodyBytes));
 
-      List<Updates> list_updates = [];
+      List<Updates> listUpdates = [];
       for (var d in data) {
           if (d != null) {
-              list_updates.add(Updates.fromJson(d));
+              listUpdates.add(Updates.fromJson(d));
           }
       }
-      return list_updates;
+      return listUpdates;
   }
 
   @override

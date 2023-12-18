@@ -14,7 +14,6 @@ class _BookFormPageState extends State<BookFormPage> {
   final _formKey = GlobalKey<FormState>();
   int _ISBN = -1;
   String _title = "";
-  //String _author = "";
   int _yearOfPublication = 0;
   String _publisher = "";
 
@@ -172,18 +171,14 @@ class _BookFormPageState extends State<BookFormPage> {
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        // Kirim ke Django dan tunggu respons
-                        // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                         final response = await request.postJson(
                             'http://127.0.0.1:8000/manajemen-buku/create-flutter/',
                             jsonEncode(<String, String>{
-                              //'author' : _author,
                               'ISBN': _ISBN.toString(),
                               'title': _title,
                               'YearOfPublication':
                                   _yearOfPublication.toString(),
                               'publisher': _publisher,
-                              // TODO: Sesuaikan field data sesuai dengan aplikasimu
                             }));
                         if (response['status'] == 'success') {
                           ScaffoldMessenger.of(context)

@@ -29,13 +29,6 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
     return books;
   }
 
-  // Future<void> deleteBook(int isbn) async {
-  //   var url = Uri.parse(
-  //       'http://127.0.0.1:8000/api/manajemen-buku/delete_book/isbn/$isbn');
-
-  //   // var response = await http.delete(url);
-  // }
-
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
@@ -57,9 +50,9 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                   height: 300,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
                         'Embark on a journey of imagination',
                         textAlign: TextAlign.center,

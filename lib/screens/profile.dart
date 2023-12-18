@@ -21,7 +21,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<Map<String, dynamic>> fetchUserData() async {
     var url =
-        Uri.parse('https://booketlist-production.up.railway.app/user-api');
+        Uri.parse('http://127.0.0.1:8000/user-api');
     var response =
         await http.get(url, headers: {"Content-Type": "application/json"});
 
@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> logout() async {
     var url =
-        Uri.parse('https://booketlist-production.up.railway.app/auth/logout/');
+        Uri.parse('http://127.0.0.1:8000/auth/logout/');
     var response =
         await http.post(url, headers: {"Content-Type": "application/json"});
 
@@ -52,6 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 236, 227, 215),
       appBar: AppBar(
         title: const Text('My Profile'),
         backgroundColor: const Color.fromARGB(255, 67, 64, 59),

@@ -466,8 +466,6 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
                     if (review.isNotEmpty &&
                         _selectedRating != null &&
                         _selectedBook != null) {
-                      print(
-                          'Review: $review, Rating: $_selectedRating, Book: $_selectedBook');
                       final response = await request.postJson(
                         "http://127.0.0.1:8000/wishlist/add_to_review_flutter/",
                         jsonEncode({

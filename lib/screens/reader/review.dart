@@ -31,19 +31,16 @@ class _ReviewPageState extends State<ReviewPage> {
   }
 
   Future<List<review.Product>> fetchProductUser() async {
-    var url = Uri.parse('http://127.0.0.1:8000/wishlist/json/user/');
-    var response = await http.get(url, headers: {"Content-Type": "application/json"});
-  
-
-    var data = jsonDecode(utf8.decode(response.bodyBytes));
-    List<review.Product> list_Book = [];
-    for (var d in data) {
+    final request = context.watch<CookieRequest>();
+    final response =
+        await request.get('http://127.0.0.1:8000/wishlist/json/user/');
+    List<review.Product> wishlists = [];
+    for (var d in response) {
       if (d != null) {
-        list_Book.add(review.Product.fromJson(d));
+        wishlists.add(review.Product.fromJson(d));
       }
     }
-    print(list_Book);
-    return list_Book;
+    return wishlists;
   }
 
   Future<List<Book>> fetchBook() async {
@@ -69,6 +66,17 @@ class _ReviewPageState extends State<ReviewPage> {
       },
     );
   }
+
+  void _openEditReviewForm(review.Product product) async {
+  // Wrap the single product in a list
+  List<review.Product> products = [product];
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return YourEditReviewFormWidget(products); // Pass a list with a single product
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -120,22 +128,167 @@ class _ReviewPageState extends State<ReviewPage> {
             itemCount: data!.length,
             itemBuilder: (context, index) {
               var product = data[index];
+              var created_by = (product.fields.createdBy);
+              var title = (product.fields.judulBuku);
+              
+              if (created_by != null){
               return ListTile(
                 title: Text(product.fields.reviewText),
-                subtitle: Text(""),
+                subtitle: Text("~ review by ${created_by} to a book named ${product.fields.judulBuku}"),
                 // Add more widgets to display other information as needed
               );
+              }
+              else{
+                return ListTile(
+                title: Text(product.fields.reviewText),
+                subtitle: Text("~ review by Anonymous on an unknown book"),
+                // Add more widgets to display other information as needed
+              );
+              }
             },
           );
         }
       },
     ),
-            Center(
-              child: Text(
-                "Here is the review you've made",
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
+            FutureBuilder(
+              
+      future: fetchProductUser(),
+      builder: (context, AsyncSnapshot<List<review.Product>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator(); // Display a loading indicator while data is being fetched
+        } else if (snapshot.hasError) {
+          return Text("Error: ${snapshot.error}");
+        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return Text("No data available");
+        } else {
+          var data = snapshot.data;
+          return ListView.builder(
+            itemCount: data!.length,
+            itemBuilder: (context, index) {
+              var product = data[index];
+              var created_by = (product.fields.createdBy);
+              if (created_by != request)              
+              if (created_by != null){
+              return ListTile(
+                title: Text(product.fields.reviewText),
+                subtitle: Text("Your review to a book named ${product.fields.judulBuku} yang ini yaa"),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () {
+                        _openEditReviewForm(product);
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () async {
+                        var bookId = product.pk;
+                        try {
+                          final response = await request.postJson(
+                            "http://127.0.0.1:8000/wishlist/delete_review_flutter/$bookId/",
+                            jsonEncode(<String, String>{
+                              'book_id': bookId.toString()
+                            }),
+                          );
+
+                          print(response['success']);
+                          if (response['success']) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(
+                              SnackBar(
+                                  content:
+                                      Text(response['message'])),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(
+                              SnackBar(
+                                  content: Text(
+                                      "Gagal mendelete review")),
+                            );
+                          }
+                        } catch (e) {
+                          print('Exception: $e');
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(
+                            SnackBar(
+                                content: Text(
+                                    "Terjadi kesalahan saat menghapus")),
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ),
+                // Add more widgets to display other information as needed
+              );
+              }
+              else{
+                return ListTile(
+                title: Text(product.fields.reviewText),
+                subtitle: Text("~ review by you to on an unknown book"),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.edit),
+                      onPressed: () {
+                        // Implement edit functionality here
+                        // You can open a dialog or navigate to another screen for editing
+                        // You may need to pass the current review details to the edit screen
+                      },
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () async {
+                        var bookId = product.pk;
+                        try {
+                          final response = await request.postJson(
+                            "http://127.0.0.1:8000/wishlist/delete_review_flutter/$bookId/",
+                            jsonEncode(<String, String>{
+                              'book_id': bookId.toString()
+                            }),
+                          );
+
+                          print(response['success']);
+                          if (response['success']) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(
+                              SnackBar(
+                                  content:
+                                      Text(response['message'])),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(
+                              SnackBar(
+                                  content: Text(
+                                      "Gagal mendelete review")),
+                            );
+                          }
+                        } catch (e) {
+                          print('Exception: $e');
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(
+                            SnackBar(
+                                content: Text(
+                                    "Terjadi kesalahan saat menghapus")),
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ),
+                // Add more widgets to display other information as needed
+              );
+              }
+            },
+          );
+        }
+      },
+    ),
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -156,6 +309,93 @@ class YourReviewFormWidget extends StatefulWidget {
   @override
   _YourReviewFormWidgetState createState() => _YourReviewFormWidgetState();
 }
+
+class YourEditReviewFormWidget extends StatefulWidget {
+  final List<review.Product> product;
+
+  YourEditReviewFormWidget(this.product);
+
+  @override
+  _YourEditReviewFormWidgetState createState() => _YourEditReviewFormWidgetState();
+}
+
+class _YourEditReviewFormWidgetState extends State<YourEditReviewFormWidget> {
+  String _reviewController = "";
+  int? _selectedRating;
+  String? _selectedBook = "";
+
+  bool _isFormValid() {
+    return _reviewController.isNotEmpty && _selectedRating != null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+    final String createdBy = widget.product.first.fields.reviewRating.toString() ?? 'Anonymous'; // Default to 'Anonymous' if createdBy is null
+    final String bookReview = widget.product.first.fields.reviewText ?? 'Anonymous';
+    final int bookId = widget.product.first.pk;
+
+    return Container(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TextFormField(
+            initialValue: _reviewController,
+            decoration: InputDecoration(labelText: bookReview),
+            onChanged: (String value) {
+              setState(() {
+                _reviewController = value;
+              });
+            },
+          ),
+          SizedBox(height: 16),
+          DropdownButtonFormField<int>(
+            value: _selectedRating,
+            hint: Text("current rating : $createdBy"), // Display the user's name dynamically
+            onChanged: (value) {
+              setState(() {
+                _selectedRating = value;
+              });
+            },
+            items: [1, 2, 3].map<DropdownMenuItem<int>>((int value) {
+              return DropdownMenuItem<int>(
+                value: value,
+                child: Text(value.toString()),
+              );
+            }).toList(),
+          ),
+          SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: _isFormValid()
+                ? () async {
+                    String review = _reviewController;
+                    if (review.isNotEmpty && _selectedRating != null) {
+                      print('Review: $review, Rating: $_selectedRating, reviewId:$bookId ');
+                      final response = await request.postJson(
+                        "http://127.0.0.1:8000/wishlist/edit_review_flutter/",
+                        jsonEncode({
+                          'review': review,
+                          'rating': _selectedRating,
+                          'book': bookId,
+                        }),
+                      );
+                    }
+
+                    Navigator.pop(context);
+                  }
+                : null,
+            child: Text('Submit Review'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
 
 class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
   String _reviewController = "";

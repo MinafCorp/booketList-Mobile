@@ -9,7 +9,7 @@ List<Product> productFromJson(String str) => List<Product>.from(json.decode(str)
 String productToJson(List<Product> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Product {
-    String model;
+    Model model;
     int pk;
     Fields fields;
 
@@ -20,13 +20,13 @@ class Product {
     });
 
     factory Product.fromJson(Map<String, dynamic> json) => Product(
-        model: json["model"],
+        model: modelValues.map[json["model"]]!,
         pk: json["pk"],
         fields: Fields.fromJson(json["fields"]),
     );
 
     Map<String, dynamic> toJson() => {
-        "model": model,
+        "model": modelValues.reverse[model],
         "pk": pk,
         "fields": fields.toJson(),
     };
@@ -38,6 +38,8 @@ class Fields {
     String reviewText;
     DateTime createdAt;
     int reviewRating;
+    String? createdBy;
+    String? judulBuku;
 
     Fields({
         required this.user,
@@ -45,6 +47,8 @@ class Fields {
         required this.reviewText,
         required this.createdAt,
         required this.reviewRating,
+        required this.createdBy,
+        required this.judulBuku,
     });
 
     factory Fields.fromJson(Map<String, dynamic> json) => Fields(
@@ -53,6 +57,8 @@ class Fields {
         reviewText: json["review_text"],
         createdAt: DateTime.parse(json["created_at"]),
         reviewRating: json["review_rating"],
+        createdBy: json["created_by"],
+        judulBuku: json["judul_buku"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -61,5 +67,27 @@ class Fields {
         "review_text": reviewText,
         "created_at": createdAt.toIso8601String(),
         "review_rating": reviewRating,
+        "created_by": createdBy,
+        "judul_buku": judulBuku,
     };
+}
+
+enum Model {
+    BOOK_PRODUCTREVIEW
+}
+
+final modelValues = EnumValues({
+    "book.productreview": Model.BOOK_PRODUCTREVIEW
+});
+
+class EnumValues<T> {
+    Map<String, T> map;
+    late Map<T, String> reverseMap;
+
+    EnumValues(this.map);
+
+    Map<T, String> get reverse {
+        reverseMap = map.map((k, v) => MapEntry(v, k));
+        return reverseMap;
+    }
 }

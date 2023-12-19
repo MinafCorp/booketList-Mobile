@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names, unused_local_variable
 import 'package:booketlist/screens/author/main_author.dart';
 import 'package:booketlist/screens/reader/main_reader.dart';
 import 'package:booketlist/screens/register.dart';
@@ -96,6 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                       String username = _usernameController.text;
                       String password = _passwordController.text;
                       String role = val;
+
                       // Perform login with the obtained data
                       // authentication with json
                       final response = await request
@@ -103,6 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                         'username': username,
                         'password': password,
                         'role': role,
+
                       });
                       if (request.loggedIn) {
                         if (!context.mounted) return;
@@ -113,21 +116,21 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MainAuthor()));
+                                  builder: (context) => const MainAuthor()));
                           ScaffoldMessenger.of(context)
                             ..hideCurrentSnackBar()
                             ..showSnackBar(SnackBar(
                                 elevation: 6.0,
                                 behavior: SnackBarBehavior.floating,
                                 backgroundColor:
-                                    Color.fromARGB(255, 67, 64, 59),
+                                    const Color.fromARGB(255, 67, 64, 59),
                                 content: Text(
                                     "$message Welcome, $uname! (logged in as Author)")));
                         } else if (role == "READER") {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => MainReader(),
+                              builder: (context) => const MainReader(),
                             ),
                           );
                           ScaffoldMessenger.of(context)
@@ -136,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                                 elevation: 6.0,
                                 behavior: SnackBarBehavior.floating,
                                 backgroundColor:
-                                    Color.fromARGB(255, 67, 64, 59),
+                                    const Color.fromARGB(255, 67, 64, 59),
                                 content: Text(
                                     "$message Welcome, $uname! (logged in as Reader)")));
                         }

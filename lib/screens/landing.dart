@@ -1,68 +1,93 @@
-import 'package:booketlist/screens/login.dart';
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names, unused_local_variable
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:booketlist/screens/login.dart';
 
-class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    )..forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 236, 227, 215),
-      body: Padding(
-          padding: EdgeInsets.only(top: 10),
+      body: SingleChildScrollView(
+        child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Align(
-                alignment: Alignment.center,
-                child: Image(image: AssetImage('images/tesss.gif')),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+              FadeTransition(
+                opacity: _controller,
+                child: SizedBox(
+                  width: 400,
+                  height: 400,
+                  child: Image.asset('images/noice.png', fit: BoxFit.contain),
+                ),
               ),
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          PageRouteBuilder(
-                          pageBuilder: (context, animation, secondaryAnimation) => const LoginPage(),
-                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                            const begin = 0.0;
-                            const end = 1.0;
-                            const curve = Curves.easeInOut;
-
-                            var tween = Tween(begin: begin, end: end).chain(
-                              CurveTween(curve: curve),
-                            );
-
-                            var fadeAnimation = animation.drive(tween);
-
-                            var zoomAnimation = Tween(begin: 0.5, end: 1.0).animate(animation);
-
-                            return FadeTransition(
-                              opacity: fadeAnimation,
-                              child: ScaleTransition(
-                                scale: zoomAnimation,
-                                child: child,
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 67, 64, 59)),
-                    child: const Text(
-                      "Get Started",
-                      style: TextStyle(color: Colors.white),
+              const SizedBox(height: 30),
+              ScaleTransition(
+                scale: _controller,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const LoginPage(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 58, 25, 0),
+                    textStyle: const TextStyle(
+                      fontSize: 17,
+                      fontFamily: 'Georgia',
+                      letterSpacing: 1.1,
                     ),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 25, vertical: 13),
+                  ),
+                  child: const Text(
+                    "Begin your Journey",
+                    style: TextStyle(color: Color.fromARGB(255, 255, 230, 198)),
                   ),
                 ),
               ),
+              SizedBox(
+                  height: MediaQuery.of(context).size.height *
+                      0.1), // Adjusts the space at the bottom
             ],
-          )),
+          ),
+        ),
+      ),
+      backgroundColor: const Color.fromARGB(255, 239, 224, 209),
     );
   }
 }

@@ -381,7 +381,7 @@ class _YourEditReviewFormWidgetState extends State<YourEditReviewFormWidget> {
                       
                         ScaffoldMessenger.of(context)
                             .showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                               content: Text("Selamat! kamu telah berhasil mengedit! silahkan refresh dengan pergi ke page lain")),
                         );
                       

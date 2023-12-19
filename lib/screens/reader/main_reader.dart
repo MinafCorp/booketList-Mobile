@@ -4,9 +4,9 @@ import 'package:booketlist/screens/profile.dart';
 import 'package:booketlist/screens/reader/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:booketlist/screens/reader/list_buku.dart';
-import 'package:booketlist/screens/reader/review.dart';
 import 'package:booketlist/screens/reader/home_reader.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:booketlist/screens/reader/review.dart';
 
 int notification = 0;
 

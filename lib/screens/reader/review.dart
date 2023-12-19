@@ -106,7 +106,7 @@ class _ReviewPageState extends State<ReviewPage> {
           ),
           bottom: TabBar(
             tabs: [
-              Tab(text: 'Review'),
+              Tab(text: 'Community Review'),
               Tab(text: 'Your Review'),
             ],
           ),
@@ -418,7 +418,7 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
         children: [
           TextFormField(
             initialValue: _reviewController,
-            decoration: InputDecoration(labelText: 'Review'),
+            decoration: InputDecoration(labelText: 'Write to community review'),
             onChanged: (String value) {
               setState(() {
                 _reviewController = value;
@@ -444,7 +444,7 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
           SizedBox(height: 16),
           DropdownButtonFormField<String>(
             value: _selectedBook,
-            hint: Text('Select Book'),
+            hint: Text('Select'),
             onChanged: (value) {
               setState(() {
                 _selectedBook = value;
@@ -453,7 +453,7 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
             items: [
               const DropdownMenuItem(
                 value: '',
-                child: Text('Title'),
+                child: Text('Choose the book...'),
               ),
               ...widget.books.map<DropdownMenuItem<String>>((Book book) {
                 return DropdownMenuItem<String>(

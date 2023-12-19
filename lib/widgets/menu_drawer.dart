@@ -2,6 +2,7 @@
 import 'package:booketlist/screens/reader/update.dart';
 import 'package:flutter/material.dart';
 import 'package:booketlist/screens/reader/list_buku.dart';
+import 'package:booketlist/screens/reader/review.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});
@@ -86,6 +87,18 @@ class MenuDrawer extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const UpdatePage(),
+                  ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.rate_review),
+            title: const Text('Review'),
+            // Bagian redirection ke reviewPage
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ReviewPage(),
                   ));
             },
           ),

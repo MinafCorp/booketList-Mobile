@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:booketlist/screens/reader/list_buku.dart';
 import 'package:booketlist/screens/reader/home_reader.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:booketlist/screens/reader/review.dart';
 
 int notification = 0;
 
@@ -24,7 +25,7 @@ class _MainReaderState extends State<MainReader> {
     const BookPage(),
     const UpdatePage(),
     const WishlistPage(),
-    const WishlistPage(),
+    const ReviewPage(),
     const ProfilePage(),
   ];
 

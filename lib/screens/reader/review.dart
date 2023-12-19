@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names, unused_local_variable, non_constant_identifier_names, use_key_in_widget_constructors
 import 'package:flutter/material.dart' hide Action;
 import 'package:booketlist/models/book.dart';
 import 'package:booketlist/models/review.dart' as review;
@@ -7,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ReviewPage extends StatefulWidget {
-  const ReviewPage({Key? key}) : super(key: key);
+  const ReviewPage({super.key});
 
   @override
   _ReviewPageState createState() => _ReviewPageState();
@@ -107,7 +108,7 @@ class _ReviewPageState extends State<ReviewPage> {
               ),
             ),
           ),
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Tab(text: 'Community Review'),
               Tab(text: 'Your Review'),
@@ -116,17 +117,17 @@ class _ReviewPageState extends State<ReviewPage> {
         ),
         body: TabBarView(
           physics:
-              NeverScrollableScrollPhysics(), // Disable swiping between tabs
+              const NeverScrollableScrollPhysics(), // Disable swiping between tabs
           children: [
             FutureBuilder(
               future: fetchProductAll(),
               builder: (context, AsyncSnapshot<List<review.Product>> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator(); // Display a loading indicator while data is being fetched
+                  return const CircularProgressIndicator(); // Display a loading indicator while data is being fetched
                 } else if (snapshot.hasError) {
                   return Text("Error: ${snapshot.error}");
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return Text("No data available");
+                  return const Text("No data available");
                 } else {
                   var data = snapshot.data;
                   return ListView.builder(
@@ -140,14 +141,14 @@ class _ReviewPageState extends State<ReviewPage> {
                         return ListTile(
                           title: Text(product.fields.reviewText),
                           subtitle: Text(
-                              "~ review by ${created_by} to a book named ${product.fields.judulBuku}"),
+                              "~ review by $created_by to a book named ${product.fields.judulBuku}"),
                           // Add more widgets to display other information as needed
                         );
                       } else {
                         return ListTile(
                           title: Text(product.fields.reviewText),
-                          subtitle:
-                              Text("~ review by Anonymous on an unknown book"),
+                          subtitle: const Text(
+                              "~ review by Anonymous on an unknown book"),
                           // Add more widgets to display other information as needed
                         );
                       }
@@ -160,11 +161,11 @@ class _ReviewPageState extends State<ReviewPage> {
               future: fetchProductUser(),
               builder: (context, AsyncSnapshot<List<review.Product>> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator(); // Display a loading indicator while data is being fetched
+                  return const CircularProgressIndicator(); // Display a loading indicator while data is being fetched
                 } else if (snapshot.hasError) {
                   return Text("Error: ${snapshot.error}");
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return Text("No data available");
+                  return const Text("No data available");
                 } else {
                   var data = snapshot.data;
                   return ListView.builder(
@@ -172,7 +173,7 @@ class _ReviewPageState extends State<ReviewPage> {
                     itemBuilder: (context, index) {
                       var product = data[index];
                       var created_by = (product.fields.createdBy);
-                      if (created_by != request) if (created_by != null) {
+                      if (created_by != null) {
                         return ListTile(
                           title: Text(product.fields.reviewText),
                           subtitle: Text(
@@ -181,13 +182,13 @@ class _ReviewPageState extends State<ReviewPage> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               IconButton(
-                                icon: Icon(Icons.edit),
+                                icon: const Icon(Icons.edit),
                                 onPressed: () {
                                   _openEditReviewForm(product);
                                 },
                               ),
                               IconButton(
-                                icon: Icon(Icons.delete),
+                                icon: const Icon(Icons.delete),
                                 onPressed: () async {
                                   var bookId = product.pk;
                                   try {
@@ -198,7 +199,6 @@ class _ReviewPageState extends State<ReviewPage> {
                                       }),
                                     );
 
-                                    print(response['success']);
                                     if (response['success']) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -208,15 +208,14 @@ class _ReviewPageState extends State<ReviewPage> {
                                     } else {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
-                                        SnackBar(
+                                        const SnackBar(
                                             content:
                                                 Text("Gagal mendelete review")),
                                       );
                                     }
                                   } catch (e) {
-                                    print('Exception: $e');
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
+                                      const SnackBar(
                                           content: Text(
                                               "Terjadi kesalahan saat menghapus")),
                                     );
@@ -230,13 +229,13 @@ class _ReviewPageState extends State<ReviewPage> {
                       } else {
                         return ListTile(
                           title: Text(product.fields.reviewText),
-                          subtitle:
-                              Text("~ review by you to on an unknown book"),
+                          subtitle: const Text(
+                              "~ review by you to on an unknown book"),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               IconButton(
-                                icon: Icon(Icons.edit),
+                                icon: const Icon(Icons.edit),
                                 onPressed: () {
                                   // Implement edit functionality here
                                   // You can open a dialog or navigate to another screen for editing
@@ -244,7 +243,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                 },
                               ),
                               IconButton(
-                                icon: Icon(Icons.delete),
+                                icon: const Icon(Icons.delete),
                                 onPressed: () async {
                                   var bookId = product.pk;
                                   try {
@@ -254,8 +253,6 @@ class _ReviewPageState extends State<ReviewPage> {
                                         'book_id': bookId.toString()
                                       }),
                                     );
-
-                                    print(response['success']);
                                     if (response['success']) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -265,15 +262,14 @@ class _ReviewPageState extends State<ReviewPage> {
                                     } else {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
-                                        SnackBar(
+                                        const SnackBar(
                                             content:
                                                 Text("Gagal mendelete review")),
                                       );
                                     }
                                   } catch (e) {
-                                    print('Exception: $e');
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
+                                      const SnackBar(
                                           content: Text(
                                               "Terjadi kesalahan saat menghapus")),
                                     );
@@ -295,7 +291,7 @@ class _ReviewPageState extends State<ReviewPage> {
         floatingActionButton: FloatingActionButton(
           onPressed: _openReviewForm,
           tooltip: 'Add Review',
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
       ),
     );
@@ -305,7 +301,7 @@ class _ReviewPageState extends State<ReviewPage> {
 class YourReviewFormWidget extends StatefulWidget {
   final List<Book> books;
 
-  YourReviewFormWidget(this.books);
+  const YourReviewFormWidget(this.books);
 
   @override
   _YourReviewFormWidgetState createState() => _YourReviewFormWidgetState();
@@ -314,7 +310,7 @@ class YourReviewFormWidget extends StatefulWidget {
 class YourEditReviewFormWidget extends StatefulWidget {
   final List<review.Product> product;
 
-  YourEditReviewFormWidget(this.product);
+  const YourEditReviewFormWidget(this.product);
 
   @override
   _YourEditReviewFormWidgetState createState() =>
@@ -324,7 +320,6 @@ class YourEditReviewFormWidget extends StatefulWidget {
 class _YourEditReviewFormWidgetState extends State<YourEditReviewFormWidget> {
   String _reviewController = "";
   int? _selectedRating;
-  String? _selectedBook = "";
 
   bool _isFormValid() {
     return _reviewController.isNotEmpty && _selectedRating != null;
@@ -334,14 +329,12 @@ class _YourEditReviewFormWidgetState extends State<YourEditReviewFormWidget> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     final String createdBy =
-        widget.product.first.fields.reviewRating.toString() ??
-            'Anonymous'; // Default to 'Anonymous' if createdBy is null
-    final String bookReview =
-        widget.product.first.fields.reviewText ?? 'Anonymous';
+        widget.product.first.fields.reviewRating.toString();
+    final String bookReview = widget.product.first.fields.reviewText;
     final int bookId = widget.product.first.pk;
 
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -354,7 +347,7 @@ class _YourEditReviewFormWidgetState extends State<YourEditReviewFormWidget> {
               });
             },
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           DropdownButtonFormField<int>(
             value: _selectedRating,
             hint: Text(
@@ -371,14 +364,12 @@ class _YourEditReviewFormWidgetState extends State<YourEditReviewFormWidget> {
               );
             }).toList(),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: _isFormValid()
                 ? () async {
                     String review = _reviewController;
                     if (review.isNotEmpty && _selectedRating != null) {
-                      print(
-                          'Review: $review, Rating: $_selectedRating, reviewId:$bookId ');
                       final response = await request.postJson(
                         "http://127.0.0.1:8000/wishlist/edit_review_flutter/",
                         jsonEncode({
@@ -392,7 +383,7 @@ class _YourEditReviewFormWidgetState extends State<YourEditReviewFormWidget> {
                     Navigator.pop(context);
                   }
                 : null,
-            child: Text('Submit Review'),
+            child: const Text('Submit Review'),
           ),
         ],
       ),
@@ -415,23 +406,24 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextFormField(
             initialValue: _reviewController,
-            decoration: InputDecoration(labelText: 'Write to community review'),
+            decoration:
+                const InputDecoration(labelText: 'Write to community review'),
             onChanged: (String value) {
               setState(() {
                 _reviewController = value;
               });
             },
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           DropdownButtonFormField<int>(
             value: _selectedRating,
-            hint: Text('Select Rating'),
+            hint: const Text('Select Rating'),
             onChanged: (value) {
               setState(() {
                 _selectedRating = value;
@@ -444,10 +436,10 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
               );
             }).toList(),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           DropdownButtonFormField<String>(
             value: _selectedBook,
-            hint: Text('Select'),
+            hint: const Text('Select'),
             onChanged: (value) {
               setState(() {
                 _selectedBook = value;
@@ -463,10 +455,10 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
                   value: book.pk.toString(),
                   child: Text(book.fields.title),
                 );
-              }).toList()
+              })
             ],
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ElevatedButton(
             onPressed: _isFormValid()
                 ? () async {
@@ -489,7 +481,7 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
                     Navigator.pop(context);
                   }
                 : null,
-            child: Text('Submit Review'),
+            child: const Text('Submit Review'),
           ),
         ],
       ),

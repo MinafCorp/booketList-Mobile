@@ -44,7 +44,7 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
               children: <Widget>[
                 // Full-width image at the top of the page
                 Image.asset(
-                  'images/inter.jpg',
+                  'images/inter.jpeg',
                   height: 250,
                   fit: BoxFit.cover,
                   width: double.infinity,

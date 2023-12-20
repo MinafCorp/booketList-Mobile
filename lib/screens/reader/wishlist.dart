@@ -113,7 +113,7 @@ class _WishlistPageState extends State<WishlistPage> {
                 alignment: Alignment.center,
                 children: <Widget>[
                   Image.asset(
-                    'images/wishlists.jpg',
+                    'images/wishlists.jpeg',
                     height: 250,
                     fit: BoxFit.cover,
                     width: double.infinity,

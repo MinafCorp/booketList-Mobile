@@ -177,7 +177,7 @@ class _ReviewPageState extends State<ReviewPage> {
                         return ListTile(
                           title: Text(product.fields.reviewText),
                           subtitle: Text(
-                              "Your review to a book named ${product.fields.judulBuku} yang ini yaa"),
+                              "Your review to a book named ${product.fields.judulBuku}"),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -203,7 +203,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
-                                            content: Text(response['message'])),
+                                            content: Text("Selamat!" + response['message'] + ", silahkan refresh dengan pergi ke page lain!!")),
                                       );
                                     } else {
                                       ScaffoldMessenger.of(context)
@@ -481,6 +481,11 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
                           'book': int.parse(_selectedBook!),
                         }),
                       );
+                      ScaffoldMessenger.of(context)
+                            .showSnackBar(
+                          const SnackBar(
+                              content: Text("Selamat! kamu telah berhasil menambah Review! silahkan refresh dengan pergi ke page lain")),
+                        );
                     }
 
                     Navigator.pop(context);

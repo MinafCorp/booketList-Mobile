@@ -42,7 +42,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
     }
     _debounceTimer?.cancel();
 
-    _debounceTimer = Timer(Duration(milliseconds: 500), () { 
+    _debounceTimer = Timer(const Duration(milliseconds: 500), () {
       setState(() {
         _filteredUpdates = _allUpdates.where((updates) {
             return updates.fields.title

@@ -39,7 +39,7 @@ class _UpdatePageState extends State<UpdatePage> {
     }
     _debounceTimer?.cancel();
 
-    _debounceTimer = Timer(Duration(milliseconds: 500), () { 
+    _debounceTimer = Timer(const Duration(milliseconds: 500), () {
       setState(() {
         _filteredUpdates = _allUpdates.where((updates) {
             return updates.fields.title
@@ -56,7 +56,7 @@ class _UpdatePageState extends State<UpdatePage> {
 
   Future<List<Updates>> fetchUpdates() async {
       var url = Uri.parse(
-          'http://127.0.0.1:8000/updates/get-updates-all');
+          'https://booketlist-production.up.railway.app/updates/get-updates-all');
       var response = await http.get(
           url,
           headers: {"Content-Type": "application/json"},

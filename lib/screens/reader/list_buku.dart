@@ -326,19 +326,7 @@ class _BookPageState extends State<BookPage> {
                                   );
                                 }
                               },
-                            ),
-                            IconButton(
-                              icon:
-                                  const Icon(Icons.comment, color: Colors.grey),
-                              onPressed: () {
-                                  Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const ReviewPage(),
-                                  )
-                                );
-                              },
-                            ),
+                            ),                            
                           ],
                         ),
                       ],

@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names, unused_local_variable, non_constant_identifier_names, use_key_in_widget_constructors
+// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names, unused_local_variable, non_constant_identifier_names, use_key_in_widget_constructors, prefer_interpolation_to_compose_strings
 import 'package:flutter/material.dart' hide Action;
 import 'package:booketlist/models/book.dart';
 import 'package:booketlist/models/review.dart' as review;
@@ -205,7 +205,6 @@ class _ReviewPageState extends State<ReviewPage> {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
-                                            // ignore: prefer_interpolation_to_compose_strings
                                             content: Text(
                                                 "${"Selamat!" + response['message']}, silahkan refresh dengan pergi ke page lain!!")),
                                       );
@@ -419,7 +418,7 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
       padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [ 
+        children: [
           TextFormField(
             initialValue: _reviewController,
             decoration:
@@ -458,12 +457,18 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
             items: [
               const DropdownMenuItem(
                 value: '',
-                child: Text('Choose the book...',overflow: TextOverflow.ellipsis,),
+                child: Text(
+                  'Choose the book...',
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               ...widget.books.map<DropdownMenuItem<String>>((Book book) {
                 return DropdownMenuItem<String>(
                   value: book.pk.toString(),
-                  child: Text(book.fields.title, overflow: TextOverflow.ellipsis,),
+                  child: Text(
+                    book.fields.title,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 );
               })
             ],

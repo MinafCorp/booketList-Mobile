@@ -1,7 +1,10 @@
 // ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names, unused_local_variable
+import 'package:booketlist/screens/landing.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -20,26 +23,19 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Future<Map<String, dynamic>> fetchUserData() async {
-    var url =
-        Uri.parse('http://127.0.0.1:8000/user-api');
-    var response =
-        await http.get(url, headers: {"Content-Type": "application/json"});
-
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    } else {
-      throw Exception('Failed to load user data');
-    }
+    final request = context.read<CookieRequest>();
+    final response = await request.get('http://127.0.0.1:8000/user-api/');
+    return response;
   }
 
   Future<void> logout() async {
-    var url =
-        Uri.parse('http://127.0.0.1:8000/auth/logout/');
+    var url = Uri.parse('http://127.0.0.1:8000/auth/logout/');
     var response =
         await http.post(url, headers: {"Content-Type": "application/json"});
 
     if (response.statusCode == 200) {
-      Navigator.pushReplacementNamed(context, '/login');
+      Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => const MyHomePage()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -52,18 +48,10 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 236, 227, 215),
+      backgroundColor: const Color.fromARGB(255, 236, 227, 215),
       appBar: AppBar(
         title: const Text('My Profile'),
         backgroundColor: const Color.fromARGB(255, 67, 64, 59),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              logout();
-            },
-          ),
-        ],
       ),
       body: Center(
         child: FutureBuilder<Map<String, dynamic>>(
@@ -92,6 +80,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       fontWeight: FontWeight.bold,
                       color: Colors.black, // Match your reference style
                     ),
+                  ),
+                  const SizedBox(height: 20),
+                  IconButton(icon: const Icon(Icons.logout),
+                      onPressed: () {
+                        logout();
+                      },
                   ),
                 ],
               );

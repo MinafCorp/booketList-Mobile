@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
+// ignore_for_file:  use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -44,14 +44,14 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
               children: <Widget>[
                 // Full-width image at the top of the page
                 Image.asset(
-                  'images/boket.png',
-                  height: 300,
+                  'images/inter.jpg',
+                  height: 250,
                   fit: BoxFit.cover,
                   width: double.infinity,
                 ),
 
                 Container(
-                  height: 300,
+                  height: 250,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: const Column(
@@ -70,7 +70,7 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
                       ),
                       SizedBox(height: 8),
                       Text(
-                        'Brought to you by MinafCorp',
+                        'brought to you by MinafCorp',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,

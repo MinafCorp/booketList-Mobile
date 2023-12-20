@@ -417,7 +417,7 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
       padding: const EdgeInsets.all(16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [
+        children: [ 
           TextFormField(
             initialValue: _reviewController,
             decoration:
@@ -456,17 +456,17 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
             items: [
               const DropdownMenuItem(
                 value: '',
-                child: Text('Choose the book...'),
+                child: Text('Choose the book...',overflow: TextOverflow.ellipsis,),
               ),
               ...widget.books.map<DropdownMenuItem<String>>((Book book) {
                 return DropdownMenuItem<String>(
                   value: book.pk.toString(),
-                  child: Text(book.fields.title),
+                  child: Text(book.fields.title, overflow: TextOverflow.ellipsis,),
                 );
               })
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 8),
           ElevatedButton(
             onPressed: _isFormValid()
                 ? () async {

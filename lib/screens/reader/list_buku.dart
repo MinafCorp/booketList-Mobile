@@ -1,12 +1,10 @@
 // ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:booketlist/models/book.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-
 
 class BookPage extends StatefulWidget {
   const BookPage({super.key});
@@ -50,6 +48,7 @@ class _BookPageState extends State<BookPage> {
   final TextEditingController _searchController = TextEditingController();
   List<Book> _books = [];
   List<Book> _filteredBooks = [];
+  final Set<int> _favoriteBookIds = <int>{};
 
   @override
   void initState() {
@@ -57,64 +56,71 @@ class _BookPageState extends State<BookPage> {
     _initBooks();
   }
 
-  Future<void> refreshBooks() async {
-    _books = await fetchProduct();
-    _filterBooks(_searchController.text);
-  }
-
   Future<void> _initBooks() async {
-    _books = await fetchProduct();
+    _books = await fetchBooks();
     _filteredBooks = _books;
     setState(() {});
   }
 
-  Future<List<Book>> fetchProduct() async {
-    var url = Uri.parse('https://booketlist-production.up.railway.app/api/books/');
+  Future<List<Book>> fetchBooks() async {
+    var url =
+        Uri.parse('https://booketlist-production.up.railway.app/api/books/');
     var response =
         await http.get(url, headers: {"Content-Type": "application/json"});
 
     var data = jsonDecode(utf8.decode(response.bodyBytes));
     List<Book> books = [];
-
     for (var d in data) {
-      if (d != null) {
-        if (d['fields']['image_url_s'] == null) {
-          d['fields']['image_url_s'] =
-              'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg';
-          d['fields']['image_url_l'] =
-              'http://images.amazon.com/images/P/0684823802.01.LZZZZZZZ.jpg';
-        }
-        books.add(Book.fromJson(d));
-      }
+      books.add(Book.fromJson(d));
     }
     return books;
   }
 
-  Future<bool> isBookInWishlist(int bookId) async {
-    final request = context.read<CookieRequest>();
-    final response =
-        await request.get('https://booketlist-production.up.railway.app/wishlist/api_wishlist/');
-
-    for (var item in response) {
-      if (item['pk'] == bookId) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   void _filterBooks(String searchTerm) {
     setState(() {
-      if (searchTerm.isEmpty) {
-        _filteredBooks = _books;
-      } else {
-        _filteredBooks = _books.where((book) {
-          return book.fields.title
-              .toLowerCase()
-              .contains(searchTerm.toLowerCase());
-        }).toList();
-      }
+      _filteredBooks = searchTerm.isEmpty
+          ? _books
+          : _books
+              .where((book) => book.fields.title
+                  .toLowerCase()
+                  .contains(searchTerm.toLowerCase()))
+              .toList();
     });
+  }
+
+  void _toggleFavorite(int bookId) async {
+    final request = context.read<CookieRequest>();
+
+    try {
+      var response = await request.postJson(
+        "https://booketlist-production.up.railway.app/wishlist/add_to_wishlist_flutter/",
+        jsonEncode(<String, String>{'book_id': bookId.toString()}),
+      );
+
+      if (response['success']) {
+        setState(() {
+          if (_favoriteBookIds.contains(bookId)) {
+            _favoriteBookIds.remove(bookId);
+          } else {
+            _favoriteBookIds.add(bookId);
+          }
+        });
+        await _initBooks();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(response['message'])),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content:
+                  Text(response['message'] ?? "Failed to update wishlist")),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Error while updating wishlist")),
+      );
+    }
   }
 
   @override
@@ -125,8 +131,6 @@ class _BookPageState extends State<BookPage> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
-
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 236, 227, 215),
       body: CustomScrollView(
@@ -268,65 +272,17 @@ class _BookPageState extends State<BookPage> {
                           buttonPadding: const EdgeInsets.symmetric(
                               vertical: 0.0, horizontal: 15.0),
                           children: [
-                            FutureBuilder<bool>(
-                              future: isBookInWishlist(book.pk),
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<bool> snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return const Icon(Icons.favorite,
-                                      color: Colors.grey);
-                                } else if (snapshot.hasError) {
-                                  return const Icon(Icons.favorite,
-                                      color: Colors.grey);
-                                } else {
-                                  return IconButton(
-                                    icon: Icon(
-                                      Icons.favorite,
-                                      color: snapshot.data == true
-                                          ? Colors.red
-                                          : Colors.grey,
-                                    ),
-                                    onPressed: () async {
-                                      var bookId = book.pk;
-
-                                      try {
-                                        final response = await request.postJson(
-                                          "https://booketlist-production.up.railway.app/wishlist/add_to_wishlist_flutter/",
-                                          jsonEncode(<String, String>{
-                                            'book_id': bookId.toString()
-                                          }),
-                                        );
-
-                                        if (response['success']) {
-                                          await refreshBooks();
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                                content:
-                                                    Text(response['message'])),
-                                          );
-                                        } else {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            const SnackBar(
-                                                content: Text(
-                                                    "Gagal memasukkan ke wishlist")),
-                                          );
-                                        }
-                                      } catch (e) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          const SnackBar(
-                                              content: Text(
-                                                  "Terjadi kesalahan saat menambahkan ke wishlist")),
-                                        );
-                                      }
-                                    },
-                                  );
-                                }
+                            IconButton(
+                              icon: Icon(
+                                _favoriteBookIds.contains(book.pk)
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                color: Colors.grey,
+                              ),
+                              onPressed: () {
+                                _toggleFavorite(book.pk);
                               },
-                            ),                            
+                            ),
                           ],
                         ),
                       ],

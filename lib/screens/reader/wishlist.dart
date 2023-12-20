@@ -102,7 +102,7 @@ class _WishlistPageState extends State<WishlistPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5DC),
+      backgroundColor: const Color.fromARGB(255, 236, 227, 215),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
@@ -113,7 +113,7 @@ class _WishlistPageState extends State<WishlistPage> {
                 alignment: Alignment.center,
                 children: <Widget>[
                   Image.asset(
-                    'images/wishlists.jpg',
+                    'assets/images/wishlists.jpg',
                     height: 250,
                     fit: BoxFit.cover,
                     width: double.infinity,

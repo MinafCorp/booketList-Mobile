@@ -7,7 +7,6 @@ import 'package:booketlist/screens/author/update_form.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
 import 'package:intl/intl.dart';
-import 'package:booketlist/screens/reader/main_reader.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -79,7 +78,6 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
 
   @override
   Widget build(BuildContext context) {
-    notification = 0;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 236, 227, 215),
       appBar: AppBar(
@@ -100,28 +98,10 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
             border: InputBorder.none,
           ),
           onChanged: _filterUpdates,
-          // onFieldSubmitted: (value) {
-          //   debugPrint('value on Field Submitted');
-          //   _handleSearch(value);
-          // }
         ),
       ),
-      // body: const SingleChildScrollView(
-      //   child: Padding(
-      //       padding: EdgeInsets.all(10.0), // Set padding dari halaman
-      //       child: Column(
-      //           mainAxisAlignment: MainAxisAlignment.center,
-      //           children: <Widget>[
-      //             Align(
-      //               alignment: Alignment.center,
-      //               // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
-      //               child: Image(image: AssetImage('images/title.png')),
-      //             ),
-      //             SizedBox(height: 30),
-      //           ])),
-      // ),
       body: FutureBuilder(
-          future: filterUpdates(), //what to fill here
+          future: filterUpdates(), 
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return const Center(child: CircularProgressIndicator());

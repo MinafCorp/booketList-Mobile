@@ -127,7 +127,7 @@ class _BookPageState extends State<BookPage> {
     final request = context.watch<CookieRequest>();
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5DC),
+      backgroundColor: const Color.fromARGB(255, 236, 227, 215),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -138,7 +138,7 @@ class _BookPageState extends State<BookPage> {
                 alignment: Alignment.center,
                 children: <Widget>[
                   Image.asset(
-                    'images/boket.png',
+                    'assets/images/boket.png',
                     height: 250,
                     fit: BoxFit.cover,
                     width: double.infinity,

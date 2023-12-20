@@ -22,6 +22,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
   final TextEditingController _searchController = TextEditingController();
   List<Updates> _allUpdates = [];
   List<Updates> _filteredUpdates = [];
+  Timer? _debounceTimer;
 
   @override
   void initState() {
@@ -39,10 +40,16 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
     if (query == "") {
       fetchUpdates();
     }
-    setState(() {
-      _filteredUpdates = _allUpdates.where((updates) {
-        return updates.fields.title.toLowerCase().contains(query.toLowerCase());
-      }).toList();
+    _debounceTimer?.cancel();
+
+    _debounceTimer = Timer(Duration(milliseconds: 500), () { 
+      setState(() {
+        _filteredUpdates = _allUpdates.where((updates) {
+            return updates.fields.title
+                .toLowerCase()
+                .contains(query.toLowerCase());
+          }).toList();
+      });
     });
   }
 
@@ -62,6 +69,12 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
       }
     }
     return listUpdates;
+  }
+
+  @override
+  void dispose() {
+    _debounceTimer?.cancel();
+    super.dispose();
   }
 
   @override

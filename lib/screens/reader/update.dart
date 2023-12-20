@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:booketlist/models/updates.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -17,6 +19,7 @@ class _UpdatePageState extends State<UpdatePage> {
   final TextEditingController _searchController = TextEditingController();
   List<Updates> _allUpdates = [];
   List<Updates> _filteredUpdates = [];
+  Timer? _debounceTimer;
 
   @override
   void initState() {
@@ -34,12 +37,16 @@ class _UpdatePageState extends State<UpdatePage> {
     if (query == "") {
       fetchUpdates();
     }
-    setState(() {
-      _filteredUpdates = _allUpdates.where((updates) {
-          return updates.fields.title
-              .toLowerCase()
-              .contains(query.toLowerCase());
-        }).toList();
+    _debounceTimer?.cancel();
+
+    _debounceTimer = Timer(Duration(milliseconds: 500), () { 
+      setState(() {
+        _filteredUpdates = _allUpdates.where((updates) {
+            return updates.fields.title
+                .toLowerCase()
+                .contains(query.toLowerCase());
+          }).toList();
+      });
     });
   }
 
@@ -63,6 +70,12 @@ class _UpdatePageState extends State<UpdatePage> {
           }
       }
       return listUpdates;
+  }
+
+  @override
+  void dispose() {
+    _debounceTimer?.cancel();
+    super.dispose();
   }
 
   @override

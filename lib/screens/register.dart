@@ -69,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
       decoration: const BoxDecoration(
           // color: Colors.red.withOpacity(0.1),
           image: DecorationImage(
-        image: AssetImage('images/wp.jpeg'),
+        image: AssetImage('assets/images/wp.jpg'),
         fit: BoxFit.cover,
       )),
       child: Form(

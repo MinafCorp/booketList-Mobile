@@ -43,7 +43,7 @@ class _SearchPageState extends State<SearchPage> {
                   Align(
                     alignment: Alignment.center,
                     // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
-                    child: Image(image: AssetImage('images/title.png')),
+                    child: Image(image: AssetImage('assets/images/title.png')),
                   ),
                   SizedBox(height: 30),
                 ])),

@@ -102,20 +102,6 @@ class _UpdatePageState extends State<UpdatePage> {
             onChanged: _filterUpdates
             ),
       ),
-      // body: const SingleChildScrollView(
-      //   child: Padding(
-      //       padding: EdgeInsets.all(10.0), // Set padding dari halaman
-      //       child: Column(
-      //           mainAxisAlignment: MainAxisAlignment.center,
-      //           children: <Widget>[
-      //             Align(
-      //               alignment: Alignment.center,
-      //               // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
-      //               child: Image(image: AssetImage('images/title.png')),
-      //             ),
-      //             SizedBox(height: 30),
-      //           ])),
-      // ),
       body: FutureBuilder(
             future: filterUpdates(),
             builder: (context, AsyncSnapshot snapshot) {

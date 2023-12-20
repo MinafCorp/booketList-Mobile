@@ -46,7 +46,7 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
               alignment: Alignment.center,
               children: <Widget>[
                 Image.asset(
-                  'images/boket.png',
+                  'assets/images/boket.png',
                   height: 300,
                   fit: BoxFit.cover,
                   width: double.infinity,

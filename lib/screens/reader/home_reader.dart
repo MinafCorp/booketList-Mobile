@@ -35,7 +35,7 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5DC),
+      backgroundColor: const Color.fromARGB(255, 236, 227, 215),
       body: CustomScrollView(
         slivers: <Widget>[
           SliverToBoxAdapter(
@@ -44,7 +44,7 @@ class _HomeReaderPageState extends State<HomeReaderPage> {
               children: <Widget>[
                 // Full-width image at the top of the page
                 Image.asset(
-                  'images/inter.jpeg',
+                  'assets/images/inter.jpg',
                   height: 250,
                   fit: BoxFit.cover,
                   width: double.infinity,

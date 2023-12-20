@@ -1,10 +1,8 @@
 import 'dart:convert';
-
 import 'package:booketlist/screens/author/main_author.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:booketlist/screens/reader/main_reader.dart';
 
 class UpdateFormPage extends StatefulWidget {
     const UpdateFormPage({super.key});
@@ -114,19 +112,15 @@ class _UpdateFormPageState extends State<UpdateFormPage> {
                                 'content': _content,
                             }));
                             if (response['status'] == 'success') {
-                                notification++;
-                                // ignore: use_build_context_synchronously
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
                                 content: Text("Updates berhasil di post!"),
                                 ));
-                                // ignore: use_build_context_synchronously
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(builder: (context) => const MainAuthor()),
                                 );
                             } else {
-                                // ignore: use_build_context_synchronously
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
                                     content:

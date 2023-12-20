@@ -39,9 +39,9 @@ class _MyHomePageState extends State<MyHomePage>
               FadeTransition(
                 opacity: _controller,
                 child: SizedBox(
-                  width: 450,
-                  height: 450,
-                  child: Image.asset('images/noice.png', fit: BoxFit.contain),
+                  width: 400,
+                  height: 400,
+                  child: Image.asset('assets/images/noice.png', fit: BoxFit.contain),
                 ),
               ),
               const SizedBox(height: 30),

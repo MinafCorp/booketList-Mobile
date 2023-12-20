@@ -90,7 +90,7 @@ class _ReviewPageState extends State<ReviewPage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: const Color(0xFFF5F5DC),
+        backgroundColor: const Color.fromARGB(255, 236, 227, 215),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,

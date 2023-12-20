@@ -69,7 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   const CircleAvatar(
                     radius: 80.0,
                     backgroundImage: AssetImage(
-                        'images/Profile.png'), // Replace with your image
+                        'assets/images/Profile.png'), 
                   ),
                   const SizedBox(height: 20),
                   Text('Hello ${user['username']}!'),

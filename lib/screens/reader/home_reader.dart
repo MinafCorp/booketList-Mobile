@@ -13,7 +13,7 @@ class HomeReaderPage extends StatefulWidget {
 
 class _HomeReaderPageState extends State<HomeReaderPage> {
   Future<List<Book>> fetchBooks() async {
-    var url = Uri.parse('http://127.0.0.1:8000/api/books/');
+    var url = Uri.parse('https://booketlist-production.up.railway.app/api/books/');
     var response =
         await http.get(url, headers: {"Content-Type": "application/json"});
     var data = jsonDecode(utf8.decode(response.bodyBytes));

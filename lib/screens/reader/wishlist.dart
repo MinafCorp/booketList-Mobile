@@ -63,7 +63,7 @@ class _WishlistPageState extends State<WishlistPage> {
   Future<List<Wishlist>> fetchWishlists() async {
     final request = context.read<CookieRequest>();
     final response =
-        await request.get('http://127.0.0.1:8000/wishlist/api_wishlist/');
+        await request.get('https://booketlist-production.up.railway.app/wishlist/api_wishlist/');
     List<Wishlist> wishlists = [];
     for (var d in response) {
       if (d != null) {
@@ -245,7 +245,7 @@ class _WishlistPageState extends State<WishlistPage> {
                             onPressed: () async {
                               final response =
                                   await context.read<CookieRequest>().postJson(
-                                        "http://127.0.0.1:8000/wishlist/delete-wishlist-book/$bookId/",
+                                        "https://booketlist-production.up.railway.app/wishlist/delete-wishlist-book/$bookId/",
                                         jsonEncode(<String, String>{
                                           'book_id': bookId.toString()
                                         }),

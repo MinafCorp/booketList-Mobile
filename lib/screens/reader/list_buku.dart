@@ -69,7 +69,7 @@ class _BookPageState extends State<BookPage> {
   }
 
   Future<List<Book>> fetchProduct() async {
-    var url = Uri.parse('http://127.0.0.1:8000/api/books/');
+    var url = Uri.parse('https://booketlist-production.up.railway.app/api/books/');
     var response =
         await http.get(url, headers: {"Content-Type": "application/json"});
 
@@ -93,7 +93,7 @@ class _BookPageState extends State<BookPage> {
   Future<bool> isBookInWishlist(int bookId) async {
     final request = context.read<CookieRequest>();
     final response =
-        await request.get('http://127.0.0.1:8000/wishlist/api_wishlist/');
+        await request.get('https://booketlist-production.up.railway.app/wishlist/api_wishlist/');
 
     for (var item in response) {
       if (item['pk'] == bookId) {
@@ -292,7 +292,7 @@ class _BookPageState extends State<BookPage> {
 
                                       try {
                                         final response = await request.postJson(
-                                          "http://127.0.0.1:8000/wishlist/add_to_wishlist_flutter/",
+                                          "https://booketlist-production.up.railway.app/wishlist/add_to_wishlist_flutter/",
                                           jsonEncode(<String, String>{
                                             'book_id': bookId.toString()
                                           }),

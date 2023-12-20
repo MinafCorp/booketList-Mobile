@@ -18,7 +18,8 @@ class _ReviewPageState extends State<ReviewPage> {
   bool isReviewTabDataFetched = false;
 
   Future<List<review.Product>> fetchProductAll() async {
-    var url = Uri.parse('http://127.0.0.1:8000/wishlist/json/all/');
+    var url = Uri.parse(
+        'https://booketlist-production.up.railway.app/wishlist/json/all/');
     var response =
         await http.get(url, headers: {"Content-Type": "application/json"});
 
@@ -34,8 +35,8 @@ class _ReviewPageState extends State<ReviewPage> {
 
   Future<List<review.Product>> fetchProductUser() async {
     final request = context.watch<CookieRequest>();
-    final response =
-        await request.get('http://127.0.0.1:8000/wishlist/json/user/');
+    final response = await request.get(
+        'https://booketlist-production.up.railway.app/wishlist/json/user/');
     List<review.Product> wishlists = [];
     for (var d in response) {
       if (d != null) {
@@ -46,7 +47,8 @@ class _ReviewPageState extends State<ReviewPage> {
   }
 
   Future<List<Book>> fetchBook() async {
-    var url = Uri.parse('http://127.0.0.1:8000/api/books/');
+    var url =
+        Uri.parse('https://booketlist-production.up.railway.app/api/books/');
     var response =
         await http.get(url, headers: {"Content-Type": "application/json"});
 
@@ -193,7 +195,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                   var bookId = product.pk;
                                   try {
                                     final response = await request.postJson(
-                                      "http://127.0.0.1:8000/wishlist/delete_review_flutter/$bookId/",
+                                      "https://booketlist-production.up.railway.app/wishlist/delete_review_flutter/$bookId/",
                                       jsonEncode(<String, String>{
                                         'book_id': bookId.toString()
                                       }),
@@ -205,7 +207,6 @@ class _ReviewPageState extends State<ReviewPage> {
                                         SnackBar(
                                             // ignore: prefer_interpolation_to_compose_strings
                                             content: Text(
-                                                // ignore: prefer_interpolation_to_compose_strings
                                                 "${"Selamat!" + response['message']}, silahkan refresh dengan pergi ke page lain!!")),
                                       );
                                     } else {
@@ -251,7 +252,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                   var bookId = product.pk;
                                   try {
                                     final response = await request.postJson(
-                                      "http://127.0.0.1:8000/wishlist/delete_review_flutter/$bookId/",
+                                      "https://booketlist-production.up.railway.app/wishlist/delete_review_flutter/$bookId/",
                                       jsonEncode(<String, String>{
                                         'book_id': bookId.toString()
                                       }),
@@ -374,7 +375,7 @@ class _YourEditReviewFormWidgetState extends State<YourEditReviewFormWidget> {
                     String review = _reviewController;
                     if (review.isNotEmpty && _selectedRating != null) {
                       final response = await request.postJson(
-                        "http://127.0.0.1:8000/wishlist/edit_review_flutter/",
+                        "https://booketlist-production.up.railway.app/wishlist/edit_review_flutter/",
                         jsonEncode({
                           'review': review,
                           'rating': _selectedRating,
@@ -476,7 +477,7 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
                         _selectedRating != null &&
                         _selectedBook != null) {
                       final response = await request.postJson(
-                        "http://127.0.0.1:8000/wishlist/add_to_review_flutter/",
+                        "https://booketlist-production.up.railway.app/wishlist/add_to_review_flutter/",
                         jsonEncode({
                           'review': review,
                           'rating': _selectedRating,

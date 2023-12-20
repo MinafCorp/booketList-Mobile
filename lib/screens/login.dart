@@ -100,12 +100,13 @@ class _LoginPageState extends State<LoginPage> {
 
                       // Perform login with the obtained data
                       // authentication with json
-                      final response = await request
-                          .login("http://127.0.0.1:8000/auth/login/", {
-                        'username': username,
-                        'password': password,
-                        'role': role,
-                      });
+                      final response = await request.login(
+                          "https://booketlist-production.up.railway.app/auth/login/",
+                          {
+                            'username': username,
+                            'password': password,
+                            'role': role,
+                          });
                       if (request.loggedIn) {
                         if (!context.mounted) return;
                         String message = response['message'];

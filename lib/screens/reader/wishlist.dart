@@ -57,7 +57,7 @@ class _WishlistPageState extends State<WishlistPage> {
   Future<void> _initWishlists() async {
     _wishlists = await fetchWishlists();
     _filteredWishlists = _wishlists;
-    setState(() {}); // Refresh the UI after the wishlists are loaded
+    setState(() {});
   }
 
   Future<List<Wishlist>> fetchWishlists() async {
@@ -254,7 +254,7 @@ class _WishlistPageState extends State<WishlistPage> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(content: Text(response['message'])),
                                 );
-                                _initWishlists(); // Refresh the wishlists after deletion
+                                _initWishlists();
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(

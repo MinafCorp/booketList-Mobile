@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:booketlist/models/book.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:booketlist/screens/reader/review.dart';
 
 class BookPage extends StatefulWidget {
   const BookPage({super.key});
@@ -68,7 +69,7 @@ class _BookPageState extends State<BookPage> {
   }
 
   Future<List<Book>> fetchProduct() async {
-    var url = Uri.parse('http://127.0.0.1:8000/api/books/');
+    var url = Uri.parse('https://booketlist-production.up.railway.app/api/books/');
     var response =
         await http.get(url, headers: {"Content-Type": "application/json"});
 
@@ -92,7 +93,7 @@ class _BookPageState extends State<BookPage> {
   Future<bool> isBookInWishlist(int bookId) async {
     final request = context.read<CookieRequest>();
     final response =
-        await request.get('http://127.0.0.1:8000/wishlist/api_wishlist/');
+        await request.get('https://booketlist-production.up.railway.app/wishlist/api_wishlist/');
 
     for (var item in response) {
       if (item['pk'] == bookId) {
@@ -291,7 +292,7 @@ class _BookPageState extends State<BookPage> {
 
                                       try {
                                         final response = await request.postJson(
-                                          "http://127.0.0.1:8000/wishlist/add_to_wishlist_flutter/",
+                                          "https://booketlist-production.up.railway.app/wishlist/add_to_wishlist_flutter/",
                                           jsonEncode(<String, String>{
                                             'book_id': bookId.toString()
                                           }),
@@ -329,7 +330,14 @@ class _BookPageState extends State<BookPage> {
                             IconButton(
                               icon:
                                   const Icon(Icons.comment, color: Colors.grey),
-                              onPressed: () {},
+                              onPressed: () {
+                                  Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const ReviewPage(),
+                                  )
+                                );
+                              },
                             ),
                           ],
                         ),

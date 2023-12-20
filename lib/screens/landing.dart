@@ -35,12 +35,12 @@ class _MyHomePageState extends State<MyHomePage>
         child: Center(
           child: Column(
             children: <Widget>[
-              SizedBox(height: MediaQuery.of(context).size.height * 0.15),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.1),
               FadeTransition(
                 opacity: _controller,
                 child: SizedBox(
-                  width: 400,
-                  height: 400,
+                  width: 450,
+                  height: 450,
                   child: Image.asset('images/noice.png', fit: BoxFit.contain),
                 ),
               ),

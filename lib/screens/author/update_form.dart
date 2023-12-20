@@ -108,7 +108,7 @@ class _UpdateFormPageState extends State<UpdateFormPage> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             final response = await request.postJson(
-                            "http://127.0.0.1:8000/updates/updates-flutter/",
+                            "https://booketlist-production.up.railway.app/updates/updates-flutter/",
                             jsonEncode(<String, String>{
                                 'title': _title,
                                 'content': _content,

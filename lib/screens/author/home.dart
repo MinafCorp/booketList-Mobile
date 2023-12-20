@@ -18,7 +18,7 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
   Future<List<Book>> fetchBooks() async {
     final request = context.watch<CookieRequest>();
     final response = await request
-        .get('http://127.0.0.1:8000/manajemen-buku/get_books_json/');
+        .get('https://booketlist-production.up.railway.app/manajemen-buku/get_books_json/');
     List<Book> books = [];
     for (var d in response) {
       if (d != null) {
@@ -211,7 +211,7 @@ class _HomeAuthorPageState extends State<HomeAuthorPage> {
                                         try {
                                           final response =
                                               await request.postJson(
-                                            "http://127.0.0.1:8000/manajemen-buku/delete_author_book/$isbn/",
+                                            "https://booketlist-production.up.railway.app/manajemen-buku/delete_author_book/$isbn/",
                                             jsonEncode(
                                                 <String, int>{'book_id': isbn}),
                                           );

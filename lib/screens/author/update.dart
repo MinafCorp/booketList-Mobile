@@ -42,7 +42,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
     }
     _debounceTimer?.cancel();
 
-    _debounceTimer = Timer(Duration(milliseconds: 500), () { 
+    _debounceTimer = Timer(const Duration(milliseconds: 500), () {
       setState(() {
         _filteredUpdates = _allUpdates.where((updates) {
             return updates.fields.title
@@ -60,7 +60,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
   Future<List<Updates>> fetchUpdates() async {
     final request = context.read<CookieRequest>();
     final response =
-        await request.get('http://127.0.0.1:8000/updates/get-updates');
+        await request.get('https://booketlist-production.up.railway.app/updates/get-updates');
 
     List<Updates> listUpdates = [];
     for (var d in response) {
@@ -192,7 +192,7 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
                                     color: Color.fromARGB(255, 67, 64, 59)),
                                 onPressed: () async {
                                   var url = Uri.parse(
-                                      "http://127.0.0.1:8000/updates/delete/${snapshot.data![index].pk}/");
+                                      "https://booketlist-production.up.railway.app/updates/delete/${snapshot.data![index].pk}/");
                                   var response = await http.delete(
                                     url,
                                     headers: {

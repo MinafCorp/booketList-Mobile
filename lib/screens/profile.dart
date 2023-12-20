@@ -24,12 +24,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<Map<String, dynamic>> fetchUserData() async {
     final request = context.read<CookieRequest>();
-    final response = await request.get('http://127.0.0.1:8000/user-api/');
+    final response = await request.get('https://booketlist-production.up.railway.app/user-api/');
     return response;
   }
 
   Future<void> logout() async {
-    var url = Uri.parse('http://127.0.0.1:8000/auth/logout/');
+    var url = Uri.parse('https://booketlist-production.up.railway.app/auth/logout/');
     var response =
         await http.post(url, headers: {"Content-Type": "application/json"});
 

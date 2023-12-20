@@ -265,6 +265,8 @@ class _BookPageState extends State<BookPage> {
                             style: const TextStyle(
                                 fontSize: 16.0, fontWeight: FontWeight.bold),
                             textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                           ),
                         ),
                         ButtonBar(

@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:booketlist/models/book.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:booketlist/screens/reader/review.dart';
 
 class BookPage extends StatefulWidget {
   const BookPage({super.key});
@@ -329,7 +330,14 @@ class _BookPageState extends State<BookPage> {
                             IconButton(
                               icon:
                                   const Icon(Icons.comment, color: Colors.grey),
-                              onPressed: () {},
+                              onPressed: () {
+                                  Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const ReviewPage(),
+                                  )
+                                );
+                              },
                             ),
                           ],
                         ),

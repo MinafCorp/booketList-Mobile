@@ -203,7 +203,8 @@ class _ReviewPageState extends State<ReviewPage> {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
-                                            content: Text("Selamat!" + response['message'] + ", silahkan refresh dengan pergi ke page lain!!")),
+                                            // ignore: prefer_interpolation_to_compose_strings
+                                            content: Text("${"Selamat!" + response['message']}, silahkan refresh dengan pergi ke page lain!!")),
                                       );
                                     } else {
                                       ScaffoldMessenger.of(context)

@@ -18,7 +18,8 @@ class _ReviewPageState extends State<ReviewPage> {
   bool isReviewTabDataFetched = false;
 
   Future<List<review.Product>> fetchProductAll() async {
-    var url = Uri.parse('https://booketlist-production.up.railway.app/wishlist/json/all/');
+    var url = Uri.parse(
+        'https://booketlist-production.up.railway.app/wishlist/json/all/');
     var response =
         await http.get(url, headers: {"Content-Type": "application/json"});
 
@@ -34,8 +35,8 @@ class _ReviewPageState extends State<ReviewPage> {
 
   Future<List<review.Product>> fetchProductUser() async {
     final request = context.watch<CookieRequest>();
-    final response =
-        await request.get('https://booketlist-production.up.railway.app/wishlist/json/user/');
+    final response = await request.get(
+        'https://booketlist-production.up.railway.app/wishlist/json/user/');
     List<review.Product> wishlists = [];
     for (var d in response) {
       if (d != null) {
@@ -46,7 +47,8 @@ class _ReviewPageState extends State<ReviewPage> {
   }
 
   Future<List<Book>> fetchBook() async {
-    var url = Uri.parse('https://booketlist-production.up.railway.app/api/books/');
+    var url =
+        Uri.parse('https://booketlist-production.up.railway.app/api/books/');
     var response =
         await http.get(url, headers: {"Content-Type": "application/json"});
 
@@ -204,7 +206,8 @@ class _ReviewPageState extends State<ReviewPage> {
                                           .showSnackBar(
                                         SnackBar(
                                             // ignore: prefer_interpolation_to_compose_strings
-                                            content: Text("${"Selamat!" + response['message']}, silahkan refresh dengan pergi ke page lain!!")),
+                                            content: Text(
+                                                "${"Selamat!" + response['message']}, silahkan refresh dengan pergi ke page lain!!")),
                                       );
                                     } else {
                                       ScaffoldMessenger.of(context)
@@ -379,13 +382,12 @@ class _YourEditReviewFormWidgetState extends State<YourEditReviewFormWidget> {
                           'book': bookId,
                         }),
                       );
-                      
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(
-                          const SnackBar(
-                              content: Text("Selamat! kamu telah berhasil mengedit! silahkan refresh dengan pergi ke page lain")),
-                        );
-                      
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text(
+                                "Selamat! kamu telah berhasil mengedit! silahkan refresh dengan pergi ke page lain")),
+                      );
                     }
 
                     Navigator.pop(context);
@@ -482,11 +484,11 @@ class _YourReviewFormWidgetState extends State<YourReviewFormWidget> {
                           'book': int.parse(_selectedBook!),
                         }),
                       );
-                      ScaffoldMessenger.of(context)
-                            .showSnackBar(
-                          const SnackBar(
-                              content: Text("Selamat! kamu telah berhasil menambah Review! silahkan refresh dengan pergi ke page lain")),
-                        );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text(
+                                "Selamat! kamu telah berhasil menambah Review! silahkan refresh dengan pergi ke page lain")),
+                      );
                     }
 
                     Navigator.pop(context);

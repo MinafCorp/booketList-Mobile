@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:animated_search_bar/animated_search_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:booketlist/screens/reader/main_reader.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 
 class UpdateAuthorPage extends StatefulWidget {
@@ -53,13 +55,9 @@ class _UpdateAuthorPageState extends State<UpdateAuthorPage> {
   }
 
   Future<List<Updates>> fetchUpdates() async {
-      var url = Uri.parse(
-          'http://127.0.0.1:8000/updates/get-updates');
-      var response = await http.get(
-          url,
-          headers: {
-            "Content-Type": "application/json",
-            },
+      final request = context.watch<CookieRequest>();
+      var response = await request.get(
+          'http://127.0.0.1:8000/updates/get-updates'
       );
       var data = jsonDecode(utf8.decode(response.bodyBytes));
 

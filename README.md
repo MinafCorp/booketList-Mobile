@@ -15,7 +15,7 @@
 [![Staging](https://github.com/MinafCorp/booketList-Mobile/actions/workflows/staging.yml/badge.svg)](https://github.com/MinafCorp/booketList-Mobile/actions/workflows/staging.yml)
 
 ## 📱 Tautan Aplikasi 📱
-Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh di bagian [https://install.appcenter.ms/orgs/minafcorp/apps/booketlist/releases/1]
+Saat ini, hanya tersedia versi Android (APK) untuk diunduh. File APK dapat diunduh di bagian [https://install.appcenter.ms/orgs/minafcorp/apps/booketlist/distribution_groups/public]
 
 ## 👨‍💻 Meet the Dev Teams 👩‍💻
 

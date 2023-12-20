@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:booketlist/models/book.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:booketlist/screens/reader/review.dart';
 
 class BookPage extends StatefulWidget {
   const BookPage({super.key});
@@ -69,7 +68,8 @@ class _BookPageState extends State<BookPage> {
   }
 
   Future<List<Book>> fetchProduct() async {
-    var url = Uri.parse('https://booketlist-production.up.railway.app/api/books/');
+    var url =
+        Uri.parse('https://booketlist-production.up.railway.app/api/books/');
     var response =
         await http.get(url, headers: {"Content-Type": "application/json"});
 
@@ -92,8 +92,8 @@ class _BookPageState extends State<BookPage> {
 
   Future<bool> isBookInWishlist(int bookId) async {
     final request = context.read<CookieRequest>();
-    final response =
-        await request.get('https://booketlist-production.up.railway.app/wishlist/api_wishlist/');
+    final response = await request.get(
+        'https://booketlist-production.up.railway.app/wishlist/api_wishlist/');
 
     for (var item in response) {
       if (item['pk'] == bookId) {
@@ -326,7 +326,7 @@ class _BookPageState extends State<BookPage> {
                                   );
                                 }
                               },
-                            ),                            
+                            ),
                           ],
                         ),
                       ],

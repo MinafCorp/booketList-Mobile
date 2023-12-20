@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:booketlist/models/book.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:booketlist/screens/reader/review.dart';
+
 
 class BookPage extends StatefulWidget {
   const BookPage({super.key});
